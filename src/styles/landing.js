@@ -39,7 +39,7 @@ export default (landing = StyleSheet.create({
 		borderTopColor: "#c7c7c7",
 		borderTopWidth: 1,
 		width: "100%",
-		padding: 10,
+		padding: 15,
 	},
 	footer_child: {
 		maxWidth: 350,

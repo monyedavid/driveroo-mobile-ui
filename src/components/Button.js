@@ -5,7 +5,7 @@ import { Button } from "native-base";
 
 export default function Form(props) {
 	return (
-		<Button style={{ ...styles.button, ...props.style }}>
+		<Button style={{ ...styles.button, ...props.style }} onPress={props.onPress}>
 			<Text style={styles.text}>{props.title || "Enter"}</Text>
 		</Button>
 	);
@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
 		backgroundColor: "#002257",
 		paddingTop: 13,
 		paddingBottom: 13,
+		maxWidth: 350,
 		width: "100%",
 		borderBottomWidth: 2,
 		borderColor: "#002257",

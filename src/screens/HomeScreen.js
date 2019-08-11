@@ -4,10 +4,9 @@ import { Image, ImageBackground, Platform, StyleSheet, Text, View } from "react-
 import "../styles/landing";
 import "../styles/core/utilis";
 import Button from "../components/Button";
-
 import { MonoText } from "../components/StyledText";
 
-export default function HomeScreen() {
+export default function HomeScreen(props) {
 	return (
 		<View style={landing.container}>
 			<View style={landing.image_container}>
@@ -23,18 +22,23 @@ export default function HomeScreen() {
 					<Text style={utilis.text_light}>+234 7054727840</Text>
 				</View>
 				<View>
-					<Text style={{ ...utilis.text_gray, ...utilis.text_center }}>
+					<Text style={{ ...utilis.text_sm_gray, ...utilis.text_center }}>
 						By continuing, I confirm that i have read & agree to the
 					</Text>
-					<Text style={{ ...utilis.text_gray, ...utilis.text_center }}>Terms & conditions and Privacy policy</Text>
+					<Text style={{ ...utilis.text_sm_gray, ...utilis.text_center }}>Terms & conditions and Privacy policy</Text>
 				</View>
-				<Button />
+				<Button
+					title="Continue"
+					onPress={() => {
+						props.navigation.navigate("SocialLogin");
+					}}
+				/>
 				{/* </View> */}
 			</View>
 
 			<View style={landing.footer}>
 				<View style={landing.footer_child}>
-					<Text>Or connect using a social media account</Text>
+					<Text style={utilis.text_sm_blue}>Or connect using a social media account</Text>
 				</View>
 			</View>
 		</View>

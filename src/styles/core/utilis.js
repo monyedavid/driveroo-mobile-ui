@@ -2,6 +2,10 @@ import React from "react";
 import { StyleSheet } from "react-native";
 
 const pre_style = {
+	text_sm: {
+		fontSize: 13,
+	},
+
 	text: {
 		color: "#002257",
 		fontSize: 17,
@@ -22,11 +26,25 @@ const styles = {
 		...pre_style.text,
 		fontWeight: "400",
 	},
+	text_sm_gray: {
+		...pre_style.text_sm,
+		color: "#878787",
+		marginTop: 5,
+	},
+	text_sm_black: {
+		...pre_style.text_sm,
+		color: "#000",
+	},
 
+	text_sm_blue: {
+		...pre_style.text_sm,
+		color: "#002257",
+		marginTop: 5,
+	},
 	text_gray: {
 		color: "#878787",
-		fontSize: 13,
 		marginTop: 5,
+		fontSize: 17,
 	},
 	text_center: {
 		textAlign: "center",
@@ -34,6 +52,9 @@ const styles = {
 	flex_horizaontal: {
 		flexDirection: "row",
 		alignItems: "center",
+	},
+	margin_bottom_sm: {
+		marginBottom: 15,
 	},
 	margin_bottom: {
 		marginBottom: 35,

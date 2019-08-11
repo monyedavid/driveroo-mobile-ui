@@ -4,14 +4,20 @@ import InputField from "../components/InputField";
 import Button from "../components/Button";
 import "../styles/core/utilis";
 
-export default function LoginScreen() {
+export default function LoginScreen(props) {
 	return (
 		<View style={styles.container}>
 			<View style={utilis.child_container}>
 				<Text style={{ ...utilis.text, ...utilis.margin_bottom_lg }}>Sign in</Text>
 				<InputField placeholder="Mobile Number or Email address" />
 				<InputField placeholder="Password" />
-				<Button title={"Sign In"} />
+				<Button
+					title={"Sign In"}
+					onPress={() => {
+						props.navigation.navigate("Profile");
+					}}
+				/>
+
 				<Text style={utilis.text}>Forgot password?</Text>
 			</View>
 		</View>

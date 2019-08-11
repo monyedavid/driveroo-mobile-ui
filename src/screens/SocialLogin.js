@@ -1,10 +1,10 @@
 import React from "react";
-import { View, StyleSheet, Image, Text } from "react-native";
+import { View, StyleSheet, Image, Text, TouchableHighlight } from "react-native";
 import { Icon } from "native-base";
 import "../styles/core/utilis";
 import utilis from "../styles/core/utilis";
 
-export default function SocailLogin() {
+export default function SocailLogin(props) {
 	return (
 		<View style={styles.container}>
 			<View style={utilis.child_container}>
@@ -17,7 +17,12 @@ export default function SocailLogin() {
 					<View style={styles.wide_layout}>
 						<Text style={utilis.text_light}>Facebook</Text>
 					</View>
-					<Image source={require("../assets/images/right-arrow.png")} style={{ height: 20 }} resizeMode="contain" />
+					<TouchableHighlight
+						onPress={() => {
+							props.navigation.navigate("Login");
+						}}>
+						<Image source={require("../assets/images/right-arrow.png")} style={{ height: 20 }} resizeMode="contain" />
+					</TouchableHighlight>
 				</View>
 				<View style={{ ...utilis.flex_horizaontal, ...styles.tab_bottom }}>
 					<Image source={require("../assets/images/search.png")} style={{ height: 20 }} resizeMode="contain" />

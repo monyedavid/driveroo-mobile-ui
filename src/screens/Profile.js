@@ -4,7 +4,7 @@ import InputField from "../components/InputField";
 import Button from "../components/Button";
 import "../styles/core/utilis";
 
-export default function Profile() {
+export default function Profile(props) {
 	return (
 		<View style={styles.container}>
 			<View style={utilis.child_container}>
@@ -14,7 +14,13 @@ export default function Profile() {
 				<InputField placeholder="Email address" />
 				<InputField placeholder="Password" />
 				<InputField placeholder="Confirm password" />
-				<Button title={"Continue"} style={styles.margin_top} />
+				<Button
+					title={"Continue"}
+					style={styles.margin_top}
+					onPress={() => {
+						props.navigation.navigate("Verification");
+					}}
+				/>
 			</View>
 		</View>
 	);

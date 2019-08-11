@@ -12,29 +12,32 @@ import { RegisterConnector } from "../modules/register/RegisterConnector";
 
 const AppNavigator = createStackNavigator(
 	{
-		// Home: {
-		// 	screen: HomeScreen,
-		// },
-		// SocialLogin: {
-		// 	screen: SocialLogin,
-		// },
-		// Login: {
-		// 	screen: LoginScreen,
-		// },
-		// Profile: {
-		// 	screen: Profile,
-		// },
-		// Verification: {
-		// 	screen: VerificationScreen,
-		// },
+		Home: {
+			screen: HomeScreen,
+		},
+		SocialLogin: {
+			screen: SocialLogin,
+		},
+		Login: {
+			screen: LoginScreen,
+		},
+		Profile: {
+			screen: Profile,
+		},
+		Verification: {
+			screen: VerificationScreen,
+		},
 		ResetPassword: {
 			screen: ResetPassword,
 		},
 	},
 	{
+		// initialRouteName: "Profile",
 		defaultNavigationOptions: {
 			headerStyle: {
 				backgroundColor: "#fff",
+				borderBottomColor: "#f3f3f3",
+				borderBottomWidth: 4,
 			},
 			headerTitleStyle: {
 				fontWeight: "bold",
