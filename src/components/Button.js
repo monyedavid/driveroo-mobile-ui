@@ -3,27 +3,37 @@ import React from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { Button } from "native-base";
 
-export default function Form(props) {
-	return (
-		<Button style={{ ...styles.button, ...props.style }} onPress={props.onPress}>
-			<Text style={styles.text}>{props.title || "Enter"}</Text>
-		</Button>
-	);
+export default function ButtonClass(props) {
+    return (
+        <Button
+            {...props}
+            style={{ ...styles.button, ...props.style }}
+            onPress={props.onPress}
+        >
+            <Text style={styles.text}>{props.title || "Enter"}</Text>
+        </Button>
+    );
 }
 
 const styles = StyleSheet.create({
-	button: {
-		backgroundColor: "#002257",
-		paddingTop: 13,
-		paddingBottom: 13,
-		maxWidth: 350,
-		width: "100%",
-		borderBottomWidth: 2,
-		borderColor: "#002257",
-		justifyContent: "center",
-		marginTop: 20,
-		borderRadius: 20,
-		marginBottom: 20,
-	},
-	text: { fontSize: 17, textAlign: "center", fontWeight: "700", color: "#fff", textTransform: "uppercase" },
+    button: {
+        backgroundColor: "#002257",
+        paddingTop: 13,
+        paddingBottom: 13,
+        maxWidth: 350,
+        width: "100%",
+        borderBottomWidth: 2,
+        borderColor: "#002257",
+        justifyContent: "center",
+        marginTop: 20,
+        borderRadius: 20,
+        marginBottom: 20
+    },
+    text: {
+        fontSize: 17,
+        textAlign: "center",
+        fontWeight: "700",
+        color: "#fff",
+        textTransform: "uppercase"
+    }
 });
