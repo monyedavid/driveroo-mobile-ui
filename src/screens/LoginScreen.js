@@ -5,32 +5,48 @@ import Button from "../components/Button";
 import "../styles/core/utilis";
 
 export default function LoginScreen(props) {
-	return (
-		<View style={styles.container}>
-			<View style={utilis.child_container}>
-				<Text style={{ ...utilis.text, ...utilis.margin_bottom_lg }}>Sign in</Text>
-				<InputField placeholder="Mobile Number or Email address" />
-				<InputField placeholder="Password" />
-				<Button
-					title={"Sign In"}
-					onPress={() => {
-						props.navigation.navigate("Profile");
-					}}
-				/>
+    const [numorEmail, setnumorEmail] = React.useState("");
+    const [password, setpassword] = React.useState("");
 
-				<Text style={utilis.text}>Forgot password?</Text>
-			</View>
-		</View>
-	);
+    return (
+        <View style={styles.container}>
+            <View style={utilis.child_container}>
+                <Text style={{ ...utilis.text, ...utilis.margin_bottom_lg }}>
+                    Sign in
+                </Text>
+                <InputField
+                    autoFocus={true}
+                    onChangeText={text => {
+                        console.log(text);
+                    }}
+                    placeholder='Mobile Number or Email address'
+                />
+                <InputField
+                    onChangeText={text => {
+                        console.log(text);
+                    }}
+                    placeholder='Password'
+                />
+                <Button
+                    title={"Sign In"}
+                    onPress={() => {
+                        props.navigation.navigate("Profile");
+                    }}
+                />
+
+                <Text style={utilis.text}>Forgot password?</Text>
+            </View>
+        </View>
+    );
 }
 
 LoginScreen.navigationOptions = {
-	headers: null,
+    headers: null
 };
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		marginTop: 55,
-	},
+    container: {
+        flex: 1,
+        marginTop: 55
+    }
 });

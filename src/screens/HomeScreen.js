@@ -59,7 +59,7 @@ export default function HomeScreen(props) {
                 <Button
                     title='Continue'
                     onPress={() => {
-                        props.navigation.navigate("OTP");
+                        props.navigation.navigate("Login");
                     }}
                 />
                 {/* </View> */}

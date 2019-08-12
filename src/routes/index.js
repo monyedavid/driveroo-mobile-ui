@@ -9,7 +9,6 @@ import Profile from "../screens/Profile";
 import VerificationScreen from "../screens/VerificationScreen";
 import ResetPassword from "../screens/ResetPassword";
 import { createStackNavigator, createAppContainer } from "react-navigation";
-import { RegisterConnector } from "../modules/register/RegisterConnector";
 
 const AppNavigator = createStackNavigator(
     {

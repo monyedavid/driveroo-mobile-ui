@@ -5,12 +5,9 @@ import { TextInput, Text, View, StyleSheet } from "react-native";
 export default function Input(props) {
     return (
         <TextInput
+            {...props}
             placeholder={props.placeholder || "Texting"}
             name={props.email || "Email"}
-            // autoCapitalize="none"
-            // onChangeText={text => {
-            // 	this.handleInputChange(text, "email");
-            // }}
             secureTextEntry={props.password || false}
             style={styles.field}
             placeholderTextColor='#748078'
