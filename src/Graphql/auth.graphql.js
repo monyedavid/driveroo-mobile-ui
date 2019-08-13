@@ -1,21 +1,19 @@
-import * as rp from "request-promise-native";
+import axios from "axios";
+
+const rps = axios.create({
+    withCredentials: true
+});
 
 export class g_Auth {
     constructor(url) {
         this.url = url ? url : process.env.AUTH_MS;
-        this.options = {
-            withCredentials: true,
-            json: true,
-            jar: rp.jar()
-        };
     }
 
     /**
      * login
      */
     async login({ emailormobile, password }) {
-        return rp.post(this.url, {
-            ...this.options,
+        return rps.post(this.url, {
             body: {
                 query: `
                     mutation {
@@ -37,8 +35,7 @@ export class g_Auth {
      * me
      */
     async me() {
-        return rp.post(this.url, {
-            ...this.options,
+        return rps.post(this.url, {
             body: {
                 query: `
                     {
@@ -76,8 +73,7 @@ export class g_Auth {
         { email, password, mobile, firstName, lastName },
         model = "driver"
     ) {
-        return rp.post(this.url, {
-            ...this.options,
+        return rps.post(this.url, {
             body: {
                 query: `
                     mutation {
