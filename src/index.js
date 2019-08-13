@@ -1,5 +1,6 @@
 import * as React from "react";
 import { ApolloProvider } from "react-apollo";
+import { MuiThemeProvider } from "@material-ui/core/styles";
 import Routes from "./routes";
 import { client } from "./apollo";
 // REDUX
@@ -11,7 +12,9 @@ export default class App extends React.PureComponent {
         return (
             <Provider store={store}>
                 <ApolloProvider client={client}>
-                    <Routes />
+                    <MuiThemeProvider theme={materialUITheme}>
+                        <Routes />
+                    </MuiThemeProvider>
                 </ApolloProvider>
             </Provider>
         );
