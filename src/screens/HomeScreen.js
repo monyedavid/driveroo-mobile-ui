@@ -9,7 +9,7 @@ import { userMe } from "../resources/redux-actions/auth";
 function HomeScreen(props) {
     useEffect(() => {
         // props.userMe();
-        // use data to push to map screen
+        // use data to push to map screen if user exists
         console.log("state|}component mounted");
     });
     return (

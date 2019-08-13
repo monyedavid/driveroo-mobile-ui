@@ -8,11 +8,15 @@ export const userLogin = ({ emailormobile, password }) => async dispatch => {
             : config.AUTH_MS_DEV;
 
     const service = new g_Auth(config.AUTH_MS_DEV);
+    let result;
     try {
-        const result = await service.login({ emailormobile, password });
-        console.log(result.data, "result");
+        result = await service.login({ emailormobile, password });
+        console.log(result.data.data.login[0], "result");
     } catch (error) {
         console.log("err |", error);
+    }
+    if (!result.data.data.login[0].path) {
+        console.log("Invalid Email address");
     }
 };
 
