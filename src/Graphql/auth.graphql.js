@@ -1,20 +1,20 @@
 import axios from "axios";
 
 const rps = axios.create({
-    withCredentials: true
+	withCredentials: true,
 });
 
 export class g_Auth {
-    constructor(url) {
-        this.url = url ? url : process.env.AUTH_MS;
-    }
+	constructor(url) {
+		this.url = url ? url : process.env.AUTH_MS;
+	}
 
-    /**
-     * login
-     */
-    async login({ emailormobile, password }) {
-        return await rps.post(this.url, {
-            query: `
+	/**
+	 * login
+	 */
+	async login({ emailormobile, password }) {
+		return await rps.post(this.url, {
+			query: `
                     mutation {
                         login(
                         emailormobile: "${emailormobile}"
@@ -27,16 +27,16 @@ export class g_Auth {
                             sessionId
                         }
                     }                  
-                    `
-        });
-    }
+                    `,
+		});
+	}
 
-    /**
-     * me
-     */
-    async me() {
-        return rps.post(this.url, {
-            query: `
+	/**
+	 * me
+	 */
+	async me() {
+		return rps.post(this.url, {
+			query: `
                     {
                         me {
                         __typename
@@ -58,21 +58,18 @@ export class g_Auth {
                             }
                         }
                     }             
-                `
-        });
-    }
+                `,
+		});
+	}
 
-    /**
-     * @register
-     * @param {*} param0
-     * @param {*} model
-     */
-    async register(
-        { email, password, mobile, firstName, lastName },
-        model = "driver"
-    ) {
-        return rps.post(this.url, {
-            query: `
+	/**
+	 * @register
+	 * @param {*} param0
+	 * @param {*} model
+	 */
+	async register({ email, password, mobile, firstName, lastName }, model = "driver") {
+		return rps.post(this.url, {
+			query: `
                     mutation {
                         register(
                         params: {
@@ -89,7 +86,7 @@ export class g_Auth {
                             message
                         }
                     }    
-                `
-        });
-    }
+                `,
+		});
+	}
 }
