@@ -5,6 +5,7 @@ export const userLogin = ({ emailormobile, password }) => async dispatch => {
         process.env.NODE_ENV === "production"
             ? process.env.AUTH_MS
             : process.env.AUTH_MS_DEV;
+    console.log(url, "| url");
     const service = new g_Auth();
     try {
         const result = await service.login({ emailormobile, password });
