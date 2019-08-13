@@ -72,6 +72,7 @@ function LoginScreen(props) {
                         setPassword(text);
                     }}
                     placeholder='Password'
+                    secureTextEntry={true}
                 />
                 <Button
                     disabled={disableSubmit()}
