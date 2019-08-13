@@ -1,6 +1,6 @@
 import * as WebBrowser from "expo-web-browser";
 import React from "react";
-import { TextInput, Text, View, StyleSheet } from "react-native";
+import { TextInput, StyleSheet } from "react-native";
 
 export default function Input(props) {
     return (

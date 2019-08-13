@@ -6,41 +6,51 @@ import Button from "../components/Button";
 import "../styles/core/utilis";
 
 export default function ConfirmationScrenn() {
-	return (
-		<View style={styles.container}>
-			<View style={utilis.child_container}>
-				<Text style={{ ...utilis.text_center, ...utilis.text }}>Thank you for registering with us</Text>
-				<View style={styles.image_containere}>
-					<Image source={require("../assets/images/thumb_up.png")} style={styles.image} />
-				</View>
+    return (
+        <View style={styles.container}>
+            <View style={utilis.child_container}>
+                <Text style={{ ...utilis.text_center, ...utilis.text }}>
+                    Thank you for registering with us
+                </Text>
+                <View style={styles.image_container}>
+                    <Image
+                        source={require("../assets/images/thumb_up.png")}
+                        style={styles.image}
+                    />
+                </View>
 
-				<Text style={{ ...utilis.text_center, ...utilis.text_sm_black }}>We will get back to you shortly </Text>
-			</View>
-		</View>
-	);
+                <Text
+                    style={{ ...utilis.text_center, ...utilis.text_sm_black }}
+                >
+                    We will get back to you shortly{" "}
+                </Text>
+            </View>
+        </View>
+    );
 }
 
 ConfirmationScrenn.navigationOptions = {
-	headers: null,
+    headers: null,
+    headerLeft: null
 };
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		marginTop: 55,
-	},
-	image: {
-		width: 170,
-		height: 170,
-		justifyContent: "center",
-		alignItems: "center",
-		marginTop: 80,
-		marginBottom: 80,
-	},
-	image_container: {
-		flexDirection: "column",
-		justifyContent: "center",
-		alignItems: "center",
-		width: "100%",
-	},
+    container: {
+        flex: 1,
+        marginTop: 55
+    },
+    image: {
+        width: 170,
+        height: 170,
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 80,
+        marginBottom: 80
+    },
+    image_container: {
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100%"
+    }
 });

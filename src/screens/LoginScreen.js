@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { connect } from "react-redux";
 import { View, StyleSheet, Text } from "react-native";
 import InputField from "../components/InputField";
@@ -6,7 +6,7 @@ import Button from "../components/Button";
 import { Snackbar } from "react-native-material-ui";
 import isEmpty from "../utils/is.empty";
 import { snackBarGen } from "../utils/errors/errorHandler";
-import { userLogin } from "../resources/redux-actions/auth";
+import { userLogin, userMe } from "../resources/redux-actions/auth";
 import "../styles/core/utilis";
 
 function LoginScreen(props) {
@@ -15,7 +15,12 @@ function LoginScreen(props) {
     const [load, setLoad] = React.useState(false);
     const [snackbar, setSnackbar] = React.useState(true);
 
-    console.log(props.errors, "| error reducers state");
+    console.log(props.auth);
+    if (props.auth.isAuthenticated) {
+        props.navigation.navigate("Confirmation");
+    }
+
+    // console.log(props.errors, "| error reducers state");
     const displayTheSnack$ = isEmpty(props.errors)
         ? null
         : snackBarGen(props.errors);
@@ -45,15 +50,12 @@ function LoginScreen(props) {
         <View style={styles.container}>
             {displayTheSnack$
                 ? displayTheSnack$.map(({ message, variant }, index) => (
-                      <View>
-                          <Snackbar
-                              visible={true}
-                              message='hello World'
-                              onRequestClose={() =>
-                                  this.setState({ isVisible: false })
-                              }
-                          />
-                      </View>
+                      <Snackbar
+                          visible={true}
+                          message={message}
+                          key={index}
+                          onRequestClose={() => console.log("close")}
+                      />
                   ))
                 : null}
             <View style={utilis.child_container}>
@@ -72,6 +74,7 @@ function LoginScreen(props) {
                         setPassword(text);
                     }}
                     placeholder='Password'
+                    secureTextEntry={true}
                 />
                 <Button
                     disabled={disableSubmit()}
@@ -83,6 +86,14 @@ function LoginScreen(props) {
                 />
 
                 <Text style={utilis.text}>Forgot password?</Text>
+                <Text
+                    style={utilis.text}
+                    onPress={() => {
+                        props.navigation.navigate("Profile");
+                    }}
+                >
+                    Register?
+                </Text>
             </View>
         </View>
     );
@@ -100,10 +111,11 @@ const styles = StyleSheet.create({
 });
 
 const map_state_to_props = state => ({
+    auth: state.auth,
     errors: state.errors
 });
 
 export default connect(
     map_state_to_props,
-    { userLogin }
+    { userLogin, userMe }
 )(LoginScreen);

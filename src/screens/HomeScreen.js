@@ -1,17 +1,42 @@
-import React, { useEffect } from "react";
+import * as React from "react";
 import { connect } from "react-redux";
 import { Image, Text, TextInput, View } from "react-native";
 import "../styles/landing";
 import "../styles/core/utilis";
 import Button from "../components/Button";
 import { userMe } from "../resources/redux-actions/auth";
-
 function HomeScreen(props) {
-    useEffect(() => {
-        // props.userMe();
+    const [mobile, setMobile] = React.useState("");
+
+    React.useEffect(() => {
+        //props.userMe();
         // use data to push to map screen if user exists
-        console.log("state|}component mounted");
+        // console.log("state|}component mounted |", props.auth);
+        if (props.auth) {
+            if (props.auth.user) {
+                if (props.auth.user.user) {
+                    if (props.auth.user.user.active)
+                        props.navigation.navigate("Confirmation");
+
+                    if (
+                        props.auth.isAuthenticated &&
+                        props.auth.user.user.active &&
+                        !props.auth.user.user.confirmed
+                    )
+                        props.navigation.navigate("Profile");
+                }
+            }
+        }
     });
+
+    disableSubmit = () => {
+        if (mobile !== "") {
+            if (mobile.length === 11) return false;
+            // check if mobile.length has alphabetic characters
+        }
+
+        return true;
+    };
     return (
         <View style={landing.container}>
             <View style={landing.image_container}>
@@ -33,7 +58,13 @@ function HomeScreen(props) {
                         style={landing.icon}
                     />
                     {/* <Text style={utilis.text_light}>+234 7054727840</Text> */}
-                    <TextInput placeholder={"+234"} />
+                    <TextInput
+                        autoFocus={true}
+                        onChangeText={text => {
+                            setMobile(text);
+                        }}
+                        placeholder={"+234"}
+                    />
                 </View>
                 <View>
                     <Text
@@ -54,9 +85,10 @@ function HomeScreen(props) {
                     </Text>
                 </View>
                 <Button
+                    disabled={disableSubmit()}
                     title='Continue'
                     onPress={() => {
-                        props.navigation.navigate("Login");
+                        props.navigation.navigate("OTP");
                     }}
                 />
                 {/* </View> */}
@@ -69,7 +101,11 @@ HomeScreen.navigationOptions = {
     header: null
 };
 
+const map_state_to_props = state => ({
+    auth: state.auth
+});
+
 export default connect(
-    null,
+    map_state_to_props,
     { userMe }
 )(HomeScreen);
