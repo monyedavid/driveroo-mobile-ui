@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import * as React from "react";
 import { connect } from "react-redux";
 import { Image, Text, TextInput, View } from "react-native";
 import "../styles/landing";
@@ -7,10 +7,11 @@ import Button from "../components/Button";
 import { userMe } from "../resources/redux-actions/auth";
 
 function HomeScreen(props) {
-    useEffect(() => {
+    React.useEffect(() => {
         props.userMe();
         // use data to push to map screen if user exists
-        console.log("state|}component mounted");
+        // console.log("state|}component mounted |", props.auth);
+        if (props.auth) props.navigation.navigate("Confirmation");
     });
     return (
         <View style={landing.container}>
@@ -69,7 +70,11 @@ HomeScreen.navigationOptions = {
     header: null
 };
 
+const map_state_to_props = state => ({
+    auth: state.auth
+});
+
 export default connect(
-    null,
+    map_state_to_props,
     { userMe }
 )(HomeScreen);

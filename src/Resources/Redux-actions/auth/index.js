@@ -56,7 +56,7 @@ export const userMe = () => async dispatch => {
             ]
         });
     }
-    //         console.log(result.data.data.me, "result|me");
+    // console.log(result.data.data.me, "result|me");
     if (result && result.data) {
         if (result.data.data.me) {
             dispatch(set_current_user(result.data.data.me));
