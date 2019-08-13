@@ -13,21 +13,21 @@ export class g_Auth {
      * login
      */
     async login({ emailormobile, password }) {
-        return rps.post(this.url, {
-            body: {
-                query: `
+        return await rps.post(this.url, {
+            query: `
                     mutation {
                         login(
-                        emailormobile: ${emailormobile}
-                        password: ${password}
+                        emailormobile: "${emailormobile}"
+                        password: "${password}"
                         model: "admin"
                         ) {
                             path
                             message
+                            model
+                            sessionId
                         }
                     }                  
                     `
-            }
         });
     }
 
@@ -36,8 +36,7 @@ export class g_Auth {
      */
     async me() {
         return rps.post(this.url, {
-            body: {
-                query: `
+            query: `
                     {
                         me {
                         __typename
@@ -60,7 +59,6 @@ export class g_Auth {
                         }
                     }             
                 `
-            }
         });
     }
 
@@ -74,8 +72,7 @@ export class g_Auth {
         model = "driver"
     ) {
         return rps.post(this.url, {
-            body: {
-                query: `
+            query: `
                     mutation {
                         register(
                         params: {
@@ -93,7 +90,6 @@ export class g_Auth {
                         }
                     }    
                 `
-            }
         });
     }
 }

@@ -48,7 +48,7 @@ function LoginScreen(props) {
                     h
                     onPress={() => {
                         setLoad(true);
-                        login({ numorEmail, password });
+                        login({ emailormobile: numorEmail, password });
                     }}
                 />
 
