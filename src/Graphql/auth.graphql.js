@@ -103,4 +103,64 @@ export class g_Auth {
             `
         });
     }
+
+    async updateProfile({ dob, mothers_maiden_name }) {
+        return rps.post(this.url, {
+            query: `
+            mutation {
+                updateProfile(params: {
+                  dob: "${dob}",
+                  mothers_maiden_name: "James Bond",
+                  bvn: "no-bvn-verifaction-method-has-been-added-need-paystack-api-key"
+                  primary_location: {
+                    address: "157, Ago Palace way okota, lagos",
+                    landmark: "CITY HALL, LAST BUSTOP",
+                    city: "Lagos",
+                    state: "Lagos"
+                  },
+                  secondary_location: {
+                    address: "157, Ago Palace way okota, lagos",
+                    landmark: "CITY HALL, LAST BUSTOP",
+                    city: "Lagos",
+                    state: "Lagos"
+                  },
+                  tertiary_location: {
+                    address: "157, Ago Palace way okota, lagos",
+                    landmark: "CITY HALL, LAST BUSTOP",
+                    city: "Lagos",
+                    state: "Lagos"
+                  }
+                }) {
+                  __typename
+                   ...on Error {
+                    path
+                    message
+                  }
+                  ...on Driver {
+                    active
+                    firstName
+                    lastName
+                    mobile
+                    email
+                    avatar
+                     ...on Driver {
+                       dob
+                    mothers_maiden_name
+                    primary_location {
+                      address
+                    }
+                    secondary_location {
+                      address
+                    }
+                    tertiary_location {
+                      address
+                    }
+                    bvn
+                    }
+                  }
+                }
+              }
+            `
+        });
+    }
 }

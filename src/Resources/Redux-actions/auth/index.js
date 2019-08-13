@@ -5,13 +5,12 @@ import {
 } from "../../../../constants/redux-constants/main.index";
 import { g_Auth } from "../../../graphql/auth.graphql";
 import config from "../../../configs";
-
-const url =
-    process.env.NODE_ENV === "production" ? config.AUTH_MS : config.AUTH_MS_DEV;
+const url = config.AUTH_MS;
+// process.env.NODE_ENV === "production" ? config.AUTH_MS : config.AUTH_MS_DEV;
 
 export const userLogin = ({ emailormobile, password }) => async dispatch => {
     dispatch({ type: CLEAR_ERRORS });
-    const service = new g_Auth(config.AUTH_MS_DEV);
+    const service = new g_Auth(url);
     let result;
     try {
         result = await service.login({ emailormobile, password });
@@ -39,7 +38,7 @@ export const userLogin = ({ emailormobile, password }) => async dispatch => {
 };
 
 export const userMe = () => async dispatch => {
-    const service = new g_Auth(config.AUTH_MS_DEV);
+    const service = new g_Auth(url);
     let result;
     try {
         result = await service.me();
@@ -70,15 +69,46 @@ export const set_current_user = userdata => {
     };
 };
 
-export const userReg = () => async dispatch => {
+export const userReg = ({
+    email,
+    password,
+    mobile,
+    firstName,
+    lastName
+}) => async dispatch => {
     dispatch({ type: CLEAR_ERRORS });
+    const service = new g_Auth(url);
+    let result;
+    try {
+        result = await service.register({
+            email,
+            password,
+            mobile,
+            firstName,
+            lastName
+        });
+    } catch (error) {
+        dispatch({
+            type: GET_ERRORS,
+            payload: [
+                {
+                    path: "network",
+                    message: "Please connect your phone to  the internet"
+                }
+            ]
+        });
+    }
+
+    console.log(result, "| res data");
 };
 
 export const userLogout = () => async dispatch => {
-    const service = new g_Auth(config.AUTH_MS_DEV);
+    const service = new g_Auth(url);
     await service.logout();
     dispatch(set_current_user({}));
 };
+
+export const profileUpdatde = () => async dispatch => {};
 
 /**
  * Object {
