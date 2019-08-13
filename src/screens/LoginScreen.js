@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { View, StyleSheet, Text } from "react-native";
 import InputField from "../components/InputField";
 import Button from "../components/Button";
-import SnackBar from "../components/common/snackbars";
+import { Snackbar } from "react-native-material-ui";
 import isEmpty from "../utils/is.empty";
 import { snackBarGen } from "../utils/errors/errorHandler";
 import { userLogin } from "../resources/redux-actions/auth";
@@ -45,13 +45,15 @@ function LoginScreen(props) {
         <View style={styles.container}>
             {displayTheSnack$
                 ? displayTheSnack$.map(({ message, variant }, index) => (
-                      <SnackBar
-                          key={index}
-                          variant={variant}
-                          message={message}
-                          open={snackbar}
-                          snackbarClose={snackbarClose}
-                      />
+                      <View>
+                          <Snackbar
+                              visible={true}
+                              message='hello World'
+                              onRequestClose={() =>
+                                  this.setState({ isVisible: false })
+                              }
+                          />
+                      </View>
                   ))
                 : null}
             <View style={utilis.child_container}>
