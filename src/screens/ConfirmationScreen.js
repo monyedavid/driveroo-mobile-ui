@@ -10,7 +10,7 @@ export default function ConfirmationScrenn() {
 		<View style={styles.container}>
 			<View style={utilis.child_container}>
 				<Text style={{ ...utilis.text_center, ...utilis.text }}>Thank you for registering with us</Text>
-				<View style={styles.image_container}>
+				<View style={styles.image_containere}>
 					<Image source={require("../assets/images/thumb_up.png")} style={styles.image} />
 				</View>
 
