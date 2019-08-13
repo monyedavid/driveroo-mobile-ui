@@ -4,7 +4,7 @@ import Routes from "./routes";
 import { client } from "./apollo";
 // REDUX
 import { Provider } from "react-redux";
-import store from "./Resources/Redux-store";
+import store from "./resources/redux-store";
 
 export default class App extends React.PureComponent {
     render() {

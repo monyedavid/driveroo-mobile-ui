@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { View, StyleSheet, Text } from "react-native";
 import InputField from "../components/InputField";
 import Button from "../components/Button";
-import { userLogin } from "../Resources/Redux-actions/auth";
+import { userLogin } from "../resources/redux-actions/auth";
 import "../styles/core/utilis";
 
 function LoginScreen(props) {

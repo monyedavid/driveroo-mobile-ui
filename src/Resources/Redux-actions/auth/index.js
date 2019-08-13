@@ -1,4 +1,4 @@
-import { g_Auth } from "../../../Graphql/auth.graphql";
+import { g_Auth } from "../../../graphql/auth.graphql";
 
 export const userLogin = ({ emailormobile, password }) => async dispatch => {
     const url =
