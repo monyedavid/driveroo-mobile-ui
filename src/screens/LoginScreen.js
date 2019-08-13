@@ -6,7 +6,7 @@ import Button from "../components/Button";
 import { Snackbar } from "react-native-material-ui";
 import isEmpty from "../utils/is.empty";
 import { snackBarGen } from "../utils/errors/errorHandler";
-import { userLogin } from "../resources/redux-actions/auth";
+import { userLogin, userMe } from "../resources/redux-actions/auth";
 import "../styles/core/utilis";
 
 function LoginScreen(props) {
@@ -14,6 +14,11 @@ function LoginScreen(props) {
     const [password, setPassword] = React.useState("");
     const [load, setLoad] = React.useState(false);
     const [snackbar, setSnackbar] = React.useState(true);
+
+    console.log(props.auth);
+    if (props.auth.isAuthenticated) {
+        props.navigation.navigate("Confirmation");
+    }
 
     // console.log(props.errors, "| error reducers state");
     const displayTheSnack$ = isEmpty(props.errors)
@@ -43,19 +48,16 @@ function LoginScreen(props) {
 
     return (
         <View style={styles.container}>
-            {/* {displayTheSnack$
+            {displayTheSnack$
                 ? displayTheSnack$.map(({ message, variant }, index) => (
-                      <View>
-                          <Snackbar
-                              visible={true}
-                              message='hello World'
-                              onRequestClose={() =>
-                                  this.setState({ isVisible: false })
-                              }
-                          />
-                      </View>
+                      <Snackbar
+                          visible={true}
+                          message={message}
+                          key={index}
+                          onRequestClose={() => console.log("close")}
+                      />
                   ))
-                : null} */}
+                : null}
             <View style={utilis.child_container}>
                 <Text style={{ ...utilis.text, ...utilis.margin_bottom_lg }}>
                     Sign in
@@ -84,6 +86,14 @@ function LoginScreen(props) {
                 />
 
                 <Text style={utilis.text}>Forgot password?</Text>
+                <Text
+                    style={utilis.text}
+                    onPress={() => {
+                        props.navigation.navigate("Profile");
+                    }}
+                >
+                    Register?
+                </Text>
             </View>
         </View>
     );
@@ -101,10 +111,11 @@ const styles = StyleSheet.create({
 });
 
 const map_state_to_props = state => ({
+    auth: state.auth,
     errors: state.errors
 });
 
 export default connect(
     map_state_to_props,
-    { userLogin }
+    { userLogin, userMe }
 )(LoginScreen);

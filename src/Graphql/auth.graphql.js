@@ -53,6 +53,7 @@ export class g_Auth {
                                 mobile
                                 email
                                 avatar
+                                confirmed
                             }
                             token
                             }

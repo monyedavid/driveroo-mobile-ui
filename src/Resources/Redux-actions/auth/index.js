@@ -35,8 +35,6 @@ export const userLogin = ({ emailormobile, password }) => async dispatch => {
             });
         }
 
-    console.log(result.data.data.login[0]);
-
     if (result.data.data.login[0].sessionId) dispatch(userMe());
 };
 
@@ -46,8 +44,6 @@ export const userMe = () => async dispatch => {
     try {
         result = await service.me();
     } catch (error) {
-        // console.log("err |", error);
-        // HANDLE 1 : network errors
         dispatch({
             type: GET_ERRORS,
             payload: [
