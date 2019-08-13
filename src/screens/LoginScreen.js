@@ -45,7 +45,6 @@ function LoginScreen(props) {
                 <Button
                     disabled={disableSubmit()}
                     title={"Sign In"}
-                    h
                     onPress={() => {
                         setLoad(true);
                         login({ emailormobile: numorEmail, password });
