@@ -1,6 +1,7 @@
 import {
     GET_ERRORS,
-    CLEAR_ERRORS
+    CLEAR_ERRORS,
+    SET_CURRENT_USER
 } from "../../../../constants/redux-constants/main.index";
 import { g_Auth } from "../../../graphql/auth.graphql";
 import config from "../../../configs";
@@ -39,11 +40,27 @@ export const userLogin = ({ emailormobile, password }) => async dispatch => {
 
 export const userMe = () => async dispatch => {
     const service = new g_Auth(config.AUTH_MS_DEV);
+    let result;
     try {
-        const result = await service.me();
-        console.log(result.data.data.me, "result|me");
+        result = await service.me();
     } catch (error) {
-        console.log("err |", error);
+        // console.log("err |", error);
+        // HANDLE 1 : network errors
+        dispatch({
+            type: GET_ERRORS,
+            payload: [
+                {
+                    path: "network",
+                    message: "Please connect your phone to  the internet"
+                }
+            ]
+        });
+    }
+    //         console.log(result.data.data.me, "result|me");
+    if (result && result.data) {
+        if (result.data.data.me) {
+            dispatch(set_current_user(result.data.data.me));
+        }
     }
 };
 

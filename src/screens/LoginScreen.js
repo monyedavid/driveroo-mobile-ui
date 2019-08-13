@@ -43,7 +43,7 @@ function LoginScreen(props) {
 
     return (
         <View style={styles.container}>
-            {displayTheSnack$
+            {/* {displayTheSnack$
                 ? displayTheSnack$.map(({ message, variant }, index) => (
                       <View>
                           <Snackbar
@@ -55,7 +55,7 @@ function LoginScreen(props) {
                           />
                       </View>
                   ))
-                : null}
+                : null} */}
             <View style={utilis.child_container}>
                 <Text style={{ ...utilis.text, ...utilis.margin_bottom_lg }}>
                     Sign in
