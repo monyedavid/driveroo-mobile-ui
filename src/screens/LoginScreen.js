@@ -15,10 +15,10 @@ function LoginScreen(props) {
     const [load, setLoad] = React.useState(false);
     const [snackbar, setSnackbar] = React.useState(true);
 
-    console.log(props.auth);
-    if (props.auth.isAuthenticated) {
-        props.navigation.navigate("Confirmation");
-    }
+    // console.log(props.auth);
+    // if (props.auth.isAuthenticated) {
+    //     props.navigation.navigate("Confirmation");
+    // }
 
     // console.log(props.errors, "| error reducers state");
     const displayTheSnack$ = isEmpty(props.errors)
@@ -29,7 +29,6 @@ function LoginScreen(props) {
         if (numorEmail !== "" && password !== "") {
             return false;
         }
-
         return true;
     };
 
@@ -37,9 +36,7 @@ function LoginScreen(props) {
         if (reason === "clickaway") {
             return;
         }
-
         setSnackbar(false);
-        // this.setState({ snackbar: false });
     };
 
     login = ({ emailormobile, password }) => {
@@ -80,7 +77,7 @@ function LoginScreen(props) {
                     disabled={disableSubmit()}
                     title={"Sign In"}
                     onPress={() => {
-                        setLoad(true);
+                        // setLoad(true);
                         login({ emailormobile: numorEmail, password });
                     }}
                 />

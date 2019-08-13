@@ -4,26 +4,20 @@ import moment from "moment-timer";
 import InputField from "../components/InputField";
 import Button from "../components/Button";
 import "../styles/core/utilis";
+import Timer from "../components/Timer";
 
 export default function OtpVerification(props) {
     let inputElement = [];
-    let clearInterval;
-    const [timer, setTimer] = useState(180);
 
     useEffect(() => {
         inputElement[0].focus();
-        if (timer !== 0) {
-            const time = window.setTimeout(() => {
-                setTimer(timer => timer - 1);
-            }, 1000);
-            return () => {
-                window.clearTimeout(time);
-            };
-        }
-    }, [timer]);
+    });
 
     function moveRef(index, text) {
         if (text.length === 1 && index !== 3) inputElement[++index].focus();
+        if (index === 3) {
+            props.navigation.navigate("Login");
+        }
     }
 
     return (
@@ -62,9 +56,7 @@ export default function OtpVerification(props) {
                         props.navigation.navigate("Login");
                     }}
                 />
-                <Text style={{ ...utilis.text_center, ...utilis.text_light }}>
-                    Resend code in {timer}
-                </Text>
+                <Timer />
             </View>
         </View>
     );

@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "expo-proj1",
-    "slug": "expo-porj1",
+    "name": "driveroo-build2",
+    "slug": "driverro-v-2",
     "privacy": "public",
     "sdkVersion": "34.0.0",
     "platforms": [
@@ -11,9 +11,9 @@
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./src/assets/images/icon.png",
     "splash": {
-      "image": "./assets/images/splash.png",
+      "image": "./src/assets/images/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -26,6 +26,7 @@
     "ios": {
       "supportsTablet": true
     },
-    "description": ""
+    "description": "Driveroo Build 2",
+    "githubUrl": "https://github.com/rasheeddavid/driveroo-mobile-ui.git"
   }
 }
