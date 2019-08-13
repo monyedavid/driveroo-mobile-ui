@@ -26,13 +26,6 @@ export default function OtpVerification(props) {
 		if (text.length === 1 && index !== 3) inputElement[++index].focus();
 	}
 
-	function formatTimer() {
-		console.log(moment);
-		var duration = new moment.duration(timer, "seconds");
-		var formatted = duration.format("mm:ss");
-		return formatted;
-	}
-
 	return (
 		<View style={styles.container}>
 			<View style={utilis.child_container}>
