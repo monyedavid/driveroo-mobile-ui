@@ -8,26 +8,26 @@ import { userMe } from "../resources/redux-actions/auth";
 function HomeScreen(props) {
     const [mobile, setMobile] = React.useState("");
 
-    React.useEffect(() => {
-        //props.userMe();
-        // use data to push to map screen if user exists
-        // console.log("state|}component mounted |", props.auth);
-        if (props.auth) {
-            if (props.auth.user) {
-                if (props.auth.user.user) {
-                    if (props.auth.user.user.active)
-                        props.navigation.navigate("Confirmation");
+    // React.useEffect(() => {
+    //     //props.userMe();
+    //     // use data to push to map screen if user exists
+    //     // console.log("state|}component mounted |", props.auth);
+    //     if (props.auth) {
+    //         if (props.auth.user) {
+    //             if (props.auth.user.user) {
+    //                 if (props.auth.user.user.active)
+    //                     props.navigation.navigate("Confirmation");
 
-                    if (
-                        props.auth.isAuthenticated &&
-                        props.auth.user.user.active &&
-                        !props.auth.user.user.confirmed
-                    )
-                        props.navigation.navigate("Profile");
-                }
-            }
-        }
-    });
+    //                 if (
+    //                     props.auth.isAuthenticated &&
+    //                     props.auth.user.user.active &&
+    //                     !props.auth.user.user.confirmed
+    //                 )
+    //                     props.navigation.navigate("Profile");
+    //             }
+    //         }
+    //     }
+    // });
 
     disableSubmit = () => {
         if (mobile !== "") {
