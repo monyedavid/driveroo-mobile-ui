@@ -43,7 +43,7 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
     "request": "^2.88.0",
-    "request-promise": "^4.2.4"
+    "request-promise-native": "^1.0.7"
   },
   "devDependencies": {
     "babel-preset-expo": "^6.0.0",
