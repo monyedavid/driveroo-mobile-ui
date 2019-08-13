@@ -11,6 +11,8 @@ function LoginScreen(props) {
     const [password, setPassword] = React.useState("");
     const [load, setLoad] = React.useState(false);
 
+    console.log(props.errors, "| error reducers state");
+
     disableSubmit = () => {
         if (numorEmail !== "" && password !== "") {
             return false;
@@ -68,7 +70,11 @@ const styles = StyleSheet.create({
     }
 });
 
+const map_state_to_props = state => ({
+    errors: state.errors
+});
+
 export default connect(
-    null,
+    map_state_to_props,
     { userLogin }
 )(LoginScreen);
