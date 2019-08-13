@@ -47,7 +47,8 @@ function LoginScreen(props) {
                     title={"Sign In"}
                     h
                     onPress={() => {
-                        props.navigation.navigate("Profile");
+                        setLoad(true);
+                        login({ numorEmail, password });
                     }}
                 />
 
