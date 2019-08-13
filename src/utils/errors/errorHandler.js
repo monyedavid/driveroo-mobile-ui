@@ -14,6 +14,7 @@ export const findError = err => {
 
 const errorPath = {
     login: { horizontal: "center", verical: "top" },
+    network: { horizontal: "center", verical: "top" },
     email: { horizontal: "right", verical: "top" },
     mobile: { horizontal: "right", verical: "top" },
     register: { horizontal: "bottom", verical: "left" },

@@ -18,14 +18,23 @@ export const userLogin = ({ emailormobile, password }) => async dispatch => {
         result = await service.login({ emailormobile, password });
         // console.log(result.data.data.login[0], "result");
     } catch (error) {
-        console.log("err |", error);
-    }
-    if (result.data.data.login[0].path) {
         dispatch({
             type: GET_ERRORS,
-            payload: result.data.data.login
+            payload: [
+                {
+                    path: "network",
+                    message: "Please connect your phone to  the internet"
+                }
+            ]
         });
     }
+    if (result && result.data)
+        if (result.data.data.login[0].path) {
+            dispatch({
+                type: GET_ERRORS,
+                payload: result.data.data.login
+            });
+        }
 };
 
 export const userMe = () => async dispatch => {
