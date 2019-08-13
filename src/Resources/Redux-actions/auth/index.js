@@ -6,13 +6,11 @@ import {
 import { g_Auth } from "../../../graphql/auth.graphql";
 import config from "../../../configs";
 
+const url =
+    process.env.NODE_ENV === "production" ? config.AUTH_MS : config.AUTH_MS_DEV;
+
 export const userLogin = ({ emailormobile, password }) => async dispatch => {
     dispatch({ type: CLEAR_ERRORS });
-    const url =
-        process.env.NODE_ENV === "production"
-            ? config.AUTH_MS
-            : config.AUTH_MS_DEV;
-
     const service = new g_Auth(config.AUTH_MS_DEV);
     let result;
     try {
@@ -36,6 +34,10 @@ export const userLogin = ({ emailormobile, password }) => async dispatch => {
                 payload: result.data.data.login
             });
         }
+
+    console.log(result.data.data.login[0]);
+
+    if (result.data.data.login[0].sessionId) dispatch(userMe());
 };
 
 export const userMe = () => async dispatch => {
@@ -70,6 +72,16 @@ export const set_current_user = userdata => {
         type: SET_CURRENT_USER,
         payload: userdata
     };
+};
+
+export const userReg = () => async dispatch => {
+    dispatch({ type: CLEAR_ERRORS });
+};
+
+export const userLogout = () => async dispatch => {
+    const service = new g_Auth(config.AUTH_MS_DEV);
+    await service.logout();
+    dispatch(set_current_user({}));
 };
 
 /**

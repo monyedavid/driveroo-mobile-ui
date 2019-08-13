@@ -10,10 +10,21 @@ function HomeScreen(props) {
     const [mobile, setMobile] = React.useState("");
 
     React.useEffect(() => {
-        // props.userMe();
+        //  props.userMe();
         // use data to push to map screen if user exists
         // console.log("state|}component mounted |", props.auth);
-        //if (props.auth) props.navigation.navigate("Confirmation");
+        if (props.auth) {
+            props.navigation.navigate("Confirmation");
+            if (props.auth.user) {
+                if (props.auth.user.user) {
+                    if (props.auth.user.user.active)
+                        props.navigation.navigate("Confirmation");
+
+                    if (!props.auth.user.user.active)
+                        props.navigation.navigate("Profile");
+                }
+            }
+        }
     });
 
     disableSubmit = () => {

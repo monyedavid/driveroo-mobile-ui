@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { connect } from "react-redux";
 import { View, StyleSheet, Text } from "react-native";
 import InputField from "../components/InputField";
@@ -15,7 +15,7 @@ function LoginScreen(props) {
     const [load, setLoad] = React.useState(false);
     const [snackbar, setSnackbar] = React.useState(true);
 
-    console.log(props.errors, "| error reducers state");
+    // console.log(props.errors, "| error reducers state");
     const displayTheSnack$ = isEmpty(props.errors)
         ? null
         : snackBarGen(props.errors);
