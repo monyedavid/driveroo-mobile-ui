@@ -1,20 +1,17 @@
-import * as WebBrowser from "expo-web-browser";
-import React from "react";
-import {
-    Image,
-    ImageBackground,
-    Platform,
-    StyleSheet,
-    Text,
-    TextInput,
-    View
-} from "react-native";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { Image, Text, TextInput, View } from "react-native";
 import "../styles/landing";
 import "../styles/core/utilis";
 import Button from "../components/Button";
-import { MonoText } from "../components/StyledText";
+import { userMe } from "../resources/redux-actions/auth";
 
-export default function HomeScreen(props) {
+function HomeScreen(props) {
+    useEffect(() => {
+        // props.userMe();
+        // use data to push to map screen
+        console.log("state|}component mounted");
+    });
     return (
         <View style={landing.container}>
             <View style={landing.image_container}>
@@ -71,3 +68,8 @@ export default function HomeScreen(props) {
 HomeScreen.navigationOptions = {
     header: null
 };
+
+export default connect(
+    null,
+    { userMe }
+)(HomeScreen);

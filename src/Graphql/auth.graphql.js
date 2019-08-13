@@ -19,7 +19,7 @@ export class g_Auth {
                         login(
                         emailormobile: "${emailormobile}"
                         password: "${password}"
-                        model: "admin"
+                        model: "driver"
                         ) {
                             path
                             message
