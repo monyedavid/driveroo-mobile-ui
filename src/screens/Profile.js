@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { View, StyleSheet, Text } from "react-native";
 import InputField from "../components/InputField";
 import Button from "../components/Button";
+import { userReg } from "../resources/redux-actions/auth";
 import "../styles/core/utilis";
 
 function Profile(props) {
@@ -80,5 +81,5 @@ const styles = StyleSheet.create({
 
 export default connect(
     null,
-    {}
+    { userReg }
 )(Profile);

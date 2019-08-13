@@ -6,6 +6,7 @@ import {
 import { g_Auth } from "../../../graphql/auth.graphql";
 import config from "../../../configs";
 const url = config.AUTH_MS;
+const durl = config.DRIVER_MS;
 // process.env.NODE_ENV === "production" ? config.AUTH_MS : config.AUTH_MS_DEV;
 
 export const userLogin = ({ emailormobile, password }) => async dispatch => {
