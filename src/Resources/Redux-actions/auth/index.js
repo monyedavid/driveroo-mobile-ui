@@ -99,7 +99,7 @@ export const userLogout = () => async dispatch => {
 	dispatch(set_current_user({}));
 };
 
-export const profileUpdatde = ({ dob, dob, mobile , primary_location : { address , landmark , city , state} , lastName }) => async dispatch => {};
+// export const profileUpdatde = ({ dob, dob, mobile , primary_location : { address , landmark , city , state} , lastName }) => async dispatch => {};
 
 /**
  * 

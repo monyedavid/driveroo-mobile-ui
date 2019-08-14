@@ -5,107 +5,106 @@ import "../styles/landing";
 import "../styles/core/utilis";
 import Button from "../components/Button";
 import { userMe } from "../resources/redux-actions/auth";
-function HomeScreen(props) {
-    const [mobile, setMobile] = React.useState("");
+import { KeyboardAvoidingView } from "react-native";
 
-    // React.useEffect(() => {
-    //     //props.userMe();
-    //     // use data to push to map screen if user exists
-    //     // console.log("state|}component mounted |", props.auth);
-    //     if (props.auth) {
-    //         if (props.auth.user) {
-    //             if (props.auth.user.user) {
-    //                 if (props.auth.user.user.active)
-    //                     props.navigation.navigate("Confirmation");
+class HomeScreen extends React.Component {
+	state = {
+		mobile: "",
+	};
 
-    //                 if (
-    //                     props.auth.isAuthenticated &&
-    //                     props.auth.user.user.active &&
-    //                     !props.auth.user.user.confirmed
-    //                 )
-    //                     props.navigation.navigate("Profile");
-    //             }
-    //         }
-    //     }
-    // });
+	//     props.navigationOptions = {
+	// 	header: null,
+	// };
 
-    disableSubmit = () => {
-        if (mobile !== "") {
-            if (mobile.length === 11) return false;
-            // check if mobile.length has alphabetic characters
-        }
+	// React.useEffect(() => {
+	//     //props.userMe();
+	//     // use data to push to map screen if user exists
+	//     // console.log("state|}component mounted |", props.auth);
+	//     if (props.auth) {
+	//         if (props.auth.user) {
+	//             if (props.auth.user.user) {
+	//                 if (props.auth.user.user.active)
+	//                     props.navigation.navigate("Confirmation");
 
-        return true;
-    };
-    return (
-        <View style={landing.container}>
-            <View style={landing.image_container}>
-                <Image
-                    source={require("../assets/images/landing.jpg")}
-                    style={landing.image}
-                />
-                <View style={landing.overlay} />
-            </View>
+	//                 if (
+	//                     props.auth.isAuthenticated &&
+	//                     props.auth.user.user.active &&
+	//                     !props.auth.user.user.confirmed
+	//                 )
+	//                     props.navigation.navigate("Profile");
+	//             }
+	//         }
+	//     }
+	// });
 
-            <View style={utilis.child_container}>
-                {/* <View> */}
-                <Text style={{ ...utilis.text, ...utilis.margin_bottom }}>
-                    Get started with Driverroo
-                </Text>
-                <View style={landing.country}>
-                    <Image
-                        source={require("../assets/images/nigeria.png")}
-                        style={landing.icon}
-                    />
-                    {/* <Text style={utilis.text_light}>+234 7054727840</Text> */}
-                    <TextInput
-                        autoFocus={true}
-                        onChangeText={text => {
-                            setMobile(text);
-                        }}
-                        placeholder={"+234"}
-                    />
-                </View>
-                <View>
-                    <Text
-                        style={{
-                            ...utilis.text_sm_gray,
-                            ...utilis.text_center
-                        }}
-                    >
-                        By continuing, I confirm that i have read & agree to the
-                    </Text>
-                    <Text
-                        style={{
-                            ...utilis.text_sm_gray,
-                            ...utilis.text_center
-                        }}
-                    >
-                        Terms & conditions and Privacy policy
-                    </Text>
-                </View>
-                <Button
-                    disabled={disableSubmit()}
-                    title='Continue'
-                    onPress={() => {
-                        props.navigation.navigate("OTP");
-                    }}
-                />
-                {/* </View> */}
-            </View>
-        </View>
-    );
+	// disableSubmit = () => {
+	// 	if (mobile !== "") {
+	// 		if (mobile.length === 11) return false;
+	// 		// check if mobile.length has alphabetic characters
+	// 	}
+
+	// 	return true;
+	// };
+	render() {
+		return (
+			<KeyboardAvoidingView style={landing.container}>
+				<View style={landing.image_container}>
+					<Image source={require("../assets/images/landing.jpg")} style={landing.image} />
+					<View style={landing.overlay} />
+				</View>
+
+				<View style={utilis.child_container}>
+					{/* <View> */}
+					<Text style={{ ...utilis.text, ...utilis.margin_bottom }}>Get started with Driverroo</Text>
+					<View style={landing.country}>
+						<Image source={require("../assets/images/nigeria.png")} style={landing.icon} />
+						{/* <Text style={utilis.text_light}>+234 7054727840</Text> */}
+						<TextInput
+							autoFocus={true}
+							keyboardType="number-pad"
+							onChangeText={text => {
+								this.setState({ mobile: text });
+							}}
+							placeholder={"+234"}
+						/>
+					</View>
+					<View>
+						<Text
+							style={{
+								...utilis.text_sm_gray,
+								...utilis.text_center,
+							}}
+						>
+							By continuing, I confirm that i have read & agree to the
+						</Text>
+						<Text
+							style={{
+								...utilis.text_sm_gray,
+								...utilis.text_center,
+							}}
+						>
+							Terms & conditions and Privacy policy
+						</Text>
+					</View>
+					<Button
+						// disabled={disableSubmit()}
+						title="Continue"
+						onPress={() => {
+							props.navigation.navigate("OTP");
+						}}
+					/>
+					{/* </View> */}
+				</View>
+			</KeyboardAvoidingView>
+		);
+	}
 }
 
-HomeScreen.navigationOptions = {
-    header: null
-};
-
 const map_state_to_props = state => ({
-    auth: state.auth
+	auth: state.auth,
 });
 
 export default connect(
-    map_state_to_props,
-    { userMe }
+	map_state_to_props,
+	{ userMe },
 )(HomeScreen);
