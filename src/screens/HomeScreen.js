@@ -37,14 +37,35 @@ class HomeScreen extends React.Component {
 	//     }
 	// });
 
-	// disableSubmit = () => {
-	// 	if (mobile !== "") {
-	// 		if (mobile.length === 11) return false;
-	// 		// check if mobile.length has alphabetic characters
-	// 	}
+	disableSubmit = () => {
+		const { mobile } = this.state;
+		if (mobile !== "") {
+			if (mobile.length === 11) return false;
+			// check if mobile.length has alphabetic characters
+		}
 
-	// 	return true;
-	// };
+		return true;
+	};
+
+	handleSubmission = () => {
+		if (!this.disableSubmit()) this.props.userMe();
+	};
+
+	componentDidUpdate() {
+		const props = this.props;
+
+		if (props.auth) {
+			if (props.auth.user) {
+				if (props.auth.user.user) {
+					if (props.auth.user.user.active) props.navigation.navigate("Confirmation");
+
+					if (props.auth.isAuthenticated && props.auth.user.user.active && !props.auth.user.user.confirmed)
+						props.navigation.navigate("Profile");
+				}
+			}
+		}
+	}
+
 	render() {
 		return (
 			<KeyboardAvoidingView style={landing.container}>
@@ -89,9 +110,7 @@ class HomeScreen extends React.Component {
 					<Button
 						// disabled={disableSubmit()}
 						title="Continue"
-						onPress={() => {
-							props.navigation.navigate("OTP");
-						}}
+						onPress={this.handleSubmission}
 					/>
 					{/* </View> */}
 				</View>
