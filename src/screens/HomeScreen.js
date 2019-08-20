@@ -14,6 +14,7 @@ import Button from "../components/Button";
 import { userMe } from "../resources/redux-actions/auth";
 import { KeyboardAvoidingView } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
+import Tabs from "../components/Tabs";
 
 class HomeScreen extends React.Component {
 	static navigationOptions = {
@@ -23,6 +24,7 @@ class HomeScreen extends React.Component {
 	state = {
 		mobile: "",
 		loading: false,
+		isPhone: true,
 	};
 
 	componentDidMount() {
@@ -44,6 +46,16 @@ class HomeScreen extends React.Component {
 			this.props.navigation.navigate("OTP", {
 				no: this.state.mobile,
 			});
+	};
+	handleTabs = tab => {
+		switch (tab) {
+			case "phone":
+				console.log("hi");
+				this.setState({ isPhone: true });
+			case "email":
+				this.setState({ isPhone: false });
+			default:
+		}
 	};
 
 	componentDidUpdate(prevProps) {
@@ -71,8 +83,12 @@ class HomeScreen extends React.Component {
 	}
 
 	render() {
-		const { loading } = this.state;
+		const { loading, isPhone } = this.state;
 		return (
+			// {loading ? (
+			// 	<ActivityIndicator size="small" color="#002257" />
+			// ) :
+			// (
 			<KeyboardAwareScrollView
 				contentContainerStyle={landing.container}
 				// extraScrollHeight={30}
@@ -81,62 +97,67 @@ class HomeScreen extends React.Component {
 				{/* <ScrollView contentContainerStyle={{ flex: 1 }}> */}
 				<View style={landing.image_container}>
 					<Image
-						source={require("../assets/images/landing.jpg")}
+						source={require("../assets/images/logo.png")}
 						style={landing.image}
 					/>
-					<View style={landing.overlay} />
+					{/* <View style={landing.overlay} /> */}
 				</View>
 				<View style={utilis.child_container}>
 					{/* <View> */}
 					<Text style={{ ...utilis.text, ...utilis.margin_bottom }}>
 						Get started with Driverroo
 					</Text>
-					<View style={landing.country}>
-						<Image
-							source={require("../assets/images/nigeria.png")}
-							style={landing.icon}
-						/>
-						{/* <Text style={utilis.text_light}>+234 7054727840</Text> */}
-						<TextInput
-							autoFocus={true}
-							keyboardType="number-pad"
-							onChangeText={text => {
-								this.setState({ mobile: text });
-							}}
-							placeholder={"+234"}
-						/>
-					</View>
-					<View>
+					<View style={utilis.tab}>
 						<Text
-							style={{
-								...utilis.text_sm_gray,
-								...utilis.text_center,
-							}}
+							onPress={() => this.handleTabs("phone")}
+							style={[utilis.tab_text1, isPhone ? utilis.tab_active : ""]}
 						>
-							By continuing, I confirm that i have read & agree to the
+							Phone
 						</Text>
 						<Text
-							style={{
-								...utilis.text_sm_gray,
-								...utilis.text_center,
-							}}
+							onPress={() => this.handleTabs("email")}
+							style={[utilis.tab_text2, !isPhone ? utilis.tab_active : ""]}
 						>
-							Terms & conditions and Privacy policy
+							Email
 						</Text>
 					</View>
-					{loading ? (
-						<ActivityIndicator size="small" color="#002257" />
+					{isPhone ? (
+						<View style={landing.country}>
+							<Image
+								source={require("../assets/images/nigeria.png")}
+								style={landing.icon}
+							/>
+							{/* <Text style={utilis.text_light}>+234 7054727840</Text> */}
+							<TextInput
+								autoFocus={true}
+								keyboardType="number-pad"
+								onChangeText={text => {
+									this.setState({ mobile: text });
+								}}
+								placeholder={"+234"}
+							/>
+						</View>
 					) : (
-						<Button
-							disabled={this.disableSubmit()}
-							title="Continue"
-							onPress={this.handleSubmission}
-						/>
+						<TextInput autoFocus={true} placeholder={"Email"} />
 					)}
-					{/* </View> */}
+
+					<View>
+						<Text style={{ ...utilis.text, ...utilis.text_sm }}>
+							By signing up, you confirm that you agree to our Terms of Use and
+							have read and understood our Privacy Policy. You will receive an
+							SMS to confirm your phone number. SMS fee may apply
+						</Text>
+					</View>
+				</View>
+				<View style={landing.footer}>
+					<Text style={landing.footer_child}>
+						Already have an account? Login
+					</Text>
 				</View>
 				{/* </ScrollView> */}
 			</KeyboardAwareScrollView>
+			// )
+			//   }
 		);
 	}
 }

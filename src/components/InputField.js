@@ -7,7 +7,7 @@ export default function Input(props) {
 		<TextInput
 			{...props}
 			style={{ ...styles.field, ...props.style }}
-			placeholderTextColor="#748078"
+			placeholderTextColor="#000"
 			ref={props.inputRef}
 			autoCapitalize="none"
 			autoComplete="off"
@@ -17,14 +17,13 @@ export default function Input(props) {
 
 const styles = StyleSheet.create({
 	field: {
-		borderBottomColor: "#c7c7c7",
-		borderBottomWidth: 1,
-		marginBottom: 15,
-		paddingTop: 15,
-		paddingBottom: 26,
-		fontSize: 17,
+		// marginBottom: 10,
+		paddingTop: 10,
+		paddingBottom: 10,
+		paddingLeft: 10,
+		// fontSize: 17,
+		backgroundColor: "#C4C4C4",
 		// borderWidth: 1,
 		// borderColor: "red",
-		// backgroundColor: "red",
 	},
 });

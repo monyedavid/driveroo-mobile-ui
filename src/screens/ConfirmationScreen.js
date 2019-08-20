@@ -6,6 +6,8 @@ import Button from "../components/Button";
 import "../styles/core/utilis";
 import { connect } from "react-redux";
 import { userLogout } from "../resources/redux-actions/auth";
+import { Icon } from "native-base";
+import { AuthSession } from "expo";
 
 class ConfirmationScrenn extends React.Component {
 	componentDidUpdate(prevProps) {
@@ -18,19 +20,28 @@ class ConfirmationScrenn extends React.Component {
 		return (
 			<View style={styles.container}>
 				<View style={utilis.child_container}>
-					<Text style={{ ...utilis.text_center, ...utilis.text }}>Thank you for registering with us</Text>
 					<View style={styles.image_container}>
-						<Image source={require("../assets/images/thumb_up.png")} style={styles.image} />
+						<Image
+							source={require("../assets/images/check.png")}
+							style={styles.image}
+						/>
 					</View>
 
-					<Text style={{ ...utilis.text_center, ...utilis.text_sm_black }}>We will get back to you shortly </Text>
-
-					<Button
-						title={"Logout"}
-						style={styles.margin_top}
-						onPress={() => {
-							this.props.userLogout();
+					<Text
+						style={{
+							...utilis.text_sm_black,
+							maxWidth: 250,
+							marginLeft: "auto",
+							marginRight: "auto",
 						}}
+					>
+						We have sent a confirmation email to simioadejumo@gmail.com to
+						activate your account
+					</Text>
+					<Icon
+						name="arrow-round-forward"
+						style={utilis.next_icon}
+						// type="FontAwesome"
 					/>
 				</View>
 			</View>
@@ -56,14 +67,17 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		marginTop: 55,
+		alignItems: "center",
+		flexDirection: "column",
 	},
 	image: {
-		width: 170,
-		height: 170,
+		width: 180,
+		height: 180,
 		justifyContent: "center",
 		alignItems: "center",
+		resizeMode: "contain",
 		marginTop: 80,
-		marginBottom: 80,
+		marginBottom: 20,
 	},
 	image_container: {
 		flexDirection: "column",

@@ -4,12 +4,13 @@ import { StyleSheet } from "react-native";
 const pre_style = {
 	text_sm: {
 		fontSize: 13,
+		fontWeight: "300",
 	},
-
 	text: {
-		color: "#002257",
+		color: "#000000",
 		fontSize: 17,
 		fontWeight: "700",
+		marginBottom: 10,
 	},
 };
 
@@ -42,9 +43,10 @@ const styles = {
 		marginTop: 5,
 	},
 	text_gray: {
-		color: "#878787",
+		color: "#666666",
 		marginTop: 5,
 		fontSize: 17,
+		// fontWeight: "400",
 	},
 	text_center: {
 		textAlign: "center",
@@ -62,6 +64,35 @@ const styles = {
 	margin_bottom_lg: {
 		marginBottom: 50,
 	},
+	tab: {
+		borderWidth: 1,
+		flexDirection: "row",
+		borderColor: "#E4E4E4",
+		marginBottom: 40,
+	},
+	tab_text1: {
+		flex: 1,
+		textAlign: "center",
+		fontSize: 13,
+		paddingTop: 10,
+		paddingBottom: 10,
+	},
+	tab_text2: {
+		flex: 1,
+		textAlign: "center",
+		fontSize: 13,
+		paddingTop: 10,
+		paddingBottom: 10,
+	},
+	tab_active: {
+		backgroundColor: "#E4E4E4",
+	},
+	next_icon: {
+		textAlign: "right",
+		color: "#0803A5",
+		marginTop: 35,
+		fontSize: 45,
+	},
 };
 
-export default (utilis = StyleSheet.create(styles));
+export default utilis = StyleSheet.create(styles);
