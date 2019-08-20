@@ -13,18 +13,18 @@ import { createStackNavigator, createAppContainer } from "react-navigation";
 
 const AppNavigator = createStackNavigator(
 	{
-		Home: {
-			screen: HomeScreen,
-		},
-		OTP: {
-			screen: OtpVerifications,
-		},
-		Login: {
-			screen: LoginScreen,
-		},
-		SocialLogin: {
-			screen: SocialLogin,
-		},
+		// Home: {
+		// 	screen: HomeScreen,
+		// },
+		// OTP: {
+		// 	screen: OtpVerifications,
+		// },
+		// Login: {
+		// 	screen: LoginScreen,
+		// },
+		// SocialLogin: {
+		// 	screen: SocialLogin,
+		// },
 		Profile: {
 			screen: Profile,
 		},
