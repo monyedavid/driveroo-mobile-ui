@@ -1,6 +1,6 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, ActivityIndicator } from "react-native";
 import InputField from "../components/InputField";
 import Button from "../components/Button";
 import { Snackbar } from "react-native-material-ui";
@@ -15,6 +15,7 @@ class LoginScreen extends React.Component {
 		password: "",
 		load: "",
 		snackbar: "",
+		loading: false,
 	};
 
 	// console.log(props.auth);
@@ -23,15 +24,22 @@ class LoginScreen extends React.Component {
 	// }
 
 	// console.log(props.errors, "| error reducers state");
+	componentDidUpdate(prevProps) {
+		const { isAuthenticated, navigation } = this.props;
+		if (prevProps.isAuthenticated !== this.props.isAuthenticated) {
+			this.setState({ loading: false });
+			navigation.navigate("Confirmation");
+		}
+	}
 
 	handleText(value, name) {
-		console.log(value, name);
-		// this.setState({
-		// 	[name]: value,
-		// });
+		this.setState({
+			[name]: value,
+		});
 	}
 
 	disableSubmit = () => {
+		let { numorEmail, password } = this.state;
 		if (numorEmail !== "" && password !== "") {
 			return false;
 		}
@@ -45,21 +53,27 @@ class LoginScreen extends React.Component {
 		setSnackbar(false);
 	};
 
-	login = ({ emailormobile, password }) => {
-		props.userLogin({ emailormobile, password });
-	};
-
 	render() {
+		const { props } = this;
+		const { loading } = this.state;
 		displayTheSnack$ = isEmpty(props.errors) ? null : snackBarGen(props.errors);
+
 		return (
 			<View style={styles.container}>
 				{displayTheSnack$
 					? displayTheSnack$.map(({ message, variant }, index) => (
-							<Snackbar visible={true} message={message} key={index} onRequestClose={() => console.log("close")} />
+							<Snackbar
+								visible={true}
+								message={message}
+								key={index}
+								onRequestClose={() => console.log("close")}
+							/>
 					  ))
 					: null}
 				<View style={utilis.child_container}>
-					<Text style={{ ...utilis.text, ...utilis.margin_bottom_lg }}>Sign in</Text>
+					<Text style={{ ...utilis.text, ...utilis.margin_bottom_lg }}>
+						Sign in
+					</Text>
 					<InputField
 						autoFocus={true}
 						onChangeText={text => {
@@ -69,21 +83,31 @@ class LoginScreen extends React.Component {
 					/>
 					<InputField
 						onChangeText={text => {
-							setPassword(text);
+							this.handleText(text, "password");
 						}}
 						placeholder="Password"
 						secureTextEntry={true}
 					/>
-					<Button
-						disabled={disableSubmit()}
-						title={"Sign In"}
-						onPress={() => {
-							// setLoad(true);
-							login({ emailormobile: numorEmail, password });
-						}}
-					/>
+					{!loading ? (
+						<Button
+							disabled={this.disableSubmit()}
+							title={"Sign In"}
+							onPress={() => {
+								// setLoad(true);
+								const { state, props } = this;
+								this.setState({ loading: true });
+								props.userLogin({
+									emailormobile: state.numorEmail,
+									password: state.password,
+								});
+							}}
+						/>
+					) : (
+						<ActivityIndicator size="small" color="#002257" />
+					)}
 
 					<Text style={utilis.text}>Forgot password?</Text>
+
 					<Text
 						style={utilis.text}
 						onPress={() => {
@@ -109,9 +133,9 @@ const styles = StyleSheet.create({
 	},
 });
 
-const map_state_to_props = state => ({
-	auth: state.auth,
-	errors: state.errors,
+const map_state_to_props = ({ auth, errors }) => ({
+	isAuthenticated: auth.isAuthenticated,
+	errors: errors,
 });
 
 export default connect(

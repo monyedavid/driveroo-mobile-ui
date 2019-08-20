@@ -1,41 +1,33 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { Image, Text, TextInput, View } from "react-native";
+import {
+	Image,
+	Text,
+	TextInput,
+	View,
+	ScrollView,
+	ActivityIndicator,
+} from "react-native";
 import "../styles/landing";
 import "../styles/core/utilis";
 import Button from "../components/Button";
 import { userMe } from "../resources/redux-actions/auth";
 import { KeyboardAvoidingView } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 
 class HomeScreen extends React.Component {
-	state = {
-		mobile: "",
+	static navigationOptions = {
+		header: null,
 	};
 
-	//     props.navigationOptions = {
-	// 	header: null,
-	// };
+	state = {
+		mobile: "",
+		loading: false,
+	};
 
-	// React.useEffect(() => {
-	//     //props.userMe();
-	//     // use data to push to map screen if user exists
-	//     // console.log("state|}component mounted |", props.auth);
-	//     if (props.auth) {
-	//         if (props.auth.user) {
-	//             if (props.auth.user.user) {
-	//                 if (props.auth.user.user.active)
-	//                     props.navigation.navigate("Confirmation");
-
-	//                 if (
-	//                     props.auth.isAuthenticated &&
-	//                     props.auth.user.user.active &&
-	//                     !props.auth.user.user.confirmed
-	//                 )
-	//                     props.navigation.navigate("Profile");
-	//             }
-	//         }
-	//     }
-	// });
+	componentDidMount() {
+		this.props.userMe();
+	}
 
 	disableSubmit = () => {
 		const { mobile } = this.state;
@@ -48,37 +40,62 @@ class HomeScreen extends React.Component {
 	};
 
 	handleSubmission = () => {
-		if (!this.disableSubmit()) this.props.userMe();
+		if (!this.disableSubmit())
+			this.props.navigation.navigate("OTP", {
+				no: this.state.mobile,
+			});
 	};
 
-	componentDidUpdate() {
+	componentDidUpdate(prevProps) {
 		const props = this.props;
 
-		if (props.auth) {
+		// if (Object.keys(prevProps.auth.user).length !== Object.keys(props.auth.user).length) {
+		if (props.auth.isAuthenticated) {
+			// if (props.auth) {
 			if (props.auth.user) {
 				if (props.auth.user.user) {
-					if (props.auth.user.user.active) props.navigation.navigate("Confirmation");
+					console.log(props.auth.user.user);
+					if (props.auth.user.user.active)
+						props.navigation.navigate("Confirmation");
 
-					if (props.auth.isAuthenticated && props.auth.user.user.active && !props.auth.user.user.confirmed)
+					if (
+						props.auth.isAuthenticated &&
+						props.auth.user.user.active &&
+						!props.auth.user.user.confirmed
+					)
 						props.navigation.navigate("Profile");
 				}
 			}
 		}
+		// }
 	}
 
 	render() {
+		const { loading } = this.state;
 		return (
-			<KeyboardAvoidingView style={landing.container}>
+			<KeyboardAwareScrollView
+				contentContainerStyle={landing.container}
+				// extraScrollHeight={30}
+				resetScrollToCoords={{ x: 0, y: 0 }}
+			>
+				{/* <ScrollView contentContainerStyle={{ flex: 1 }}> */}
 				<View style={landing.image_container}>
-					<Image source={require("../assets/images/landing.jpg")} style={landing.image} />
+					<Image
+						source={require("../assets/images/landing.jpg")}
+						style={landing.image}
+					/>
 					<View style={landing.overlay} />
 				</View>
-
 				<View style={utilis.child_container}>
 					{/* <View> */}
-					<Text style={{ ...utilis.text, ...utilis.margin_bottom }}>Get started with Driverroo</Text>
+					<Text style={{ ...utilis.text, ...utilis.margin_bottom }}>
+						Get started with Driverroo
+					</Text>
 					<View style={landing.country}>
-						<Image source={require("../assets/images/nigeria.png")} style={landing.icon} />
+						<Image
+							source={require("../assets/images/nigeria.png")}
+							style={landing.icon}
+						/>
 						{/* <Text style={utilis.text_light}>+234 7054727840</Text> */}
 						<TextInput
 							autoFocus={true}
@@ -107,14 +124,19 @@ class HomeScreen extends React.Component {
 							Terms & conditions and Privacy policy
 						</Text>
 					</View>
-					<Button
-						// disabled={disableSubmit()}
-						title="Continue"
-						onPress={this.handleSubmission}
-					/>
+					{loading ? (
+						<ActivityIndicator size="small" color="#002257" />
+					) : (
+						<Button
+							disabled={this.disableSubmit()}
+							title="Continue"
+							onPress={this.handleSubmission}
+						/>
+					)}
 					{/* </View> */}
 				</View>
-			</KeyboardAvoidingView>
+				{/* </ScrollView> */}
+			</KeyboardAwareScrollView>
 		);
 	}
 }

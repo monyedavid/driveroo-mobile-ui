@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet } from "react-native";
 
-export default (landing = StyleSheet.create({
+export default landing = StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: "#fff",
@@ -47,4 +47,4 @@ export default (landing = StyleSheet.create({
 		marginRight: "auto",
 		width: "100%",
 	},
-}));
+});
