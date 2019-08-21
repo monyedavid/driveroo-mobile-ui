@@ -7,7 +7,7 @@ import { Snackbar } from "react-native-material-ui";
 import isEmpty from "../utils/is.empty";
 import Tabs from "../components/Tabs";
 import { snackBarGen } from "../utils/errors/errorHandler";
-import { userLogin, userMe } from "../resources/redux-actions/auth";
+import { userReg } from "../resources/redux-actions/auth";
 import "../styles/core/utilis";
 import "../styles/core/form";
 import { Icon } from "native-base";
@@ -17,15 +17,14 @@ class SignUp extends React.Component {
         email: "",
         mobile: "",
         password: "",
+        firstName: "",
+        lastName: "",
+        gender: "",
         load: "",
         snackbar: "",
+        //	confirm: "",
         loading: false
     };
-
-    // console.log(props.auth);
-    // if (props.auth.isAuthenticated) {
-    //     props.navigation.navigate("Confirmation");
-    // }
 
     componentDidMount() {
         const { navigation } = this.props;
@@ -56,7 +55,6 @@ class SignUp extends React.Component {
     render() {
         const { props } = this;
         const { loading } = this.state;
-        console.log(this.state, "NAVOGATE PARAMS CHECK");
         const base = props.navigation.getParam("base", "");
         displayTheSnack$ = isEmpty(props.errors)
             ? null
@@ -89,7 +87,7 @@ class SignUp extends React.Component {
                         <View style={form.form_right}>
                             <InputField
                                 onChangeText={text => {
-                                    this.handleText(text, "fName");
+                                    this.handleText(text, "firstName");
                                 }}
                                 placeholder='Last Name'
                             />
@@ -98,7 +96,7 @@ class SignUp extends React.Component {
                     <View style={form.form_control}>
                         <InputField
                             onChangeText={text => {
-                                this.handleText(text, "lName");
+                                this.handleText(text, "lastName");
                             }}
                             placeholder='Date of birth'
                         />
@@ -108,7 +106,7 @@ class SignUp extends React.Component {
                         <View style={form.form_control}>
                             <InputField
                                 onChangeText={text => {
-                                    this.handleText(text, "lName");
+                                    this.handleText(text, "mobile");
                                 }}
                                 placeholder='Mobile'
                             />
@@ -117,7 +115,7 @@ class SignUp extends React.Component {
                         <View style={form.form_control}>
                             <InputField
                                 onChangeText={text => {
-                                    this.handleText(text, "lName");
+                                    this.handleText(text, "email");
                                 }}
                                 placeholder='Email'
                             />
@@ -127,7 +125,7 @@ class SignUp extends React.Component {
                     <View style={form.form_control}>
                         <InputField
                             onChangeText={text => {
-                                this.handleText(text, "lName");
+                                this.handleText(text, "gender");
                             }}
                             placeholder='Gender'
                         />
@@ -135,41 +133,34 @@ class SignUp extends React.Component {
                     <View style={form.form_control}>
                         <InputField
                             onChangeText={text => {
-                                this.handleText(text, "lName");
-                            }}
-                            placeholder='Password'
-                            secureTextEntry={true}
-                        />
-                    </View>
-
-                    <View style={form.form_control}>
-                        <InputField
-                            onChangeText={text => {
-                                this.handleText(text, "lName");
+                                this.handleText(text, "password");
                             }}
                             placeholder='Set Password'
                             secureTextEntry={true}
                         />
                     </View>
 
+                    {/* <View style={form.form_control}>
+                        <InputField
+                            onChangeText={text => {
+                                this.handleText(text, "confirm");
+                            }}
+                            placeholder='Confirm Password'
+                            secureTextEntry={true}
+                        />
+                    </View> */}
+
                     {!loading ? (
-                        // <Button
-                        // 	disabled={this.disableSubmit()}
-                        // 	title={"Sign In"}
-                        // 	onPress={() => {
-                        // 		// setLoad(true);
-                        // 		const { state, props } = this;
-                        // 		this.setState({ loading: true });
-                        // 		props.userLogin({
-                        // 			emailormobile: state.numorEmail,
-                        // 			password: state.password,
-                        // 		});
-                        // 	}}
-                        // />
                         <Icon
                             name='arrow-round-forward'
                             style={utilis.next_icon}
-                            // type="FontAwesome"
+                            onPress={() => {
+                                console.log(this.state, "SIGNUP STATE DATA");
+                                props.userReg(
+                                    { ...this.state },
+                                    props.navigation.navigate
+                                );
+                            }}
                         />
                     ) : (
                         <ActivityIndicator size='small' color='#002257' />
@@ -198,5 +189,5 @@ const map_state_to_props = ({ auth, errors }) => ({
 
 export default connect(
     map_state_to_props,
-    { userLogin, userMe }
+    { userReg }
 )(SignUp);

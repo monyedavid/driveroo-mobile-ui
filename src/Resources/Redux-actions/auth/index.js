@@ -80,7 +80,7 @@ export const set_current_user = userdata => {
     };
 };
 
-export const userReg = userdata => async dispatch => {
+export const userReg = (userdata, navigation) => async dispatch => {
     dispatch({ type: CLEAR_ERRORS });
     dispatch({ type: CLEAR_TOASTS });
     try {
@@ -89,6 +89,8 @@ export const userReg = userdata => async dispatch => {
         const { data } = await service.register({
             ...userdata
         });
+
+        console.log(data, "DATA");
 
         const { ok, error, success } = data.data.register;
         // ERROR HANDLING
@@ -101,6 +103,10 @@ export const userReg = userdata => async dispatch => {
 
         // SUCCESS MODE
         if (ok) {
+            navigation("Confirmation", {
+                email: userdata.email,
+                firstName: userdata.firstName
+            });
             return dispatch({
                 type: GET_TOASTS,
                 payload: success

@@ -89,13 +89,6 @@ class HomeScreen extends React.Component {
                 });
             }
         }
-
-        console.log(response, "response data");
-
-        // if (!this.disableSubmit())
-        //     this.props.navigation.navigate("OTP", {
-        //         mobile: this.state.mobile
-        //     });
     };
 
     componentDidUpdate(prevProps) {
