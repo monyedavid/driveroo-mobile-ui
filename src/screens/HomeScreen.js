@@ -56,15 +56,16 @@ class HomeScreen extends React.Component {
             //  if number
             if (response.gotMobile) {
                 // move to otp || LOGIN
-                console.log("MOBILE");
                 this.props.navigation.navigate("PassWord", {
                     mobile: this.state.mobile
                 });
             }
             // if !number
             if (!response.gotMobile) {
-                // move to otp page then || move to register page || collect email
-                console.log("NO MOBILE");
+                this.props.navigation.navigate("SignUp", {
+                    base: "mobile",
+                    mobile: this.state.mobile
+                });
             }
         }
 
@@ -83,6 +84,7 @@ class HomeScreen extends React.Component {
             if (!response.gotMail) {
                 // move to register page || show mobile option register
                 this.props.navigation.navigate("SignUp", {
+                    base: "email",
                     email: this.state.email
                 });
             }
