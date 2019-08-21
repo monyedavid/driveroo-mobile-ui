@@ -171,10 +171,11 @@ export class g_Auth {
     }
 
     async previousUser({ email, mobile }) {
-        return rps.post(this.url, {
-            query: `
+        if (mobile)
+            return rps.post(this.url, {
+                query: `
                   {
-                    previousUser(email: "${email}", mobile: "${mobile}") {
+                    previousUser(mobile: "${mobile}") {
                       ok
                       gotMail
                       gotMobile
@@ -185,6 +186,23 @@ export class g_Auth {
                     }
                   }
                  `
-        });
+            });
+
+        if (email)
+            return rps.post(this.url, {
+                query: `
+              {
+                previousUser(email: "${email}") {
+                  ok
+                  gotMail
+                  gotMobile
+                  error{
+                    path
+                    message
+                  }
+                }
+              }
+             `
+            });
     }
 }

@@ -15,6 +15,7 @@ import { userMe } from "../resources/redux-actions/auth";
 import { KeyboardAvoidingView } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 import Tabs from "../components/Tabs";
+import { previousUser } from "../utils/on-boardin";
 
 class HomeScreen extends React.Component {
     static navigationOptions = {
@@ -22,30 +23,66 @@ class HomeScreen extends React.Component {
     };
 
     state = {
-        mobile: "",
+        mobile: null,
+        email: null,
         loading: false,
         isPhone: true
     };
 
     componentDidMount() {
-        this.props.userMe();
+        // this.props.userMe();
+    }
+
+    handleText(value, name) {
+        this.setState({
+            [name]: value
+        });
     }
 
     disableSubmit = () => {
         const { mobile } = this.state;
         if (mobile !== "") {
             if (mobile.length === 11) return false;
-            // check if mobile.length has alphabetic characters
         }
 
         return true;
     };
 
-    handleSubmission = () => {
-        if (!this.disableSubmit())
-            this.props.navigation.navigate("OTP", {
-                no: this.state.mobile
-            });
+    handleSubmission = async () => {
+        let response;
+        if (this.state.isPhone) {
+            // check for existing number || STEP:1
+            response = await previousUser({ mobile: this.state.mobile });
+            //  if number
+            if (response.gotMobile) {
+                // move to otp || LOGIN
+            }
+            // if !number
+            if (!response.gotMobile) {
+                // move to otp page then || move to register page || collect email
+            }
+        }
+
+        if (!this.state.isPhone) {
+            // check for existing email || STEP:1
+            response = await previousUser({ email: this.state.email });
+            // if email
+            if (response.gotMail) {
+                // move to password | page
+            }
+
+            // if !email
+            if (!response.gotMail) {
+                // move to register page || show mobile option register
+            }
+        }
+
+        console.log(response, "response data");
+
+        // if (!this.disableSubmit())
+        //     this.props.navigation.navigate("OTP", {
+        //         mobile: this.state.mobile
+        //     });
     };
 
     componentDidUpdate(prevProps) {
@@ -122,18 +159,23 @@ class HomeScreen extends React.Component {
                                 source={require("../assets/images/nigeria.png")}
                                 style={landing.icon}
                             />
-                            {/* <Text style={utilis.text_light}>+234 7054727840</Text> */}
                             <TextInput
                                 autoFocus={true}
                                 keyboardType='number-pad'
                                 onChangeText={text => {
-                                    this.setState({ mobile: text });
+                                    this.handleText(text, "mobile");
                                 }}
                                 placeholder={"+234"}
                             />
                         </View>
                     ) : (
-                        <TextInput autoFocus={true} placeholder={"Email"} />
+                        <TextInput
+                            onChangeText={text => {
+                                this.handleText(text, "email");
+                            }}
+                            autoFocus={true}
+                            placeholder={"Email"}
+                        />
                     )}
 
                     <View>
@@ -148,7 +190,8 @@ class HomeScreen extends React.Component {
                 <View style={landing.footer}>
                     <Text
                         onPress={() => {
-                            this.props.navigation.navigate("Login");
+                            // this.props.navigation.navigate("Login");
+                            this.handleSubmission();
                         }}
                         style={landing.footer_child}
                     >

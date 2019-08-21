@@ -125,26 +125,14 @@ export const userLogout = () => async dispatch => {
     dispatch(set_current_user({}));
 };
 
-export const profileUpdatde = ({
-    dob = "02-6-1998",
-    mothers_maiden_name = "Ibeh",
-    bvn = "22246209456",
-    primary_location = "150 okota lagos nigeria",
-    secondary_location = "150 okota lagos nigeria",
-    tertiary_location = "150 okota lagos nigeria"
-}) => async dispatch => {
+export const profileUpdatde = userData => async dispatch => {
     try {
         const service = new g_Auth(url);
-        const req = await service.updateProfile({
-            dob,
-            mothers_maiden_name,
-            bvn,
-            primary_location,
-            secondary_location,
-            tertiary_location
+        const { data } = await service.updateProfile({
+            ...userData
         });
 
-        const { ok, error } = req.data.data.firstUpdate;
+        const { ok, error } = data.data.firstUpdate;
 
         // ERROR HANDLING
         if (!ok) {
