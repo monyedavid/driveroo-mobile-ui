@@ -7,10 +7,10 @@
         "platforms": ["ios", "android", "web"],
         "version": "1.0.0",
         "orientation": "portrait",
-        "icon": "./src/assets/images/splash-screen.png",
+        "icon": "./src/assets/images/ss.png",
         "splash": {
-            "image": "./src/assets/images/splash.png",
-            "resizeMode": "contain",
+            "image": "./src/assets/images/ss.png",
+            "resizeMode": "cover",
             "backgroundColor": "#ffffff"
         },
         "updates": {

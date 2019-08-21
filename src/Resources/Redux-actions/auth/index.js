@@ -8,14 +8,14 @@ import {
 import { g_Auth } from "../../../graphql/auth.graphql";
 import config from "../../../configs";
 const url = config.AUTH_MS;
-// const durl = config.DRIVER_MS;
-// process.env.NODE_ENV === "production" ? config.AUTH_MS : config.AUTH_MS_DEV;
 
 export const userLogin = ({ emailormobile, password }) => async dispatch => {
     dispatch({ type: CLEAR_ERRORS });
     try {
         const service = new g_Auth(url);
         const { data } = await service.login({ emailormobile, password });
+
+        console.log(data, "from login requests");
 
         const { path, message, model, sessionId } = data.data.login[0];
 
