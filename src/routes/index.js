@@ -19,9 +19,9 @@ const AppNavigator = createStackNavigator(
         // Board: {
         //     screen: OnBoardScreen
         // },
-        Home: {
-            screen: HomeScreen
-        },
+        // Home: {
+        //     screen: HomeScreen
+        // },
         // SignUp: {
         // 	screen: SignUp,
         // },

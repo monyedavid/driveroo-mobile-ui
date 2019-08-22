@@ -71,14 +71,16 @@ class HomeScreen extends React.Component {
             //  if number
             if (response.gotMobile) {
                 // move to otp || LOGIN
-                this.props.navigation.navigate("PassWord", {
+                this.props.navigation.navigate("OTP", {
+                    signup: false,
                     mobile: this.state.mobile
                 });
             }
             // if !number
             if (!response.gotMobile) {
-                this.props.navigation.navigate("SignUp", {
+                this.props.navigation.navigate("OTP", {
                     base: "mobile",
+                    signup: true,
                     mobile: this.state.mobile
                 });
             }
