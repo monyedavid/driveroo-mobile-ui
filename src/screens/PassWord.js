@@ -34,17 +34,31 @@ class PasswordScreen extends React.Component {
         return this.state.password === "" ? true : false;
     };
 
+    /**
+     *  this.props.navigation.navigate("OTP", {
+                    signup: false,
+                    userdata: response.user,
+                    mobile: this.state.mobile
+                });
+     */
+
     handleSubmit = () => {
         const { password } = this.state;
         const { userLogin } = this.props;
         const email = this.props.navigation.getParam("email", "");
         const mobile = this.props.navigation.getParam("mobile", "");
         if (email) {
-            userLogin({ emailormobile: email, password });
+            userLogin(
+                { emailormobile: email, password },
+                this.props.navigation.navigate
+            );
         }
 
         if (mobile) {
-            userLogin({ emailormobile: mobile, password });
+            userLogin(
+                { emailormobile: mobile, password },
+                this.props.navigation.navigate
+            );
         }
     };
 
@@ -54,12 +68,6 @@ class PasswordScreen extends React.Component {
         }
         setSnackbar(false);
     };
-
-    componentDidUpdate() {
-        if (this.props.isAuthenticated) {
-            console.log("redirect to last page :)");
-        }
-    }
 
     render() {
         const { props } = this;

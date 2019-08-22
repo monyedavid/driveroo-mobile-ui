@@ -27,21 +27,21 @@ const AppNavigator = createStackNavigator(
         OTP: {
             screen: OtpVerifications
         },
-        // PassWord: {
-        //     screen: PassWordScreen
+        PassWord: {
+            screen: PassWordScreen
+        },
+        SocialLogin: {
+            screen: SocialLogin
+        },
+        // Profile: {
+        //     screen: Profile
         // },
-        // SocialLogin: {
-        //     screen: SocialLogin
+        // Verification: {
+        //     screen: VerificationScreen
         // },
-        Profile: {
-            screen: Profile
-        },
-        Verification: {
-            screen: VerificationScreen
-        },
-        ResetPassword: {
-            screen: ResetPassword
-        },
+        // ResetPassword: {
+        //     screen: ResetPassword
+        // },
         Confirmation: {
             screen: ConfirmationScreen
         }
