@@ -21,6 +21,9 @@ export default form = StyleSheet.create({
 		// borderColor: "red",
 		marginRight: 15,
 	},
+	// form_upload: {
+	// 	border,
+	// },
 
 	// form_flex{
 

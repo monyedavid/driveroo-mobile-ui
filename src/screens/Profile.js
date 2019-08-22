@@ -1,11 +1,19 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { View, StyleSheet, Text } from "react-native";
+import {
+	View,
+	StyleSheet,
+	Text,
+	ScrollView,
+	TouchableOpacity,
+} from "react-native";
 import InputField from "../components/InputField";
 import Button from "../components/Button";
 import { userReg } from "../resources/redux-actions/auth";
 import DatePicker from "react-native-datepicker";
+import { utilis, textColor } from "../styles/core/utilis";
 import "../styles/core/utilis";
+import { Icon } from "native-base";
 
 class Profile extends Component {
 	state = {
@@ -26,81 +34,101 @@ class Profile extends Component {
 
 	render() {
 		return (
-			<View style={styles.container}>
+			<ScrollView style={styles.container}>
 				<View style={utilis.child_container}>
-					<Text style={{ ...utilis.text, ...utilis.margin_bottom_lg }}>
-						Setup profile
+					<Text style={{ ...utilis.text_header, ...utilis.margin_bottom_sm }}>
+						Hello Simi
 					</Text>
-					{/* <InputField
-						autoFocus={true}
-						name
-						onChangeText={text => {
-							this.handleText(text, "numorEmail");
-						}}
-						placeholder=""
-					/> */}
-					<DatePicker
-						style={{ width: 200 }}
-						date={this.state.date}
-						mode="date"
-						placeholder="select date"
-						format="YYYY-MM-DD"
-						minDate="2016-05-01"
-						maxDate="2016-06-01"
-						confirmBtnText="Confirm"
-						cancelBtnText="Cancel"
-						customStyles={{
-							dateIcon: {
-								position: "absolute",
-								left: 0,
-								top: 4,
-								marginLeft: 0,
-							},
-							dateInput: {
-								marginLeft: 36,
-							},
-							// ... You can check the source to find the other keys.
-						}}
-						onDateChange={date => {
-							this.setState({ date: date });
-						}}
-					/>
-					<InputField
-						onChangeText={text => {
-							this.handleText(text, "numorEmail");
-						}}
-						placeholder="Last name"
-					/>
-					<InputField
-						onChangeText={text => {
-							this.handleText(text, "numorEmail");
-						}}
-						placeholder="Email address"
-					/>
-					<InputField
-						onChangeText={text => {
-							this.handleText(text, "numorEmail");
-						}}
-						placeholder="Password"
-						secureTextEntry={true}
-					/>
-					<InputField
-						onChangeText={text => {
-							this.handleText(text, "numorEmail");
-						}}
-						placeholder
-						placeholder="Confirm password"
-					/>
-					<Button
-						title={"Continue"}
-						style={styles.margin_top}
-						onPress={() => {
-							console.log("funky");
-							// props.navigation.navigate("Verification");
-						}}
-					/>
+					<Text style={{ ...utilis.text_sm, ...utilis.margin_bottom_lg }}>
+						Let us help you get verified on Driverroo
+					</Text>
+
+					<View style={form.form_control}>
+						<InputField
+							onChangeText={text => {
+								this.handleText(text, "lastName");
+							}}
+							placeholder="Your primary address?"
+						/>
+					</View>
+
+					<View style={form.form_control}>
+						<InputField
+							onChangeText={text => {
+								this.handleText(text, "lastName");
+							}}
+							placeholder="Your secondary address?"
+						/>
+					</View>
+
+					<View style={form.form_control}>
+						<InputField
+							onChangeText={text => {
+								this.handleText(text, "lastName");
+							}}
+							placeholder="Your tertiary address?"
+						/>
+					</View>
+
+					<View style={form.form_control}>
+						<InputField
+							onChangeText={text => {
+								this.handleText(text, "lastName");
+							}}
+							placeholder="What is your BVN?"
+						/>
+					</View>
+
+					<View style={form.form_control}>
+						<InputField
+							onChangeText={text => {
+								this.handleText(text, "lastName");
+							}}
+							placeholder="Please provide your driver’s license number?"
+						/>
+					</View>
+
+					<TouchableOpacity style={styles.form_upload}>
+						<Image
+							source={require("../assets/images/add_icon.png")}
+							style={styles.icon}
+						/>
+						<Text style={{ fontSize: 16, color: "#A6AAB4" }}>
+							Upload Driver’s License
+						</Text>
+					</TouchableOpacity>
+
+					{/* {base === "email" ? (
+						<View style={form.form_control}>
+							<InputField
+								onChangeText={text => {
+									this.handleText(text, "mobile");
+								}}
+								placeholder="Mobile"
+							/>
+						</View>
+					) : (
+						<View style={form.form_control}>
+							<InputField
+								onChangeText={text => {
+									this.handleText(text, "email");
+								}}
+								placeholder="Email"
+							/>
+						</View>
+					)} */}
+
+					{/* <View style={form.form_control}>
+                        <InputField
+                            onChangeText={text => {
+                                this.handleText(text, "confirm");
+                            }}
+                            placeholder='Confirm Password'
+                            secureTextEntry={true}
+                        />
+                    </View> */}
 				</View>
-			</View>
+			</ScrollView>
 		);
 	}
 }
@@ -116,6 +144,22 @@ const styles = StyleSheet.create({
 	},
 	margin_top: {
 		marginTop: 50,
+	},
+	form_upload: {
+		flexDirection: "row",
+		backgroundColor: "#F9FAFB",
+		borderStyle: "dotted",
+		borderColor: "#D6D9E4",
+		alignItems: "center",
+		justifyContent: "center",
+	},
+	icon: {
+		backgroundColor: "#10C971",
+		height: 26,
+		width: 26,
+		borderRadius: 13,
+		justifyContent: "center",
+		// color: "#10C971",
 	},
 });
 
