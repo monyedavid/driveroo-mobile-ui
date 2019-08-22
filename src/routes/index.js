@@ -36,12 +36,12 @@ const AppNavigator = createStackNavigator(
         Profile: {
             screen: Profile
         },
-        // Verification: {
-        //     screen: VerificationScreen
-        // },
-        // ResetPassword: {
-        //     screen: ResetPassword
-        // },
+        Verification: {
+            screen: VerificationScreen
+        },
+        ResetPassword: {
+            screen: ResetPassword
+        },
         Confirmation: {
             screen: ConfirmationScreen
         }

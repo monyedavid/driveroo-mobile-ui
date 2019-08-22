@@ -31,6 +31,8 @@ class Profile extends Component {
     }
 
     render() {
+        const { auth } = this.props;
+
         return (
             <ScrollView style={styles.container}>
                 <View style={utilis.child_container}>
@@ -40,7 +42,7 @@ class Profile extends Component {
                             ...utilis.margin_bottom_sm
                         }}
                     >
-                        Hello Simi
+                        Hello {auth.user.user.firstName}
                     </Text>
                     <Text
                         style={{
@@ -105,36 +107,6 @@ class Profile extends Component {
                             Upload Driver’s License
                         </Text>
                     </TouchableOpacity>
-
-                    {/* {base === "email" ? (
-						<View style={form.form_control}>
-							<InputField
-								onChangeText={text => {
-									this.handleText(text, "mobile");
-								}}
-								placeholder="Mobile"
-							/>
-						</View>
-					) : (
-						<View style={form.form_control}>
-							<InputField
-								onChangeText={text => {
-									this.handleText(text, "email");
-								}}
-								placeholder="Email"
-							/>
-						</View>
-					)} */}
-
-                    {/* <View style={form.form_control}>
-                        <InputField
-                            onChangeText={text => {
-                                this.handleText(text, "confirm");
-                            }}
-                            placeholder='Confirm Password'
-                            secureTextEntry={true}
-                        />
-                    </View> */}
                 </View>
             </ScrollView>
         );
@@ -171,7 +143,11 @@ const styles = StyleSheet.create({
     }
 });
 
+const map_state_to_props = state => ({
+    auth: state.auth
+});
+
 export default connect(
-    null,
+    map_state_to_props,
     { userReg }
 )(Profile);

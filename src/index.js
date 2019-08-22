@@ -1,19 +1,22 @@
 import * as React from "react";
 import { ApolloProvider } from "react-apollo";
+import { PersistGate } from "redux-persist/integration/react";
 import { client } from "./apollo";
 import Root from "./root";
 // REDUX
 import { Provider } from "react-redux";
-import store from "./resources/redux-store";
+import rs from "./resources/redux-store";
 
 export default class App extends React.PureComponent {
     render() {
         return (
-            <Provider store={store}>
-                <ApolloProvider client={client}>
-                    <Root />
-                </ApolloProvider>
-            </Provider>
+            <ApolloProvider client={client}>
+                <Provider store={rs.store}>
+                    <PersistGate loading={null} persistor={rs.persistor}>
+                        <Root />
+                    </PersistGate>
+                </Provider>
+            </ApolloProvider>
         );
     }
 }
