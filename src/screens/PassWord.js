@@ -35,14 +35,16 @@ class PasswordScreen extends React.Component {
     };
 
     handleSubmit = () => {
+        const { password } = this.state;
+        const { userLogin } = this.props;
         const email = this.props.navigation.getParam("email", "");
         const mobile = this.props.navigation.getParam("mobile", "");
         if (email) {
-            console.log("trying submit with email|", email);
+            userLogin({ emailormobile: email, password });
         }
 
         if (mobile) {
-            console.log("trying submit mobile |", mobile);
+            userLogin({ emailormobile: mobile, password });
         }
     };
 
