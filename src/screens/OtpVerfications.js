@@ -14,7 +14,15 @@ export default function OtpVerification(props) {
     const mobile = props.navigation.getParam("mobile", "");
 
     React.useEffect(() => {
-        console.log(signup, "signup", base, "base", mobile, "mobile");
+        console.log(
+            signup,
+            "signup",
+            base,
+            "base",
+            mobile,
+            "mobile",
+            "FROM OTP"
+        );
     }, []);
 
     const [code, setCode] = React.useState("");
@@ -84,7 +92,15 @@ export default function OtpVerification(props) {
                     }}
                     style={{ marginBottom: 10 }}
                 />
-                <Button title='Get started with email instead' type='clear' />
+                <Button
+                    onPress={() => {
+                        props.navigation.navigate("Home", {
+                            fromOtp: true
+                        });
+                    }}
+                    title='Get started with email instead'
+                    type='clear'
+                />
 
                 <Text style={styles.footer}>
                     By signing up, you confirm that you agree to our Terms of

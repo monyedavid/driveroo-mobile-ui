@@ -34,17 +34,24 @@ class PasswordScreen extends React.Component {
         return this.state.password === "" ? true : false;
     };
 
+    handleSubmit = () => {
+        const email = this.props.navigation.getParam("email", "");
+        const mobile = this.props.navigation.getParam("mobile", "");
+        if (email) {
+            console.log("trying submit with email|", email);
+        }
+
+        if (mobile) {
+            console.log("trying submit mobile |", mobile);
+        }
+    };
+
     snackbarClose = (e, reason) => {
         if (reason === "clickaway") {
             return;
         }
         setSnackbar(false);
     };
-
-    componentDidMount() {
-        const userdata = this.props.navigation.getParam("userdata", "");
-        console.log(userdata, "from password | page");
-    }
 
     componentDidUpdate() {
         if (this.props.isAuthenticated) {
@@ -54,60 +61,50 @@ class PasswordScreen extends React.Component {
 
     render() {
         const { props } = this;
-        const { loading } = this.state;
+        const userdata = this.props.navigation.getParam("userdata", "");
         displayTheSnack$ = isEmpty(props.errors)
             ? null
             : snackBarGen(props.errors);
 
         return (
             <View style={styles.container}>
-                {displayTheSnack$
-                    ? displayTheSnack$.map(({ message, variant }, index) => (
-                          <Snackbar
-                              visible={true}
-                              color={"red50"}
-                              message={message}
-                              key={index}
-                              style={{
-                                  width: "40%"
-                              }}
-                              onRequestClose={() => console.log("close")}
-                          />
-                      ))
-                    : null}
                 <View style={utilis.child_container}>
-                    <Text
-                        style={{ ...utilis.text, ...utilis.margin_bottom_lg }}
-                    >
-                        Enter Your Password
-                    </Text>
+                    <View style={styles.top}>
+                        <Text
+                            style={{
+                                ...utilis.text_header,
+                                ...utilis.margin_bottom_sm
+                            }}
+                        >
+                            Enter your password
+                        </Text>
+                        <Text
+                            style={{
+                                ...utilis.text_sm,
+                                ...utilis.margin_bottom_sm
+                            }}
+                        >
+                            Welcome {userdata && userdata.firstName}. Please
+                            enter your password to continue
+                        </Text>
+                    </View>
+
                     <InputField
                         onChangeText={text => {
                             this.handleText(text, "password");
                         }}
-                        placeholder='Password'
-                        secureTextEntry={true}
+                        placeholder='********'
+                        style={{ marginBottom: 50 }}
                     />
-                    {!loading ? (
-                        <Button
-                            disabled={this.disableSubmit()}
-                            title={";)"}
-                            onPress={() => {
-                                const {
-                                    state: { password },
-                                    props: { navigation }
-                                } = this;
-                                const email = navigation.getParam("email", "");
-                                // this.setState({ loading: true });
-                                props.userLogin({
-                                    emailormobile: email,
-                                    password
-                                });
-                            }}
-                        />
-                    ) : (
-                        <ActivityIndicator size='small' color='#002257' />
-                    )}
+
+                    <Button
+                        title='Continue'
+                        disabled={this.state.password === "" ? true : false}
+                        onPress={() => {
+                            this.handleSubmit();
+                        }}
+                        style={{ marginBottom: 10 }}
+                    />
                 </View>
             </View>
         );
