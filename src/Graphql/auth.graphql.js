@@ -22,10 +22,12 @@ export class g_Auth {
                         password: "${password}"
                         model: "driver"
                         ) {
-                            path
-                            message
-                            model
-                            sessionId
+                          path
+                          message
+                          model
+                          sessionId
+                          incompleteProfile
+                          confirmed
                         }
                     }                  
                     `
