@@ -33,9 +33,9 @@ const AppNavigator = createStackNavigator(
         SocialLogin: {
             screen: SocialLogin
         },
-        // Profile: {
-        //     screen: Profile
-        // },
+        Profile: {
+            screen: Profile
+        },
         // Verification: {
         //     screen: VerificationScreen
         // },

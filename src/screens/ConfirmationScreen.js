@@ -16,16 +16,27 @@ class ConfirmationScrenn extends React.Component {
         console.log("go to home");
     }
 
+    handleSubmit = () => {
+        const incompleteProfile = this.props.navigation.getParam(
+            "incompleteProfile",
+            ""
+        );
+        if (incompleteProfile) {
+            this.props.navigation.navigate("Profile", {
+                incompleteProfile
+            });
+            return;
+        }
+
+        console.log("move to last page");
+    };
+
     render() {
         const emailormobile = this.props.navigation.getParam(
             "emailormobile",
             ""
         );
 
-        const incompleteProfile = this.props.navigation.getParam(
-            "incompleteProfile",
-            ""
-        );
         return (
             <View style={styles.container}>
                 <View style={utilis.child_container}>
@@ -43,7 +54,7 @@ class ConfirmationScrenn extends React.Component {
 
                     <Button
                         onPress={() => {
-                            this.setState({ isPhone: true });
+                            this.handleSubmit();
                         }}
                         style={{ borderColor: "white" }}
                         title='Continue'

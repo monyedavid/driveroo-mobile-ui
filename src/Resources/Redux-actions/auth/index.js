@@ -18,6 +18,8 @@ export const userLogin = (
         const service = new g_Auth(url);
         const { data } = await service.login({ emailormobile, password });
 
+        console.log(data, "data");
+
         const {
             path,
             message,
@@ -43,6 +45,7 @@ export const userLogin = (
             }
 
             if (incompleteProfile) {
+                console.log("move to profile");
                 navigation("Profile", {
                     emailormobile,
                     incompleteProfile
