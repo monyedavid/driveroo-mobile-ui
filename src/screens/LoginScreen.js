@@ -7,6 +7,7 @@ import { Snackbar } from "react-native-material-ui";
 import isEmpty from "../utils/is.empty";
 import { snackBarGen } from "../utils/errors/errorHandler";
 import { userLogin, userMe } from "../resources/redux-actions/auth";
+import { utilis } from "../styles/core/utilis";
 import "../styles/core/utilis";
 
 class LoginScreen extends React.Component {

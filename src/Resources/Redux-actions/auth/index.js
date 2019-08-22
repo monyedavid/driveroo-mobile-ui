@@ -17,7 +17,13 @@ export const userLogin = ({ emailormobile, password }) => async dispatch => {
 
         console.log(data, "from login requests");
 
-        const { path, message, model, sessionId } = data.data.login[0];
+        const {
+            path,
+            message,
+            sessionId,
+            incompleteProfile,
+            confirmed
+        } = data.data.login[0];
 
         if (path)
             dispatch({

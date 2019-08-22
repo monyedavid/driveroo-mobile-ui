@@ -4,7 +4,6 @@ import { NativeRouter, Route, Switch } from "react-router-native";
 import OnBoardScreen from "../screens/OnBoard";
 import HomeScreen from "../screens/HomeScreen";
 import OtpVerifications from "../screens/OtpVerfications";
-import LoginScreen from "../screens/LoginScreen";
 import SignUp from "../screens/SignUp";
 import SocialLogin from "../screens/SocialLogin";
 import Profile from "../screens/Profile";
@@ -19,23 +18,20 @@ const AppNavigator = createStackNavigator(
         // Board: {
         //     screen: OnBoardScreen
         // },
-        // Home: {
-        // 	screen: HomeScreen,
-        // },
+        Home: {
+            screen: HomeScreen
+        },
         SignUp: {
             screen: SignUp
         },
-        // OTP: {
-        // 	screen: OtpVerifications,
-        // },
+        OTP: {
+            screen: OtpVerifications
+        },
         // PassWord: {
-        // 	screen: PassWordScreen,
-        // },
-        // Login: {
-        // 	screen: LoginScreen,
+        //     screen: PassWordScreen
         // },
         // SocialLogin: {
-        // 	screen: SocialLogin,
+        //     screen: SocialLogin
         // },
         Profile: {
             screen: Profile
