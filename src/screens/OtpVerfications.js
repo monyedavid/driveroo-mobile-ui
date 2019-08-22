@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import * as React from "react";
 import { View, StyleSheet, Image, Text } from "react-native";
 import moment from "moment-timer";
 import InputField from "../components/InputField";
@@ -8,6 +8,22 @@ import Timer from "../components/Timer";
 import { utilis, textColor } from "../styles/core/utilis";
 
 export default function OtpVerification(props) {
+    const signup = props.navigation.getParam("signup", "");
+    const base = props.navigation.getParam("base", "");
+    const mobile = props.navigation.getParam("mobile", "");
+
+    React.useEffect(() => {
+        console.log(signup, "signup", base, "base", mobile, "mobile");
+    }, []);
+
+    const [code, setCode] = React.useState("");
+
+    const disableButton = () => {
+        if (code === "" || code.length !== 4) return true;
+
+        return false;
+    };
+
     return (
         <View style={styles.container}>
             <View style={utilis.child_container}>
@@ -28,12 +44,17 @@ export default function OtpVerification(props) {
                     >
                         Enter the 4-digit code we sent to
                     </Text>
-                    <Text style={styles.number}>+234-81234567</Text>
+                    <Text style={styles.number}>
+                        +234-
+                        {mobile
+                            ? mobile.substring(1, mobile.length)
+                            : "somenumbers"}
+                    </Text>
                 </View>
 
                 <InputField
                     onChangeText={text => {
-                        this.handleText(text, "firstName");
+                        setCode(text);
                     }}
                     placeholder='Enter Code'
                     style={{ marginBottom: 50 }}
@@ -41,8 +62,23 @@ export default function OtpVerification(props) {
 
                 <Button
                     title='Continue'
+                    disabled={disableButton()}
                     onPress={() => {
-                        props.navigation.navigate("Login");
+                        // handle otp || no otp provider yet
+                        if (signup) {
+                            console.log("push to signup | page");
+                            props.navigation.navigate("SignUp", {
+                                mobile,
+                                base
+                            });
+                        }
+
+                        if (!signup) {
+                            // move to password | page
+                            props.navigation.navigate("PassWord", {
+                                mobile
+                            });
+                        }
                     }}
                     style={{ marginBottom: 10 }}
                 />

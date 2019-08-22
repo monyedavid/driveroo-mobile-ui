@@ -179,6 +179,12 @@ export class g_Auth {
                       ok
                       gotMail
                       gotMobile
+                      user{
+                        firstName
+                        lastName
+                        mobile
+                        email
+                      }
                       error{
                         path
                         message
@@ -196,6 +202,12 @@ export class g_Auth {
                   ok
                   gotMail
                   gotMobile
+                  user{
+                    firstName
+                    lastName
+                    mobile
+                    email
+                  }
                   error{
                     path
                     message

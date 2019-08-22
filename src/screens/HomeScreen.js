@@ -28,8 +28,8 @@ class HomeScreen extends React.Component {
     constructor() {
         super();
         this.state = {
-            mobile: null,
-            email: null,
+            mobile: "",
+            email: "",
             loading: false,
             isPhone: true
         };
@@ -55,12 +55,28 @@ class HomeScreen extends React.Component {
     }
 
     disableSubmit = () => {
-        const { mobile } = this.state;
-        if (mobile !== "") {
-            if (mobile.length === 11) return false;
+        const { mobile, email, isPhone } = this.state;
+        if (isPhone) {
+            if (mobile !== "") {
+                if (mobile.length === 11) return false;
+            }
+
+            return true;
         }
 
-        return true;
+        if (!isPhone) {
+            if (email !== "") {
+                if (!email.includes("@") || !email.includes(".com")) {
+                    return true;
+                }
+
+                if (email.includes("@")) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
     };
 
     handleSubmission = async () => {
@@ -73,6 +89,7 @@ class HomeScreen extends React.Component {
                 // move to otp || LOGIN
                 this.props.navigation.navigate("OTP", {
                     signup: false,
+                    userdata: response.user,
                     mobile: this.state.mobile
                 });
             }
@@ -93,6 +110,7 @@ class HomeScreen extends React.Component {
             if (response.gotMail) {
                 // move to password | page
                 this.props.navigation.navigate("PassWord", {
+                    userdata: response.user,
                     email: this.state.email
                 });
             }
@@ -189,9 +207,10 @@ class HomeScreen extends React.Component {
                     <View style={utilis.tab}>
                         <Button
                             title='Get started'
+                            disabled={this.disableSubmit()}
                             style={{ marginBottom: 10 }}
                             onPress={() => {
-                                console.log("berminham");
+                                this.handleSubmission();
                             }}
                         />
 
