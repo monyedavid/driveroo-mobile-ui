@@ -136,10 +136,13 @@ export const userReg = (userdata, navigation) => async dispatch => {
                 payload: success
             });
             return dispatch(
-                userLogin({
-                    emailormobile: userdata.email,
-                    password: userdata.password
-                })
+                userLogin(
+                    {
+                        emailormobile: userdata.email,
+                        password: userdata.password
+                    },
+                    navigation
+                )
             );
         }
     } catch (error) {

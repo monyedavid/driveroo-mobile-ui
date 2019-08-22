@@ -19,6 +19,7 @@ class SignUp extends React.Component {
         password: "",
         firstName: "",
         lastName: "",
+        dob: "",
         gender: "",
         load: "",
         snackbar: "",
@@ -78,7 +79,7 @@ class SignUp extends React.Component {
                             <InputField
                                 autoFocus={true}
                                 onChangeText={text => {
-                                    this.handleText(text, "email");
+                                    this.handleText(text, "firstName");
                                 }}
                                 placeholder='First Name'
                             />
@@ -87,21 +88,12 @@ class SignUp extends React.Component {
                         <View style={form.form_right}>
                             <InputField
                                 onChangeText={text => {
-                                    this.handleText(text, "firstName");
+                                    this.handleText(text, "lastName");
                                 }}
                                 placeholder='Last Name'
                             />
                         </View>
                     </View>
-                    <View style={form.form_control}>
-                        <InputField
-                            onChangeText={text => {
-                                this.handleText(text, "lastName");
-                            }}
-                            placeholder='Date of birth'
-                        />
-                    </View>
-
                     {base === "email" ? (
                         <View style={form.form_control}>
                             <InputField
