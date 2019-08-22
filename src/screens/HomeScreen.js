@@ -1,14 +1,14 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import {
-	Image,
-	Text,
-	TextInput,
-	View,
-	Animated,
-	ScrollView,
-	ActivityIndicator,
-	Keyboard,
+    Image,
+    Text,
+    TextInput,
+    View,
+    Animated,
+    ScrollView,
+    ActivityIndicator,
+    Keyboard
 } from "react-native";
 import "../styles/landing";
 import { utilis, textColor } from "../styles/core/utilis";
@@ -21,235 +21,248 @@ import { previousUser } from "../utils/on-boardin";
 import { Icon } from "native-base";
 
 class HomeScreen extends React.Component {
-	static navigationOptions = {
-		header: null,
-	};
+    static navigationOptions = {
+        header: null
+    };
 
-	constructor() {
-		super();
-		this.state = {
-			mobile: null,
-			email: null,
-			loading: false,
-			isPhone: true,
-		};
+    constructor() {
+        super();
+        this.state = {
+            mobile: null,
+            email: null,
+            loading: false,
+            isPhone: true
+        };
 
-		this.imageRef = null;
-	}
+        this.imageRef = null;
+    }
 
-	componentDidMount() {
-		// this.keyboardWillShowSub = Keyboard.addListener(
-		// 	"keyboardWillShow",
-		// 	this.keyboardWillShow,
-		// );
-		// this.keyboardWillHideSub = Keyboard.addListener(
-		// 	"keyboardWillHide",
-		// 	this.keyboardWillHide,
-		// );
-	}
+    componentDidMount() {
+        // this.keyboardWillShowSub = Keyboard.addListener(
+        // 	"keyboardWillShow",
+        // 	this.keyboardWillShow,
+        // );
+        // this.keyboardWillHideSub = Keyboard.addListener(
+        // 	"keyboardWillHide",
+        // 	this.keyboardWillHide,
+        // );
+    }
 
-	handleText(value, name) {
-		this.setState({
-			[name]: value,
-		});
-	}
+    handleText(value, name) {
+        this.setState({
+            [name]: value
+        });
+    }
 
-	disableSubmit = () => {
-		const { mobile } = this.state;
-		if (mobile !== "") {
-			if (mobile.length === 11) return false;
-		}
+    disableSubmit = () => {
+        const { mobile } = this.state;
+        if (mobile !== "") {
+            if (mobile.length === 11) return false;
+        }
 
-		return true;
-	};
+        return true;
+    };
 
-	handleSubmission = async () => {
-		let response;
-		if (this.state.isPhone) {
-			// check for existing number || STEP:1
-			response = await previousUser({ mobile: this.state.mobile });
-			//  if number
-			if (response.gotMobile) {
-				// move to otp || LOGIN
-				this.props.navigation.navigate("PassWord", {
-					mobile: this.state.mobile,
-				});
-			}
-			// if !number
-			if (!response.gotMobile) {
-				this.props.navigation.navigate("SignUp", {
-					base: "mobile",
-					mobile: this.state.mobile,
-				});
-			}
-		}
+    handleSubmission = async () => {
+        let response;
+        if (this.state.isPhone) {
+            // check for existing number || STEP:1
+            response = await previousUser({ mobile: this.state.mobile });
+            //  if number
+            if (response.gotMobile) {
+                // move to otp || LOGIN
+                this.props.navigation.navigate("PassWord", {
+                    mobile: this.state.mobile
+                });
+            }
+            // if !number
+            if (!response.gotMobile) {
+                this.props.navigation.navigate("SignUp", {
+                    base: "mobile",
+                    mobile: this.state.mobile
+                });
+            }
+        }
 
-		if (!this.state.isPhone) {
-			// check for existing email || STEP:1
-			response = await previousUser({ email: this.state.email });
-			// if email
-			if (response.gotMail) {
-				// move to password | page
-				this.props.navigation.navigate("PassWord", {
-					email: this.state.email,
-				});
-			}
+        if (!this.state.isPhone) {
+            // check for existing email || STEP:1
+            response = await previousUser({ email: this.state.email });
+            // if email
+            if (response.gotMail) {
+                // move to password | page
+                this.props.navigation.navigate("PassWord", {
+                    email: this.state.email
+                });
+            }
 
-			// if !email
-			if (!response.gotMail) {
-				// move to register page || show mobile option register
-				this.props.navigation.navigate("SignUp", {
-					base: "email",
-					email: this.state.email,
-				});
-			}
-		}
-	};
+            // if !email
+            if (!response.gotMail) {
+                // move to register page || show mobile option register
+                this.props.navigation.navigate("SignUp", {
+                    base: "email",
+                    email: this.state.email
+                });
+            }
+        }
+    };
 
-	componentWillUnmount() {}
+    componentWillUnmount() {}
 
-	componentDidUpdate(prevProps) {
-		const props = this.props;
+    componentDidUpdate(prevProps) {
+        const props = this.props;
 
-		// if (Object.keys(prevProps.auth.user).length !== Object.keys(props.auth.user).length) {
-		if (props.auth.isAuthenticated) {
-			// if (props.auth) {
-			// if (props.auth.user) {
-			// 	if (props.auth.user.user) {
-			// 		console.log(props.auth.user.user);
-			// 		if (props.auth.user.user.active)
-			// 			props.navigation.navigate("Confirmation");
-			// 		if (
-			// 			props.auth.isAuthenticated &&
-			// 			props.auth.user.user.active &&
-			// 			!props.auth.user.user.confirmed
-			// 		)
-			// 			props.navigation.navigate("Profile");
-			// 	}
-			// }
-		}
-		// }
-	}
+        // if (Object.keys(prevProps.auth.user).length !== Object.keys(props.auth.user).length) {
+        if (props.auth.isAuthenticated) {
+            // if (props.auth) {
+            // if (props.auth.user) {
+            // 	if (props.auth.user.user) {
+            // 		console.log(props.auth.user.user);
+            // 		if (props.auth.user.user.active)
+            // 			props.navigation.navigate("Confirmation");
+            // 		if (
+            // 			props.auth.isAuthenticated &&
+            // 			props.auth.user.user.active &&
+            // 			!props.auth.user.user.confirmed
+            // 		)
+            // 			props.navigation.navigate("Profile");
+            // 	}
+            // }
+        }
+        // }
+    }
 
-	render() {
-		const { loading, isPhone } = this.state;
-		return (
-			<View style={landing.container}>
-				{/* <ScrollView contentContainerStyle={{ flex: 1 }}> */}
-				<View style={landing.image_container} ref={el => (this.imageRef = el)}>
-					<Image
-						source={require("../assets/images/bgImage.png")}
-						style={landing.image}
-					/>
-					{/* <View style={landing.overlay} /> */}
-				</View>
-				<View style={utilis.child_container}>
-					{/* Image */}
-					<Image
-						source={require("../assets/images/logo.png")}
-						style={landing.logo}
-					/>
-					{/* <View> */}
-					<Text style={[utilis.text, textColor("#3E3E3E")]}>
-						More than just you
-					</Text>
-					<Text
-						style={{
-							...utilis.text,
-							marginBottom: 25,
-							...utilis.text_bg,
-						}}
-					>
-						Personal Chaffeur
-					</Text>
+    render() {
+        const { loading, isPhone } = this.state;
+        return (
+            <View style={[landing.container, { marginTop: -20 }]}>
+                {/* <ScrollView contentContainerStyle={{ flex: 1 }}> */}
+                <View
+                    style={landing.image_container}
+                    ref={el => (this.imageRef = el)}
+                >
+                    <Image
+                        source={require("../assets/images/bgImage.png")}
+                        style={landing.image}
+                    />
+                    {/* <View style={landing.overlay} /> */}
+                </View>
+                <View style={utilis.child_container}>
+                    {/* Image */}
+                    <Image
+                        source={require("../assets/images/logo.png")}
+                        style={landing.logo}
+                    />
+                    {/* <View> */}
+                    <Text style={[utilis.text, textColor("#3E3E3E")]}>
+                        More than just you
+                    </Text>
+                    <Text
+                        style={{
+                            ...utilis.text,
+                            marginBottom: 25,
+                            ...utilis.text_bg
+                        }}
+                    >
+                        Personal Chaffeur
+                    </Text>
 
-					<View style={utilis.margin_bottom_lg}>
-						{isPhone ? (
-							<InputField
-								onChangeText={text => {
-									this.handleText(text, "firstName");
-								}}
-								placeholder="Enter Phone Number"
-							/>
-						) : (
-							// <View style={landing.country}>
-							// 	<Image
-							// 		source={require("../assets/images/nigeria.png")}
-							// 		style={landing.icon}
-							// 	/>
-							// 	<InputField
-							// 		onChangeText={text => {
-							// 			this.handleText(text, "firstName");
-							// 		}}
-							// 		placeholder="Email"
-							// 	/>
-							// </View>
-							<InputField
-								onChangeText={text => {
-									this.handleText(text, "firstName");
-								}}
-								placeholder="Email"
-							/>
-						)}
-					</View>
+                    <View style={utilis.margin_bottom_lg}>
+                        {isPhone ? (
+                            <InputField
+                                onChangeText={text => {
+                                    this.handleText(text, "mobile");
+                                }}
+                                placeholder='Enter Phone Number'
+                            />
+                        ) : (
+                            <InputField
+                                onChangeText={text => {
+                                    this.handleText(text, "email");
+                                }}
+                                placeholder='Email'
+                            />
+                        )}
+                    </View>
 
-					<View style={utilis.tab}>
-						<Button title="Get started" style={{ marginBottom: 10 }} />
+                    <View style={utilis.tab}>
+                        <Button
+                            title='Get started'
+                            style={{ marginBottom: 10 }}
+                            onPress={() => {
+                                console.log("berminham");
+                            }}
+                        />
 
-						{isPhone ? (
-							<Button
-								onPress={() => {
-									console.log("hi");
-									this.setState({ isPhone: false });
-								}}
-								title="Get started with email instead"
-								type="clear"
-							/>
-						) : (
-							<Button
-								onPress={() => {
-									this.setState({ isPhone: true });
-								}}
-								title="Get started with phone number instead"
-								type="clear"
-							/>
-						)}
+                        {isPhone ? (
+                            <Button
+                                onPress={() => {
+                                    console.log("hi");
+                                    this.setState({ isPhone: false });
+                                }}
+                                title='Get started with email instead'
+                                type='clear'
+                            />
+                        ) : (
+                            <Button
+                                onPress={() => {
+                                    this.setState({ isPhone: true });
+                                }}
+                                title='Get started with phone number instead'
+                                type='clear'
+                            />
+                        )}
 
-						<Text
-							style={[
-								utilis.text,
-								utilis.text_sm,
-								utilis.text_center,
-								utilis.margin_bottom_lg,
-								textColor("#8C8C8C"),
-								{ marginTop: 10 },
-							]}
-						>
-							Forget Password
-						</Text>
-					</View>
+                        {!isPhone ? (
+                            <Text
+                                style={[
+                                    utilis.text,
+                                    utilis.text_sm,
+                                    utilis.text_center,
+                                    utilis.margin_bottom_lg,
+                                    textColor("#8C8C8C"),
+                                    { marginTop: 10 }
+                                ]}
+                            >
+                                Forgot Password
+                            </Text>
+                        ) : (
+                            <Text
+                                style={[
+                                    utilis.text,
+                                    utilis.text_sm,
+                                    utilis.text_center,
+                                    utilis.margin_bottom_lg,
+                                    textColor("#8C8C8C"),
+                                    { marginTop: 10 }
+                                ]}
+                            />
+                        )}
+                    </View>
 
-					<View>
-						<Text style={landing.footer}>
-							By signing up, you confirm that you agree to our Terms of Use and
-							have read and understood our Privacy Policy
-						</Text>
-						<Text style={[landing.footer, { marginTop: 10 }]}>
-							You will receive an SMS to confirm your phone number. SMS fees may
-							apply
-						</Text>
-					</View>
-				</View>
-			</View>
-		);
-	}
+                    <View>
+                        <Text style={[landing.footer, { marginTop: -29 }]}>
+                            By signing up, you confirm that you agree to our
+                            Terms of Use and have read and understood our
+                            Privacy Policy
+                        </Text>
+                        {isPhone ? (
+                            <Text style={[landing.footer, { marginTop: 10 }]}>
+                                You will receive an SMS to confirm your phone
+                                number
+                            </Text>
+                        ) : null}
+                    </View>
+                </View>
+            </View>
+        );
+    }
 }
 
 const map_state_to_props = state => ({
-	auth: state.auth,
+    auth: state.auth
 });
 
 export default connect(
-	map_state_to_props,
-	{ userMe },
+    map_state_to_props,
+    { userMe }
 )(HomeScreen);
