@@ -5,7 +5,6 @@ import InputField from "../components/InputField";
 import Button from "../components/Button";
 import { Snackbar } from "react-native-material-ui";
 import isEmpty from "../utils/is.empty";
-import Tabs from "../components/Tabs";
 import { snackBarGen } from "../utils/errors/errorHandler";
 import { userReg } from "../resources/redux-actions/auth";
 import "../styles/core/utilis";
@@ -13,134 +12,131 @@ import "../styles/core/form";
 import { Icon } from "native-base";
 
 class SignUp extends React.Component {
-    state = {
-        email: "",
-        mobile: "",
-        password: "",
-        firstName: "",
-        lastName: "",
-        gender: "",
-        load: "",
-        snackbar: "",
-        //	confirm: "",
-        loading: false
-    };
+	state = {
+		email: "",
+		mobile: "",
+		password: "",
+		firstName: "",
+		lastName: "",
+		gender: "",
+		load: "",
+		snackbar: "",
+		//	confirm: "",
+		loading: false,
+	};
 
-    componentDidMount() {
-        const { navigation } = this.props;
-        const base = navigation.getParam("base", "");
-        const email = navigation.getParam("email", "");
-        const mobile = navigation.getParam("mobile", "");
-        if (base === "email") this.setState({ email });
-        if (base === "mobile") this.setState({ mobile });
-    }
+	componentDidMount() {
+		const { navigation } = this.props;
+		const base = navigation.getParam("base", "");
+		const email = navigation.getParam("email", "");
+		const mobile = navigation.getParam("mobile", "");
+		if (base === "email") this.setState({ email });
+		if (base === "mobile") this.setState({ mobile });
+	}
 
-    componentDidUpdate(prevProps) {}
+	componentDidUpdate(prevProps) {}
 
-    handleText(value, name) {
-        this.setState({
-            [name]: value
-        });
-    }
+	handleText(value, name) {
+		this.setState({
+			[name]: value,
+		});
+	}
 
-    disableSubmit = () => {};
+	disableSubmit = () => {};
 
-    snackbarClose = (e, reason) => {
-        if (reason === "clickaway") {
-            return;
-        }
-        setSnackbar(false);
-    };
+	snackbarClose = (e, reason) => {
+		if (reason === "clickaway") {
+			return;
+		}
+		setSnackbar(false);
+	};
 
-    render() {
-        const { props } = this;
-        const { loading } = this.state;
-        const base = props.navigation.getParam("base", "");
-        displayTheSnack$ = isEmpty(props.errors)
-            ? null
-            : snackBarGen(props.errors);
+	render() {
+		const { props } = this;
+		const { loading } = this.state;
+		const base = props.navigation.getParam("base", "");
+		displayTheSnack$ = isEmpty(props.errors) ? null : snackBarGen(props.errors);
 
-        return (
-            <View style={styles.container}>
-                <View style={utilis.child_container}>
-                    <Text style={utilis.text}>The basic</Text>
-                    <Text
-                        style={{
-                            ...utilis.text_sm_gray,
-                            ...utilis.margin_bottom_lg
-                        }}
-                    >
-                        Give us a few details about yourself so we can identify
-                        you
-                    </Text>
-                    <View style={form.form_flex}>
-                        <View style={form.form_left}>
-                            <InputField
-                                autoFocus={true}
-                                onChangeText={text => {
-                                    this.handleText(text, "email");
-                                }}
-                                placeholder='First Name'
-                            />
-                        </View>
+		return (
+			<View style={styles.container}>
+				<View style={utilis.child_container}>
+					<Text style={utilis.text}>The basic</Text>
+					<Text
+						style={{
+							...utilis.text_sm_gray,
+							...utilis.margin_bottom_lg,
+						}}
+					>
+						Give us a few details about yourself so we can identify you
+					</Text>
+					<View style={form.form_flex}>
+						<View style={form.form_left}>
+							<InputField
+								autoFocus={true}
+								onChangeText={text => {
+									this.handleText(text, "email");
+								}}
+								placeholder="First Name"
+							/>
+						</View>
 
-                        <View style={form.form_right}>
-                            <InputField
-                                onChangeText={text => {
-                                    this.handleText(text, "firstName");
-                                }}
-                                placeholder='Last Name'
-                            />
-                        </View>
-                    </View>
-                    <View style={form.form_control}>
-                        <InputField
-                            onChangeText={text => {
-                                this.handleText(text, "lastName");
-                            }}
-                            placeholder='Date of birth'
-                        />
-                    </View>
+						<View style={form.form_right}>
+							<InputField
+								onChangeText={text => {
+									this.handleText(text, "firstName");
+								}}
+								placeholder="Last Name"
+							/>
+						</View>
+					</View>
+					<View style={form.form_control}>
+						<InputField
+							onChangeText={text => {
+								this.handleText(text, "lastName");
+							}}
+							placeholder="Date of birth"
+						/>
+					</View>
 
-                    {base === "email" ? (
-                        <View style={form.form_control}>
-                            <InputField
-                                onChangeText={text => {
-                                    this.handleText(text, "mobile");
-                                }}
-                                placeholder='Mobile'
-                            />
-                        </View>
-                    ) : (
-                        <View style={form.form_control}>
-                            <InputField
-                                onChangeText={text => {
-                                    this.handleText(text, "email");
-                                }}
-                                placeholder='Email'
-                            />
-                        </View>
-                    )}
+					{base === "email" ? (
+						<View style={form.form_control}>
+							<InputField
+								onChangeText={text => {
+									this.handleText(text, "mobile");
+								}}
+								placeholder="Mobile"
+							/>
+						</View>
+					) : (
+						<View style={form.form_control}>
+							<InputField
+								onChangeText={text => {
+									this.handleText(text, "email");
+								}}
+								placeholder="Email"
+							/>
+						</View>
+					)}
 
-                    <View style={form.form_control}>
-                        <InputField
-                            onChangeText={text => {
-                                this.handleText(text, "gender");
-                            }}
-                            placeholder='Gender'
-                        />
-                    </View>
-                    <View style={form.form_control}>
-                        <InputField
-                            onChangeText={text => {
-                                this.handleText(text, "password");
-                            }}
-                            placeholder='Set Password'
-                            secureTextEntry={true}
-                        />
-                    </View>
+					<View style={form.form_control}>
+						<InputField
+							onChangeText={text => {
+								this.handleText(text, "gender");
+							}}
+							placeholder="Gender"
+						/>
+					</View>
+					<View style={form.form_control}>
+						<InputField
+							onChangeText={text => {
+								this.handleText(text, "password");
+							}}
+							placeholder="Set Password"
+							secureTextEntry={true}
+						/>
+					</View>
 
-                    {/* <View style={form.form_control}>
+					{/* <View style={form.form_control}>
                         <InputField
                             onChangeText={text => {
                                 this.handleText(text, "confirm");
@@ -150,44 +146,41 @@ class SignUp extends React.Component {
                         />
                     </View> */}
 
-                    {!loading ? (
-                        <Icon
-                            name='arrow-round-forward'
-                            style={utilis.next_icon}
-                            onPress={() => {
-                                console.log(this.state, "SIGNUP STATE DATA");
-                                props.userReg(
-                                    { ...this.state },
-                                    props.navigation.navigate
-                                );
-                            }}
-                        />
-                    ) : (
-                        <ActivityIndicator size='small' color='#002257' />
-                    )}
-                </View>
-            </View>
-        );
-    }
+					{!loading ? (
+						<Icon
+							name="arrow-round-forward"
+							style={utilis.next_icon}
+							onPress={() => {
+								console.log(this.state, "SIGNUP STATE DATA");
+								props.userReg({ ...this.state }, props.navigation.navigate);
+							}}
+						/>
+					) : (
+						<ActivityIndicator size="small" color="#002257" />
+					)}
+				</View>
+			</View>
+		);
+	}
 }
 
 SignUp.navigationOptions = {
-    headers: null
+	headers: null,
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        marginTop: 55
-    }
+	container: {
+		flex: 1,
+		marginTop: 55,
+	},
 });
 
 const map_state_to_props = ({ auth, errors }) => ({
-    isAuthenticated: auth.isAuthenticated,
-    errors: errors
+	isAuthenticated: auth.isAuthenticated,
+	errors: errors,
 });
 
 export default connect(
-    map_state_to_props,
-    { userReg }
+	map_state_to_props,
+	{ userReg },
 )(SignUp);

@@ -5,31 +5,22 @@ import InputField from "../components/InputField";
 import Button from "../components/Button";
 import "../styles/core/utilis";
 import Timer from "../components/Timer";
+import { utilis, textColor } from "../styles/core/utilis";
 
 export default function OtpVerification(props) {
-	let inputElement = [];
-
-	useEffect(() => {
-		inputElement[0].focus();
-	});
-
-	function moveRef(index, text) {
-		if (text.length === 1 && index < 3) inputElement[++index].focus();
-		else index++;
-		if (index === 4 && text.length === 1) props.navigation.navigate("Login");
-
-		// text.length === 1 && index < 3
-		// 	? inputElement[++index].focus()
-		// 	: index === 4 && text.length === 1
-		// 	? props.navigation.navigate("Login")
-		// 	: index++;
-	}
-
 	return (
 		<View style={styles.container}>
 			<View style={utilis.child_container}>
-				<Text style={{ ...utilis.text, ...utilis.margin_bottom_sm }}>OTP Verification</Text>
-				<View style={styles.flex}>
+				<View style={styles.top}>
+					<Text style={{ ...utilis.text_header, ...utilis.margin_bottom_sm }}>
+						We sent you a 4-digit code
+					</Text>
+					<Text style={{ ...utilis.text_sm, ...utilis.margin_bottom_sm }}>
+						Enter the 4-digit code we sent to
+					</Text>
+					<Text style={styles.number}>+234-81234567</Text>
+				</View>
+				{/* <View style={styles.flex}>
 					<InputField
 						style={styles.input_width}
 						inputRef={el => (inputElement[0] = el)}
@@ -51,15 +42,29 @@ export default function OtpVerification(props) {
 						inputRef={el => (inputElement[3] = el)}
 						onChangeText={text => moveRef(3, text)}
 					/>
-				</View>
+				</View> */}
+
+				<InputField
+					onChangeText={text => {
+						this.handleText(text, "firstName");
+					}}
+					placeholder="Enter Code"
+					style={{ marginBottom: 50 }}
+				/>
 
 				<Button
-					title="Submit"
+					title="Continue"
 					onPress={() => {
 						props.navigation.navigate("Login");
 					}}
+					style={{ marginBottom: 10 }}
 				/>
-				<Timer />
+				<Button title="Get started with email instead" type="clear" />
+
+				<Text style={styles.footer}>
+					By signing up, you confirm that you agree to our Terms of Use and have
+					read and understood our Privacy Policy
+				</Text>
 			</View>
 		</View>
 	);
@@ -82,5 +87,22 @@ const styles = StyleSheet.create({
 		width: 50,
 		borderColor: "red",
 		textAlign: "center",
+	},
+	number: {
+		fontWeight: "600",
+		color: "#000",
+		fontSize: 16,
+		// margin_ottom: 5,
+	},
+	top: {
+		marginBottom: 60,
+		height: "40%",
+	},
+	footer: {
+		fontSize: 11,
+		color: "#666666",
+		opacity: 0.7,
+		textAlign: "center",
+		marginTop: 50,
 	},
 });
