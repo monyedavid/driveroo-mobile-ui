@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "driveroo-build2",
-    "slug": "driverro-v-3",
+    "name": "driveroo-build-5",
+    "slug": "driverro-v-5",
     "privacy": "public",
     "sdkVersion": "34.0.0",
     "platforms": [
@@ -26,7 +26,7 @@
     "ios": {
       "supportsTablet": true
     },
-    "description": "Driveroo Build 3",
+    "description": "Driveroo Build 5",
     "githubUrl": "https://github.com/rasheeddavid/driveroo-mobile-ui.git"
   }
 }
