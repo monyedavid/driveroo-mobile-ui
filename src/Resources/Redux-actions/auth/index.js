@@ -119,8 +119,6 @@ export const userReg = (userdata, navigation) => async dispatch => {
             ...userdata
         });
 
-        console.log(data, "DATA");
-
         const { ok, error, success } = data.data.register;
         // ERROR HANDLING
         if (!ok) {
@@ -132,14 +130,17 @@ export const userReg = (userdata, navigation) => async dispatch => {
 
         // SUCCESS MODE
         if (ok) {
-            navigation("Confirmation", {
-                email: userdata.email,
-                firstName: userdata.firstName
-            });
-            return dispatch({
+            console.log(userdata, "was okay");
+            dispatch({
                 type: GET_TOASTS,
                 payload: success
             });
+            return dispatch(
+                userLogin({
+                    emailormobile: userdata.email,
+                    password: userdata.password
+                })
+            );
         }
     } catch (error) {
         dispatch({
