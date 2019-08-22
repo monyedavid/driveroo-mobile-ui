@@ -1,6 +1,7 @@
 import * as React from "react";
 import { SafeAreaView, StatusBar } from "react-native";
 import { NativeRouter, Route, Switch } from "react-router-native";
+import OnBoardScreen from "../screens/OnBoard";
 import HomeScreen from "../screens/HomeScreen";
 import OtpVerifications from "../screens/OtpVerfications";
 import LoginScreen from "../screens/LoginScreen";
@@ -15,27 +16,30 @@ import { createStackNavigator, createAppContainer } from "react-navigation";
 
 const AppNavigator = createStackNavigator(
     {
-        // Home: {
-        //     screen: HomeScreen
-        // },
-        // SignUp: {
-        //     screen: SignUp
-        // },
-        // OTP: {
-        //     screen: OtpVerifications
-        // },
-        // PassWord: {
-        //     screen: PassWordScreen
-        // },
-        // Login: {
-        //     screen: LoginScreen
-        // },
-        // SocialLogin: {
-        //     screen: SocialLogin
-        // },
-        // Profile: {
-        //     screen: Profile
-        // },
+        Board: {
+            screen: OnBoardScreen
+        },
+        Home: {
+            screen: HomeScreen
+        },
+        SignUp: {
+            screen: SignUp
+        },
+        OTP: {
+            screen: OtpVerifications
+        },
+        PassWord: {
+            screen: PassWordScreen
+        },
+        Login: {
+            screen: LoginScreen
+        },
+        SocialLogin: {
+            screen: SocialLogin
+        },
+        Profile: {
+            screen: Profile
+        },
         Verification: {
             screen: VerificationScreen
         },
