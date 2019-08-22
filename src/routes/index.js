@@ -25,9 +25,9 @@ const AppNavigator = createStackNavigator(
         // // SignUp: {
         // // 	screen: SignUp,
         // // },
-        // OTP: {
-        //     screen: OtpVerifications
-        // },
+        OTP: {
+            screen: OtpVerifications
+        },
         PassWord: {
             screen: PassWordScreen
         },

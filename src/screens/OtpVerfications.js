@@ -10,6 +10,7 @@ import { utilis, textColor } from "../styles/core/utilis";
 export default function OtpVerification(props) {
     const signup = props.navigation.getParam("signup", "");
     const base = props.navigation.getParam("base", "");
+    const userdata = props.navigation.getParam("userdata", "");
     const mobile = props.navigation.getParam("mobile", "");
 
     React.useEffect(() => {
@@ -76,7 +77,8 @@ export default function OtpVerification(props) {
                         if (!signup) {
                             // move to password | page
                             props.navigation.navigate("PassWord", {
-                                mobile
+                                mobile,
+                                userdata
                             });
                         }
                     }}
