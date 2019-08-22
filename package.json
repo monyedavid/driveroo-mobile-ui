@@ -28,6 +28,7 @@
         "expo-cli": "^3.0.9",
         "expo-constants": "6.0.0",
         "expo-font": "~6.0.0",
+        "expo-image-picker": "~6.0.0",
         "expo-web-browser": "6.0.0",
         "graphql": "^14.4.2",
         "graphql-tag": "^2.10.1",
