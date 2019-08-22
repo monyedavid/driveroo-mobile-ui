@@ -18,25 +18,25 @@ const AppNavigator = createStackNavigator(
     {
         // Board: {
         //     screen: OnBoardScreen
-        //  },
-        Home: {
-            screen: HomeScreen
+        // },
+        // Home: {
+        // 	screen: HomeScreen,
+        // },
+        SignUp: {
+            screen: SignUp
         },
-        // // // SignUp: {
-        // // // 	screen: SignUp,
-        // // // },
-        OTP: {
-            screen: OtpVerifications
-        },
-        PassWord: {
-            screen: PassWordScreen
-        },
-        Login: {
-            screen: LoginScreen
-        },
-        SocialLogin: {
-            screen: SocialLogin
-        },
+        // OTP: {
+        // 	screen: OtpVerifications,
+        // },
+        // PassWord: {
+        // 	screen: PassWordScreen,
+        // },
+        // Login: {
+        // 	screen: LoginScreen,
+        // },
+        // SocialLogin: {
+        // 	screen: SocialLogin,
+        // },
         Profile: {
             screen: Profile
         },

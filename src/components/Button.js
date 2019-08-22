@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { Text, TouchableOpacity, StyleSheet } from "react-native";
-// import { Button } from "native-base";
-import { Button } from "react-native-elements";
 
 export default function ButtonClass(props) {
 	const [type, setType] = useState("clear");
@@ -25,7 +23,7 @@ export default function ButtonClass(props) {
 const styles = StyleSheet.create({
 	button: {
 		backgroundColor: "#121B74",
-		// maxWidth: 350,
+		maxWidth: 350,
 		// width: "100%",
 		// borderBottomWidth: 2,
 		// borderColor: "#002257",
@@ -59,9 +57,9 @@ const styles = StyleSheet.create({
 		color: "#fff",
 	},
 	text_clear: {
-		fontSize: 15,
+		fontSize: 16,
 		// textAlign: "center",
-		fontWeight: "500",
+		fontWeight: "600",
 		color: "#121B74",
 	},
 });

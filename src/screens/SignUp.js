@@ -10,6 +10,7 @@ import { userReg } from "../resources/redux-actions/auth";
 import "../styles/core/utilis";
 import "../styles/core/form";
 import { Icon } from "native-base";
+import { utilis, textColor } from "../styles/core/utilis";
 
 class SignUp extends React.Component {
 	state = {
@@ -60,7 +61,7 @@ class SignUp extends React.Component {
 		return (
 			<View style={styles.container}>
 				<View style={utilis.child_container}>
-					<Text style={utilis.text}>The basic</Text>
+					<Text style={utilis.text_header}>The basic</Text>
 					<Text
 						style={{
 							...utilis.text_sm_gray,
