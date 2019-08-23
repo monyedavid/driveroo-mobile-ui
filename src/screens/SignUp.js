@@ -143,11 +143,11 @@ class SignUp extends React.Component {
                     </View>
 
                     {!loading ? (
-                        <Icon
-                            name='arrow-round-forward'
-                            style={utilis.next_icon}
+                        <Button
+                            title='Continue'
+                            disabled={this.disableSubmit()}
+                            style={{ marginBottom: 10 }}
                             onPress={() => {
-                                console.log(this.state, "SIGNUP STATE DATA");
                                 props.userReg(
                                     { ...this.state },
                                     props.navigation.navigate
