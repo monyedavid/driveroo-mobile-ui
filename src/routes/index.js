@@ -15,9 +15,9 @@ import { createStackNavigator, createAppContainer } from "react-navigation";
 
 const AppNavigator = createStackNavigator(
     {
-        // Board: {
-        //     screen: OnBoardScreen
-        // },
+        Board: {
+            screen: OnBoardScreen
+        },
         Home: {
             screen: HomeScreen
         },

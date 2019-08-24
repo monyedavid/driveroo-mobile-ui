@@ -128,30 +128,27 @@ export class g_Auth {
         id,
         token,
         avatarExt,
-        driversExt
+        driversLisenceExt
     }) {
         return rps.post(this.url, {
             query: `
             mutation{
-              firstUpdate(params: {   
-                dob: "${dob}",
-                mothers_maiden_name: "${mothers_maiden_name}",
-                primary_location: "${primary_location}",
-                secondary_location:"${secondary_location}",
-                tertiary_location: "${tertiary_location}",
-                bank_bvn: "${bvn}",
-                avatar: "${avatarBase64}",
-                driversLicense: "${driversLisenceBase64}",
-                driverLicenseNumber: "${driverLisenceNumber}"
-              }, 
-                mock: {
+                firstUpdate(params: {
+                  dob: "${dob}",
+                  mothers_maiden_name: "${mothers_maiden_name}",
+                  primary_location: "${primary_location}",
+                  secondary_location:"${secondary_location}",
+                  tertiary_location: "${tertiary_location}",
+                  bank_bvn: "22246209456",
+                  avatar: "${avatarBase64}",
+                  driversLicense: "${driversLisenceBase64}"
+                  driverLicenseNumber: "${driverLisenceNumber}"
+                }, mock: {
                   id: "${id}",
                   token:"${token}",
-                  driversExt: "${driversExt}",
-                  avatarExt: : "${avatarExt}"
-                }
-              ) 
-              {
+                  driversExt: "${driversLisenceExt}",
+                  avatarExt: "${avatarExt}"
+                }) {
                   ok
                   error{
                     path
@@ -161,7 +158,6 @@ export class g_Auth {
                   success {
                     active
                     confirmed
-                    incompleteProfile
                     lastName
                     firstName
                     mobile

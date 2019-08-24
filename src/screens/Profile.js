@@ -26,7 +26,7 @@ class Profile extends Component {
         avatar: null,
         avatarBase64: null,
         avatarExt: null,
-        driversExt: null,
+        driversLisenceExt: null,
         driversLisence: null,
         driversLisenceBase64: null,
         bvn: "",
@@ -61,8 +61,8 @@ class Profile extends Component {
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.Images,
             allowsEditing: true,
-            aspect: [4, 3]
-            // base64: true
+            aspect: [4, 3],
+            base64: true
         });
 
         const str = result.uri;

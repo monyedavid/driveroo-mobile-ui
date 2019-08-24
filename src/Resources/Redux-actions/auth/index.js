@@ -15,7 +15,7 @@ export const userLogin = (
 ) => async dispatch => {
     dispatch({ type: CLEAR_ERRORS });
     try {
-        const service = new g_Auth("http://localhost:4000");
+        const service = new g_Auth();
         const { data } = await service.login({ emailormobile, password });
 
         console.log(data, "data");
@@ -166,12 +166,12 @@ export const userLogout = () => async dispatch => {
 
 export const profileUpdatde = userData => async dispatch => {
     try {
-        const service = new g_Auth("http://localhost:4000");
+        const service = new g_Auth();
         const { data } = await service.updateProfile({
             ...userData
         });
 
-        const { ok, error, success } = data.data.firstUpdate;
+        const { ok, error } = data.data.firstUpdate;
 
         console.log(data, "DATA | PROFILE UPDATE");
 
