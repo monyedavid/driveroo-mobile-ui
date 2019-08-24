@@ -34,31 +34,17 @@ class PasswordScreen extends React.Component {
         return this.state.password === "" ? true : false;
     };
 
-    /**
-     *  this.props.navigation.navigate("OTP", {
-                    signup: false,
-                    userdata: response.user,
-                    mobile: this.state.mobile
-                });
-     */
-
     handleSubmit = () => {
         const { password } = this.state;
-        const { userLogin } = this.props;
-        const email = this.props.navigation.getParam("email", "");
-        const mobile = this.props.navigation.getParam("mobile", "");
+        const { userLogin, navigation } = this.props;
+        const email = navigation.getParam("email", "");
+        const mobile = navigation.getParam("mobile", "");
         if (email) {
-            userLogin(
-                { emailormobile: email, password },
-                this.props.navigation.navigate
-            );
+            userLogin({ emailormobile: email, password }, navigation.navigate);
         }
 
         if (mobile) {
-            userLogin(
-                { emailormobile: mobile, password },
-                this.props.navigation.navigate
-            );
+            userLogin({ emailormobile: mobile, password }, navigation.navigate);
         }
     };
 
@@ -70,8 +56,11 @@ class PasswordScreen extends React.Component {
     };
 
     render() {
-        const { props } = this;
-        const userdata = this.props.navigation.getParam("userdata", "");
+        const {
+            props,
+            state: { loading }
+        } = this;
+        const userdata = props.navigation.getParam("userdata", "");
         displayTheSnack$ = isEmpty(props.errors)
             ? null
             : snackBarGen(props.errors);
@@ -107,14 +96,29 @@ class PasswordScreen extends React.Component {
                         style={{ marginBottom: 50 }}
                     />
 
-                    <Button
-                        title='Continue'
-                        disabled={this.state.password === "" ? true : false}
-                        onPress={() => {
-                            this.handleSubmit();
-                        }}
-                        style={{ marginBottom: 10 }}
-                    />
+                    {!loading ? (
+                        <Button
+                            title='Continue'
+                            disabled={this.state.password === "" ? true : false}
+                            onPress={() => {
+                                this.setState({ loading: true });
+                                this.handleSubmit();
+                            }}
+                            style={{ marginBottom: 10 }}
+                        />
+                    ) : (
+                        <ActivityIndicator
+                            size='small'
+                            color='#fff'
+                            style={{
+                                marginBottom: 10,
+                                backgroundColor: "#121B74",
+                                paddingTop: 15,
+                                paddingBottom: 15,
+                                borderRadius: 5
+                            }}
+                        />
+                    )}
                 </View>
             </View>
         );

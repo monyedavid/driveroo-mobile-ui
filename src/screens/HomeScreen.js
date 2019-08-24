@@ -241,7 +241,6 @@ class HomeScreen extends React.Component {
 						{isPhone ? (
 							<Button
 								onPress={() => {
-									console.log("hi");
 									this.setState({ isPhone: false });
 								}}
 								title="Get started with email instead"

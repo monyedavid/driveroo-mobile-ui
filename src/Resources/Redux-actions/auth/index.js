@@ -15,7 +15,7 @@ export const userLogin = (
 ) => async dispatch => {
     dispatch({ type: CLEAR_ERRORS });
     try {
-        const service = new g_Auth();
+        const service = new g_Auth(url);
         const { data } = await service.login({ emailormobile, password });
 
         console.log(data, "data");
@@ -45,7 +45,6 @@ export const userLogin = (
             }
 
             if (incompleteProfile) {
-                console.log("move to profile");
                 navigation("Profile", {
                     emailormobile,
                     incompleteProfile
@@ -69,7 +68,7 @@ export const userLogin = (
 };
 
 export const userMe = isContinue => async dispatch => {
-    const service = new g_Auth("http://localhost:4000");
+    const service = new g_Auth(url);
     let result;
     try {
         result = await service.me();
