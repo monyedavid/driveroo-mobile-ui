@@ -90,7 +90,7 @@ class Profile extends Component {
                                 style={{
                                     fontSize: 14,
                                     color: "#A6AAB4",
-                                    fontWeight: 600
+                                    fontWeight: "600"
                                 }}
                             >
                                 Upload a profile picture
