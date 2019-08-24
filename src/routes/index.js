@@ -21,18 +21,18 @@ const AppNavigator = createStackNavigator(
         Home: {
             screen: HomeScreen
         },
-        SignUp: {
-            screen: SignUp
-        },
-        OTP: {
-            screen: OtpVerifications
-        },
+        // SignUp: {
+        //     screen: SignUp
+        // },
+        // OTP: {
+        //     screen: OtpVerifications
+        // },
         PassWord: {
             screen: PassWordScreen
         },
-        SocialLogin: {
-            screen: SocialLogin
-        },
+        // SocialLogin: {
+        //     screen: SocialLogin
+        // },
         Profile: {
             screen: Profile
         },

@@ -120,7 +120,10 @@ export class g_Auth {
         bvn,
         primary_location,
         secondary_location,
-        tertiary_location
+        tertiary_location,
+        avatarBase64,
+        driversLisenceBase64,
+        driverLisenceNumber
     }) {
         return rps.post(this.url, {
             query: `
@@ -131,42 +134,47 @@ export class g_Auth {
                 primary_location: "${primary_location}",
                 secondary_location:"${secondary_location}",
                 tertiary_location: "${tertiary_location}",
-                bank_bvn: "${bvn}"
-              }) {
-                ok
-                error{
-                  path
-                  message
+                bank_bvn: "${bvn}",
+                avatar: "${avatarBase64}",
+                driversLicense: "${driversLisenceBase64}",
+                driverLicenseNumber: "${driverLisenceNumber}"
+              }) 
+              {
+                  ok
+                  error{
+                    path
+                    message
+                  }
+                  
+                  success {
+                    active
+                    confirmed
+                    incompleteProfile
+                    lastName
+                    firstName
+                    mobile
+                    email
+                    avatar
+                    dob
+                    mothers_maiden_name
+                    bvn
+                    primary_location
+                    secondary_location
+                    tertiary_location
+                    primary_location_co_ord{
+                      Latitude
+                      Longitude
+                    }
+                    secondary_location_co_ord{
+                      Latitude
+                      Longitude
+                    }
+                    tertiary_location_co_ord{
+                      Latitude
+                      Longitude
+                    }
+                  }
                 }
-                
-                success {
-                   active
-                  confirmed
-                  lastName
-                  firstName
-                  mobile
-                  email
-                  avatar
-                  dob
-                  mothers_maiden_name
-                  bvn
-                  primary_location
-                  secondary_location
-                  tertiary_location
-                  primary_location_co_ord{
-                    Latitude
-                    Longitude
-                  }
-                  secondary_location_co_ord{
-                    Latitude
-                    Longitude
-                  }
-                  tertiary_location_co_ord{
-                    Latitude
-                    Longitude
-                  }
-                }
-              }
               }
             `
         });

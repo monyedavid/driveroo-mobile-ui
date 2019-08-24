@@ -9,29 +9,70 @@ import {
     TouchableOpacity
 } from "react-native";
 import InputField from "../components/InputField";
-import { userReg } from "../resources/redux-actions/auth";
+import Button from "../components/Button";
+import { profileUpdatde, userMe } from "../resources/redux-actions/auth";
 import { utilis } from "../styles/core/utilis";
+import * as ImagePicker from "expo-image-picker";
+import Constants from "expo-constants";
+import * as Permissions from "expo-permissions";
 import "../styles/core/utilis";
 
 class Profile extends Component {
     state = {
-        firstName: "",
-        lastname: "",
-        email: "",
-        password: "",
-        confirm: "",
-        date: "2016-05-15"
+        primary_location: "",
+        secondary_location: "",
+        tertiary_location: "",
+        driverLisenceNumber: "",
+        avatar: null,
+        avatarBase64: null,
+        driversLisence: null,
+        driversLisenceBase64: null,
+        bvn: "",
+        dob: "",
+        mothers_maiden_name: ""
     };
 
-    handleText(value, name) {
-        console.log(value, name);
-        // this.setState({
-        // 	[name]: value,
-        // });
+    componentDidMount() {
+        this.getPermissionAsync();
     }
 
+    handleText(value, name) {
+        this.setState({
+            [name]: value
+        });
+    }
+
+    getPermissionAsync = async () => {
+        if (Constants.platform.ios) {
+            const { status } = await Permissions.askAsync(
+                Permissions.CAMERA_ROLL
+            );
+            if (status !== "granted") {
+                alert(
+                    "Sorry, we need camera roll permissions to make this work!"
+                );
+            }
+        }
+    };
+
+    _pickImage = async name => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            allowsEditing: true,
+            aspect: [4, 3],
+            base64: true
+        });
+
+        if (!result.cancelled) {
+            this.setState({
+                [`${name}Base64`]: result.base64,
+                [name]: result.uri
+            });
+        }
+    };
+
     render() {
-        const { auth } = this.props;
+        const { auth, profileUpdatde, userMe } = this.props;
 
         return (
             <ScrollView style={styles.container}>
@@ -42,7 +83,7 @@ class Profile extends Component {
                             ...utilis.margin_bottom_sm
                         }}
                     >
-                        Hello {auth.user.user.firstName}
+                        Hello {auth.user.user && auth.user.user.firstName}
                     </Text>
                     <Text
                         style={{
@@ -53,10 +94,60 @@ class Profile extends Component {
                         Let us help you get verified on Driverroo
                     </Text>
 
+                    <TouchableOpacity
+                        onPress={() => {
+                            this._pickImage("avatar");
+                        }}
+                        style={styles.form_upload}
+                    >
+                        {this.state.avatar ? (
+                            <Image
+                                source={{ uri: this.state.avatar }}
+                                style={{ width: 30, height: 50 }}
+                            />
+                        ) : (
+                            <React.Fragment>
+                                <Image
+                                    source={require("../assets/images/add_icon.png")}
+                                    style={styles.icon}
+                                />
+                                <Text
+                                    style={{ fontSize: 16, color: "#A6AAB4" }}
+                                >
+                                    Upload a picture of yourself
+                                </Text>
+                            </React.Fragment>
+                        )}
+                    </TouchableOpacity>
+
+                    <View style={form.form_flex}>
+                        <View style={form.form_left}>
+                            <InputField
+                                autoFocus={true}
+                                onChangeText={text => {
+                                    this.handleText(text, "dob");
+                                }}
+                                placeholder='Date of Birth'
+                            />
+                        </View>
+
+                        <View style={form.form_right}>
+                            <InputField
+                                onChangeText={text => {
+                                    this.handleText(
+                                        text,
+                                        "mothers_maiden_name"
+                                    );
+                                }}
+                                placeholder='Maiden name'
+                            />
+                        </View>
+                    </View>
+
                     <View style={form.form_control}>
                         <InputField
                             onChangeText={text => {
-                                this.handleText(text, "lastName");
+                                this.handleText(text, "primary_location");
                             }}
                             placeholder='Your primary address?'
                         />
@@ -65,7 +156,7 @@ class Profile extends Component {
                     <View style={form.form_control}>
                         <InputField
                             onChangeText={text => {
-                                this.handleText(text, "lastName");
+                                this.handleText(text, "secondary_location");
                             }}
                             placeholder='Your secondary address?'
                         />
@@ -74,7 +165,7 @@ class Profile extends Component {
                     <View style={form.form_control}>
                         <InputField
                             onChangeText={text => {
-                                this.handleText(text, "lastName");
+                                this.handleText(text, "tertiary_location");
                             }}
                             placeholder='Your tertiary address?'
                         />
@@ -83,7 +174,7 @@ class Profile extends Component {
                     <View style={form.form_control}>
                         <InputField
                             onChangeText={text => {
-                                this.handleText(text, "lastName");
+                                this.handleText(text, "bvn");
                             }}
                             placeholder='What is your BVN?'
                         />
@@ -92,21 +183,45 @@ class Profile extends Component {
                     <View style={form.form_control}>
                         <InputField
                             onChangeText={text => {
-                                this.handleText(text, "lastName");
+                                this.handleText(text, "driverLisenceNumber");
                             }}
                             placeholder='Please provide your driver’s license number?'
                         />
                     </View>
 
-                    <TouchableOpacity style={styles.form_upload}>
-                        <Image
-                            source={require("../assets/images/add_icon.png")}
-                            style={styles.icon}
-                        />
-                        <Text style={{ fontSize: 16, color: "#A6AAB4" }}>
-                            Upload Driver’s License
-                        </Text>
+                    <TouchableOpacity
+                        onPress={() => {
+                            this._pickImage("driversLisence");
+                        }}
+                        style={styles.form_upload}
+                    >
+                        {this.state.driversLisence ? (
+                            <Image
+                                source={{ uri: this.state.driversLisence }}
+                                style={{ width: 30, height: 50 }}
+                            />
+                        ) : (
+                            <React.Fragment>
+                                <Image
+                                    source={require("../assets/images/add_icon.png")}
+                                    style={styles.icon}
+                                />
+                                <Text
+                                    style={{ fontSize: 16, color: "#A6AAB4" }}
+                                >
+                                    Upload Driver’s License
+                                </Text>
+                            </React.Fragment>
+                        )}
                     </TouchableOpacity>
+
+                    <Button
+                        onPress={() => {
+                            profileUpdatde({ ...this.state });
+                        }}
+                        title='Get started with phone number instead'
+                        type='clear'
+                    />
                 </View>
             </ScrollView>
         );
@@ -149,5 +264,5 @@ const map_state_to_props = state => ({
 
 export default connect(
     map_state_to_props,
-    { userReg }
+    { profileUpdatde, userMe }
 )(Profile);

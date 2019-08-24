@@ -84,6 +84,7 @@ export const userMe = isContinue => async dispatch => {
             ]
         });
     }
+
     // console.log(result.data.data.me, "result|me");
     if (result && result.data) {
         if (result.data.data.me) {
@@ -166,12 +167,14 @@ export const userLogout = () => async dispatch => {
 
 export const profileUpdatde = userData => async dispatch => {
     try {
-        const service = new g_Auth(url);
+        const service = new g_Auth("http://localhost:4000");
         const { data } = await service.updateProfile({
             ...userData
         });
 
-        const { ok, error } = data.data.firstUpdate;
+        const { ok, error, success } = data.data.firstUpdate;
+
+        console.log(data, "DATA | PROFILE UPDATE");
 
         // ERROR HANDLING
         if (!ok) {
