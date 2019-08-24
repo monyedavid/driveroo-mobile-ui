@@ -111,12 +111,16 @@ class Profile extends Component {
                                     ? { uri: this.state.avatar }
                                     : require("../assets/images/dp.png")
                             }
-                            style={{
-                                height: 100,
-                                resizeMode: "contain",
-                                flex: 1,
-                                marginRight: 20
-                            }}
+                            style={
+                                this.state.avatar
+                                    ? styles.icon
+                                    : {
+                                          height: 100,
+                                          resizeMode: "contain",
+                                          flex: 1,
+                                          marginRight: 20
+                                      }
+                            }
                         />
 
                         <TouchableOpacity
@@ -218,7 +222,12 @@ class Profile extends Component {
                         />
                     </View>
 
-                    <TouchableOpacity style={[styles.form_upload]}>
+                    <TouchableOpacity
+                        onPress={() => {
+                            this._pickImage("driversLisence");
+                        }}
+                        style={[styles.form_upload]}
+                    >
                         <Image
                             source={
                                 this.state.driversLisence
