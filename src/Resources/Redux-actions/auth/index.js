@@ -15,7 +15,7 @@ export const userLogin = (
 ) => async dispatch => {
     dispatch({ type: CLEAR_ERRORS });
     try {
-        const service = new g_Auth(url);
+        const service = new g_Auth("http://localhost:4000");
         const { data } = await service.login({ emailormobile, password });
 
         console.log(data, "data");
@@ -35,7 +35,7 @@ export const userLogin = (
             });
 
         if (sessionId) {
-            dispatch(userMe());
+            dispatch(userMe(false));
             if (!confirmed) {
                 navigation("Confirmation", {
                     emailormobile,
@@ -69,7 +69,7 @@ export const userLogin = (
 };
 
 export const userMe = isContinue => async dispatch => {
-    const service = new g_Auth(url);
+    const service = new g_Auth("http://localhost:4000");
     let result;
     try {
         result = await service.me();
@@ -95,7 +95,7 @@ export const userMe = isContinue => async dispatch => {
                     ? dispatch(set_current_user(result.data.data.me))
                     : dispatch({
                           type: SET_CURRENT_USER_CONTINUE,
-                          payload: userdata
+                          payload: {}
                       });
             }
         }
@@ -131,7 +131,6 @@ export const userReg = (userdata, navigation) => async dispatch => {
 
         // SUCCESS MODE
         if (ok) {
-            console.log(userdata, "was okay");
             dispatch({
                 type: GET_TOASTS,
                 payload: success

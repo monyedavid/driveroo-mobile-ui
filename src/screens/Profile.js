@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import InputField from "../components/InputField";
 import Button from "../components/Button";
-import { profileUpdatde, userMe } from "../resources/redux-actions/auth";
+import { profileUpdatde } from "../resources/redux-actions/auth";
 import { utilis } from "../styles/core/utilis";
 import * as ImagePicker from "expo-image-picker";
 import Constants from "expo-constants";
@@ -25,6 +25,8 @@ class Profile extends Component {
         driverLisenceNumber: "",
         avatar: null,
         avatarBase64: null,
+        avatarExt: null,
+        driversExt: null,
         driversLisence: null,
         driversLisenceBase64: null,
         bvn: "",
@@ -57,22 +59,27 @@ class Profile extends Component {
 
     _pickImage = async name => {
         let result = await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
             allowsEditing: true,
-            aspect: [4, 3],
-            base64: true
+            aspect: [4, 3]
+            // base64: true
         });
+
+        const str = result.uri;
+        const to = str.length - 3;
+        var ext = str.substring(to, str.length);
 
         if (!result.cancelled) {
             this.setState({
                 [`${name}Base64`]: result.base64,
+                [`${name}Ext`]: ext,
                 [name]: result.uri
             });
         }
     };
 
     render() {
-        const { auth, profileUpdatde, userMe } = this.props;
+        const { auth, profileUpdatde } = this.props;
 
         return (
             <ScrollView style={styles.container}>
@@ -217,9 +224,14 @@ class Profile extends Component {
 
                     <Button
                         onPress={() => {
-                            profileUpdatde({ ...this.state });
+                            //  console.log(auth, "AUTHENTICATED");
+                            profileUpdatde({
+                                ...this.state,
+                                id: auth.user.user.id,
+                                token: auth.user.token
+                            });
                         }}
-                        title='Get started with phone number instead'
+                        title='Continue'
                         type='clear'
                     />
                 </View>
@@ -264,5 +276,5 @@ const map_state_to_props = state => ({
 
 export default connect(
     map_state_to_props,
-    { profileUpdatde, userMe }
+    { profileUpdatde }
 )(Profile);

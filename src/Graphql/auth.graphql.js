@@ -50,6 +50,7 @@ export class g_Auth {
                         
                         ...on me_data {
                             user {
+                                id
                                 active
                                 firstName
                                 lastName
@@ -123,7 +124,11 @@ export class g_Auth {
         tertiary_location,
         avatarBase64,
         driversLisenceBase64,
-        driverLisenceNumber
+        driverLisenceNumber,
+        id,
+        token,
+        avatarExt,
+        driversExt
     }) {
         return rps.post(this.url, {
             query: `
@@ -138,7 +143,14 @@ export class g_Auth {
                 avatar: "${avatarBase64}",
                 driversLicense: "${driversLisenceBase64}",
                 driverLicenseNumber: "${driverLisenceNumber}"
-              }) 
+              }, 
+                mock: {
+                  id: "${id}",
+                  token:"${token}",
+                  driversExt: "${driversExt}",
+                  avatarExt: : "${avatarExt}"
+                }
+              ) 
               {
                   ok
                   error{
