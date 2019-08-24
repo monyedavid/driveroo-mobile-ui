@@ -139,7 +139,7 @@ export class g_Auth {
                   primary_location: "${primary_location}",
                   secondary_location:"${secondary_location}",
                   tertiary_location: "${tertiary_location}",
-                  bank_bvn: "22246209456",
+                  bank_bvn: "${bvn}",
                   avatar: "${avatarBase64}",
                   driversLicense: "${driversLisenceBase64}"
                   driverLicenseNumber: "${driverLisenceNumber}"
