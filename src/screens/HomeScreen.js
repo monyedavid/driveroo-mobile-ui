@@ -81,12 +81,14 @@ class HomeScreen extends React.Component {
 
 	handleSubmission = async () => {
 		let response;
+		this.setState({ loading: true });
 		if (this.state.isPhone) {
 			// check for existing number || STEP:1
 			response = await previousUser({ mobile: this.state.mobile });
 			//  if number
 			if (response.gotMobile) {
 				// move to otp || LOGIN
+				this.setState({ loading: false });
 				this.props.navigation.navigate("OTP", {
 					signup: false,
 					userdata: response.user,
@@ -95,6 +97,7 @@ class HomeScreen extends React.Component {
 			}
 			// if !number
 			if (!response.gotMobile) {
+				this.setState({ loading: false });
 				this.props.navigation.navigate("OTP", {
 					base: "mobile",
 					signup: true,
@@ -156,7 +159,7 @@ class HomeScreen extends React.Component {
 		return (
 			// <View style={[landing.container, { marginTop: -20 }]}>
 			<KeyboardAwareScrollView
-				style={{ backgroundColor: "#4c69a5" }}
+				style={{ backgroundColor: "#fff" }}
 				resetScrollToCoords={{ x: 0, y: 0 }}
 				contentContainerStyle={landing.container}
 				scrollEnabled={true}
@@ -197,6 +200,7 @@ class HomeScreen extends React.Component {
 									this.handleText(text, "mobile");
 								}}
 								placeholder="Enter Phone Number"
+								keyboardType="numeric"
 							/>
 						) : (
 							<InputField
@@ -209,14 +213,30 @@ class HomeScreen extends React.Component {
 					</View>
 
 					<View style={utilis.tab}>
-						<Button
-							title="Get started"
-							disabled={this.disableSubmit()}
-							style={{ marginBottom: 10 }}
-							onPress={() => {
-								this.handleSubmission();
-							}}
-						/>
+						{!loading ? (
+							<Button
+								title="Get started"
+								disabled={this.disableSubmit()}
+								style={{
+									marginBottom: 10,
+								}}
+								onPress={() => {
+									this.handleSubmission();
+								}}
+							/>
+						) : (
+							<ActivityIndicator
+								size="small"
+								color="#fff"
+								style={{
+									marginBottom: 10,
+									backgroundColor: "#121B74",
+									paddingTop: 15,
+									paddingBottom: 15,
+									borderRadius: 5,
+								}}
+							/>
+						)}
 
 						{isPhone ? (
 							<Button

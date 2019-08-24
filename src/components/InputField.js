@@ -8,7 +8,10 @@ export default function Input(props) {
 	return (
 		<TextInput
 			{...props}
-			style={[focus ? styles.field_inactive : styles.field, { ...props.style }]}
+			style={[
+				!focus ? styles.field_inactive : styles.field,
+				{ ...props.style },
+			]}
 			placeholderTextColor="#A6AAB4"
 			ref={props.inputRef}
 			autoCapitalize="none"

@@ -15,24 +15,24 @@ import { createStackNavigator, createAppContainer } from "react-navigation";
 
 const AppNavigator = createStackNavigator(
     {
-        Board: {
-            screen: OnBoardScreen
-        },
-        Home: {
-            screen: HomeScreen
-        },
-        SignUp: {
-            screen: SignUp
-        },
-        OTP: {
-            screen: OtpVerifications
-        },
-        PassWord: {
-            screen: PassWordScreen
-        },
-        SocialLogin: {
-            screen: SocialLogin
-        },
+        // Board: {
+        //     screen: OnBoardScreen
+        // },
+        // Home: {
+        //     screen: HomeScreen
+        // },
+        // SignUp: {
+        //     screen: SignUp
+        // },
+        // OTP: {
+        //     screen: OtpVerifications
+        // },
+        // PassWord: {
+        //     screen: PassWordScreen
+        // },
+        // SocialLogin: {
+        //     screen: SocialLogin
+        // },
         Profile: {
             screen: Profile
         },
