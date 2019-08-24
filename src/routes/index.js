@@ -14,53 +14,53 @@ import PassWordScreen from "../screens/PassWord";
 import { createStackNavigator, createAppContainer } from "react-navigation";
 
 const AppNavigator = createStackNavigator(
-    {
-        // Board: {
-        //     screen: OnBoardScreen
-        // },
-        Home: {
-            screen: HomeScreen
-        },
-        SignUp: {
-            screen: SignUp
-        },
-        OTP: {
-            screen: OtpVerifications
-        },
-        PassWord: {
-            screen: PassWordScreen
-        },
-        SocialLogin: {
-            screen: SocialLogin
-        },
-        Profile: {
-            screen: Profile
-        },
-        Verification: {
-            screen: VerificationScreen
-        },
-        ResetPassword: {
-            screen: ResetPassword
-        },
-        Confirmation: {
-            screen: ConfirmationScreen
-        }
-    },
-    {
-        // initialRouteName: "Profile",
-        defaultNavigationOptions: {
-            headerStyle: {
-                backgroundColor: "#fff",
-                borderBottomColor: "#f3f3f3",
-                borderBottomWidth: 4
-            },
-            headerTitleStyle: {
-                fontWeight: "bold",
-                fontSize: 17,
-                color: "#002257"
-            }
-        }
-    }
+	{
+		// Board: {
+		//     screen: OnBoardScreen
+		// },
+		// Home: {
+		//     screen: HomeScreen
+		// },
+		// SignUp: {
+		//     screen: SignUp
+		// },
+		// OTP: {
+		//     screen: OtpVerifications
+		// },
+		// PassWord: {
+		//     screen: PassWordScreen
+		// },
+		// SocialLogin: {
+		//     screen: SocialLogin
+		// },
+		Profile: {
+			screen: Profile,
+		},
+		Verification: {
+			screen: VerificationScreen,
+		},
+		ResetPassword: {
+			screen: ResetPassword,
+		},
+		Confirmation: {
+			screen: ConfirmationScreen,
+		},
+	},
+	{
+		// initialRouteName: "Profile",
+		defaultNavigationOptions: {
+			headerStyle: {
+				backgroundColor: "#fff",
+				borderBottomColor: "#f3f3f3",
+				borderBottomWidth: 4,
+			},
+			headerTitleStyle: {
+				fontWeight: "bold",
+				fontSize: 17,
+				color: "#002257",
+			},
+		},
+	},
 );
 
 export default createAppContainer(AppNavigator);
