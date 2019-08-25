@@ -21,17 +21,7 @@ export default function OtpVerification(props) {
 	const [code, setCode] = React.useState("");
 	const [loading, setLoading] = React.useState(false);
 
-	// <ActivityIndicator
-	// 							size="small"
-	// 							color="#fff"
-	// 							style={{
-	// 								marginBottom: 10,
-	// 								backgroundColor: "#121B74",
-	// 								paddingTop: 15,
-	// 								paddingBottom: 15,
-	// 								borderRadius: 5,
-	// 							}}
-	// 						/>
+	
 
 	const disableButton = () => {
 		if (code === "" || code.length !== 4) return true;
@@ -77,6 +67,7 @@ export default function OtpVerification(props) {
 					}}
 					placeholder="Enter Code"
 					style={{ marginBottom: 50 }}
+					
 				/>
 
 				<Button

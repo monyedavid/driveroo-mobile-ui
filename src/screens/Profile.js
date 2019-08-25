@@ -17,6 +17,8 @@ import * as ImagePicker from "expo-image-picker";
 import Constants from "expo-constants";
 import * as Permissions from "expo-permissions";
 import "../styles/core/utilis";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
+
 
 class Profile extends Component {
     state = {
@@ -85,7 +87,14 @@ class Profile extends Component {
         const { loading } = this.state;
 
         return (
-            <ScrollView style={styles.container}>
+            <KeyboardAwareScrollView
+				style={{ backgroundColor: "#fff" }}
+				resetScrollToCoords={{ x: 0, y: 0 }}
+				contentContainerStyle={landing.container}
+				scrollEnabled={true}
+				// extraHeight={50}
+				// extraScrollHeight={50}
+			>
                 <View style={utilis.child_container}>
                     <Text
                         style={{
@@ -273,7 +282,7 @@ class Profile extends Component {
                         )}
                     </View>
                 </View>
-            </ScrollView>
+            </KeyboardAwareScrollView>
         );
     }
 }
