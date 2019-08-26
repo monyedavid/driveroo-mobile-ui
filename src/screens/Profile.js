@@ -262,7 +262,8 @@ class Profile extends Component {
                                             id: auth.user.user.id,
                                             token: auth.user.token
                                         },
-                                        this.handleText()
+                                        this.handleText(),
+                                        this.props.navigation.navigate
                                     );
                                 }}
                             />

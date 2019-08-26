@@ -164,7 +164,11 @@ export const userLogout = () => async dispatch => {
     dispatch(set_current_user({}));
 };
 
-export const profileUpdatde = (userData, setLoading) => async dispatch => {
+export const profileUpdatde = (
+    userData,
+    setLoading,
+    navigation
+) => async dispatch => {
     try {
         const service = new g_Auth();
         const { data } = await service.updateProfile({
@@ -173,7 +177,6 @@ export const profileUpdatde = (userData, setLoading) => async dispatch => {
 
         const { ok, error } = data.data.firstUpdate;
 
-        console.log(data, "DATA | PROFILE UPDATE");
         setLoading(false, "loading");
 
         // ERROR HANDLING
@@ -186,6 +189,7 @@ export const profileUpdatde = (userData, setLoading) => async dispatch => {
 
         // SUCCESS MODE
         if (ok) {
+            navigation("Status");
             return dispatch({
                 type: GET_TOASTS,
                 payload: [
