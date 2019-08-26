@@ -38,7 +38,6 @@ class HomeScreen extends React.Component {
 	}
 
 	componentDidMount() {
-		console.log(this.props.auth, 'AUTH')
 	// this.keyboardWillShowSub = Keyboard.addListener(
 	// 	"keyboardWillShow",
 	// 	this.keyboardWillShow,
