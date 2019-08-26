@@ -19,7 +19,6 @@ import * as Permissions from "expo-permissions";
 import "../styles/core/utilis";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 
-
 class Profile extends Component {
     state = {
         primary_location: "",
@@ -69,11 +68,11 @@ class Profile extends Component {
             base64: true
         });
 
-        const str = result.uri;
-        const to = str.length - 3;
-        var ext = str.substring(to, str.length);
-
         if (!result.cancelled) {
+            const str = result.uri;
+            const to = str.length - 3;
+            const ext = str.substring(to, str.length);
+
             this.setState({
                 [`${name}Base64`]: result.base64,
                 [`${name}Ext`]: ext,
@@ -88,13 +87,13 @@ class Profile extends Component {
 
         return (
             <KeyboardAwareScrollView
-				style={{ backgroundColor: "#fff" }}
-				resetScrollToCoords={{ x: 0, y: 0 }}
-				contentContainerStyle={landing.container}
-				scrollEnabled={true}
-				// extraHeight={50}
-				// extraScrollHeight={50}
-			>
+                style={{ backgroundColor: "#fff" }}
+                resetScrollToCoords={{ x: 0, y: 0 }}
+                contentContainerStyle={landing.container}
+                scrollEnabled={true}
+                // extraHeight={50}
+                // extraScrollHeight={50}
+            >
                 <View style={utilis.child_container}>
                     <Text
                         style={{

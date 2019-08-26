@@ -38,14 +38,15 @@ class HomeScreen extends React.Component {
 	}
 
 	componentDidMount() {
-		// this.keyboardWillShowSub = Keyboard.addListener(
-		// 	"keyboardWillShow",
-		// 	this.keyboardWillShow,
-		// );
-		// this.keyboardWillHideSub = Keyboard.addListener(
-		// 	"keyboardWillHide",
-		// 	this.keyboardWillHide,
-		// );
+		console.log(this.props.auth, 'AUTH')
+	// this.keyboardWillShowSub = Keyboard.addListener(
+	// 	"keyboardWillShow",
+	// 	this.keyboardWillShow,
+	// );
+	// this.keyboardWillHideSub = Keyboard.addListener(
+	// 	"keyboardWillHide",
+	// 	this.keyboardWillHide,
+	// );
 	}
 
 	handleText(value, name) {

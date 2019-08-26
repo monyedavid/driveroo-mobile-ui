@@ -51,8 +51,9 @@ export const userLogin = (
                 });
                 return;
             }
-
-            // naviagte to main dashboard
+            // naviagte to main dashboard [ACCOUNT STATUS]
+            // DEFINE CHECKS FOR STAGES OF ONBOARD COMPLETMENT
+            navigation("Status");
         }
     } catch (error) {
         dispatch({
