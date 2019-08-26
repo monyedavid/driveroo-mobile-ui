@@ -1,15 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {
-    View,
-    StyleSheet,
-    Text,
-    Image,
-    ScrollView,
-    TouchableOpacity,
-    ActivityIndicator
-} from "react-native";
-import InputField from "../../components/InputField";
+import { View, StyleSheet, Text, Image } from "react-native";
 import Button from "../../components/Button";
 import { userReg } from "../../resources/redux-actions/auth";
 import { utilis } from "../../styles/core/utilis";
@@ -139,6 +130,10 @@ class Profile extends Component {
         );
     }
 }
+
+Profile.navigationOptions = {
+    headers: null
+};
 
 const styles = StyleSheet.create({
     container: {
