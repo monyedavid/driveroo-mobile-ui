@@ -3,16 +3,8 @@
  * https://github.com/facebook/react-native
  */
 "use strict";
-import React, {
-    AppRegistry,
-    Component,
-    StyleSheet,
-    Text,
-    View,
-    TouchableHighlight,
-    Animated,
-    Dimensions
-} from "react-native";
+import React, { Component } from "react";
+import { AppRegistry, Text, View, Animated, Dimensions } from "react-native";
 
 let windowWidth = Dimensions.get("window").width;
 let windowHeight = Dimensions.get("window").height;
@@ -82,33 +74,6 @@ export default class toasts extends Component {
 
         return (
             <View>
-                <View style={styles.container}>
-                    <Button
-                        type='success'
-                        callToast={() => this.callToast("YOYOYO")}
-                    />
-                    <Button
-                        type='error'
-                        callToast={() =>
-                            this.callToast("Error toast called!", "error")
-                        }
-                        title='Something went wrong...'
-                    />
-                    <Button
-                        type='warning'
-                        callToast={() =>
-                            this.callToast("Warning toast called!", "warning")
-                        }
-                    />
-                    <Button
-                        type='primary'
-                        callToast={() =>
-                            this.callToast("Primary toast called!", "primary")
-                        }
-                    />
-                    <Button type='bottom' callToast={() => this.callXToast()} />
-                </View>
-
                 <Animated.View
                     style={{
                         transform: [{ translateY: animation }],
@@ -163,36 +128,4 @@ export default class toasts extends Component {
     }
 }
 
-class Button extends Component {
-    render() {
-        let { callToast, type } = this.props;
-        return (
-            <View style={styles.buttonContainer}>
-                <TouchableHighlight
-                    onPress={callToast}
-                    underlayColor='ddd'
-                    style={{
-                        height: 60,
-                        justifyContent: "center",
-                        alignItems: "center",
-                        backgroundColor: "ededed",
-                        borderWidth: 1,
-                        borderColor: "ddd"
-                    }}
-                >
-                    <Text>Call {type} toast.</Text>
-                </TouchableHighlight>
-            </View>
-        );
-    }
-}
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        marginTop: 70
-    },
-    buttonContainer: {
-        marginTop: 10
-    }
-});
+AppRegistry.registerComponent("toasts", () => toasts);

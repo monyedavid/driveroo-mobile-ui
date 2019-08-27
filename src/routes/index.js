@@ -1,6 +1,4 @@
 import * as React from "react";
-import { SafeAreaView, StatusBar } from "react-native";
-import { NativeRouter, Route, Switch } from "react-router-native";
 import OnBoardScreen from "../screens/OnBoard";
 import HomeScreen from "../screens/HomeScreen";
 import OtpVerifications from "../screens/OtpVerfications";
