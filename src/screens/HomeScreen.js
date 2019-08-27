@@ -36,8 +36,8 @@ class HomeScreen extends React.Component {
 
 		this.imageRef = null;
 	}
-
-	componentDidMount() {
+	
+	componentDidMount() {	
 	// this.keyboardWillShowSub = Keyboard.addListener(
 	// 	"keyboardWillShow",
 	// 	this.keyboardWillShow,
