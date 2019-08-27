@@ -86,14 +86,7 @@ class Profile extends Component {
         const { loading } = this.state;
 
         return (
-            <KeyboardAwareScrollView
-                style={{ backgroundColor: "#fff" }}
-                resetScrollToCoords={{ x: 0, y: 0 }}
-                contentContainerStyle={landing.container}
-                scrollEnabled={true}
-                // extraHeight={50}
-                // extraScrollHeight={50}
-            >
+            <ScrollView>
                 <View style={utilis.child_container}>
                     <Text
                         style={{
@@ -282,7 +275,7 @@ class Profile extends Component {
                         )}
                     </View>
                 </View>
-            </KeyboardAwareScrollView>
+            </ScrollView>
         );
     }
 }

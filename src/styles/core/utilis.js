@@ -18,7 +18,14 @@ const pre_style = {
 const styles = {
 	...pre_style,
 	child_container: {
-		maxWidth: 320,
+		maxWidth: "80%",
+		width: "100%",
+		marginLeft: "auto",
+		marginRight: "auto",
+		paddingTop: 30,
+	},
+	child_container_lg: {
+		maxWidth: "90%",
 		width: "100%",
 		marginLeft: "auto",
 		marginRight: "auto",

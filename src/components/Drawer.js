@@ -48,7 +48,7 @@ const Drawer = ({ user: { user }, navigation }) => {
 			</TouchableOpacity>
 			<View style={styles.top}>
 				<Image
-					source={{ uri: user.avatar }}
+					source={{ uri: user && user.avatar }}
 					style={{
 						height: 70,
 						width: 70,
@@ -58,7 +58,7 @@ const Drawer = ({ user: { user }, navigation }) => {
 				/>
 				<View>
 					<Text style={styles.text_name}>
-						{`${user.firstName} ${user.lastName}`}
+						{user && `${user.firstName} ${user.lastName}`}
 					</Text>
 					<Text style={styles.text_rate}>0.0</Text>
 				</View>
@@ -75,7 +75,7 @@ const Drawer = ({ user: { user }, navigation }) => {
 								resizeMode: "cover",
 							}}
 						/>
-						{!user.confirmed && (
+						{user && !user.confirmed && (
 							<Text style={styles.text_confirmation}>
 								Please verify your email to confirm your account
 							</Text>
@@ -121,7 +121,8 @@ const Drawer = ({ user: { user }, navigation }) => {
 						</Text>
 						<TouchableOpacity
 							onPress={() => {
-								console.log("Prime");
+								navigation.navigate("Status");
+								navigation.closeDrawer();
 							}}
 							style={styles.confirmation_button}
 						>
