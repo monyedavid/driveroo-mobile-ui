@@ -19,7 +19,6 @@ const Drawer = ({ user: { user }, navigation }) => {
     function renderMenu() {
         return menuArray.map(({ icon, id, title, screen }) => (
             <TouchableWithoutFeedback
-                // onPress={this.navigateToScreen(item.screen)}
                 key={id}
                 style={{ backgroundColor: "red" }}
             >
@@ -123,7 +122,8 @@ const Drawer = ({ user: { user }, navigation }) => {
                         </Text>
                         <TouchableOpacity
                             onPress={() => {
-                                console.log("Prime");
+                                navigation.navigate("Status");
+                                navigation.closeDrawer();
                             }}
                             style={styles.confirmation_button}
                         >
