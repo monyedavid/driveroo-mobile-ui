@@ -10,7 +10,7 @@ import config from "../../../configs";
 const url = config.AUTH_MS;
 
 export const userLogin = (
-    { emailormobile, password },
+    { emailormobile, password, isEmail },
     navigation
 ) => async dispatch => {
     dispatch({ type: CLEAR_ERRORS });
@@ -37,10 +37,15 @@ export const userLogin = (
         if (sessionId) {
             dispatch(userMe(false));
             if (!confirmed) {
-                navigation("Confirmation", {
-                    emailormobile,
-                    incompleteProfile
-                });
+                if (isEmail)
+                    navigation("Confirmation", {
+                        emailormobile,
+                        incompleteProfile
+                    });
+                if (!isEmail)
+                    navigation("Confirmation", {
+                        incompleteProfile
+                    });
                 return;
             }
 
@@ -51,8 +56,9 @@ export const userLogin = (
                 });
                 return;
             }
-
-            // naviagte to main dashboard
+            // naviagte to main dashboard [ACCOUNT STATUS]
+            // DEFINE CHECKS FOR STAGES OF ONBOARD COMPLETMENT
+            navigation("Status");
         }
     } catch (error) {
         dispatch({
@@ -163,7 +169,11 @@ export const userLogout = () => async dispatch => {
     dispatch(set_current_user({}));
 };
 
-export const profileUpdatde = (userData, setLoading) => async dispatch => {
+export const profileUpdatde = (
+    userData,
+    setLoading,
+    navigation
+) => async dispatch => {
     try {
         const service = new g_Auth();
         const { data } = await service.updateProfile({
@@ -172,7 +182,6 @@ export const profileUpdatde = (userData, setLoading) => async dispatch => {
 
         const { ok, error } = data.data.firstUpdate;
 
-        console.log(data, "DATA | PROFILE UPDATE");
         setLoading(false, "loading");
 
         // ERROR HANDLING
@@ -185,6 +194,7 @@ export const profileUpdatde = (userData, setLoading) => async dispatch => {
 
         // SUCCESS MODE
         if (ok) {
+            navigation("Status");
             return dispatch({
                 type: GET_TOASTS,
                 payload: [

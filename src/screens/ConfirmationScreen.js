@@ -17,18 +17,18 @@ class ConfirmationScrenn extends React.Component {
     }
 
     handleSubmit = () => {
-        const incompleteProfile = this.props.navigation.getParam(
-            "incompleteProfile",
-            ""
-        );
+        const { navigation } = this.props;
+        const incompleteProfile = navigation.getParam("incompleteProfile", "");
         if (incompleteProfile) {
-            this.props.navigation.navigate("Profile", {
+            navigation.navigate("Profile", {
                 incompleteProfile
             });
             return;
         }
 
-        console.log("move to last page");
+        // naviagte to main dashboard [ACCOUNT STATUS]
+        // DEFINE CHECKS FOR STAGES OF ONBOARD COMPLETMENT
+        navigation.navigate("Status");
     };
 
     render() {

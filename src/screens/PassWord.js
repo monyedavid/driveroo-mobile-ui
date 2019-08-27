@@ -15,6 +15,7 @@ import { snackBarGen } from "../utils/errors/errorHandler";
 import { userLogin } from "../resources/redux-actions/auth";
 import "../styles/core/utilis";
 import { utilis } from "../styles/core/utilis";
+import { ToastAndroid } from "react-native";
 
 class PasswordScreen extends React.Component {
     state = {
@@ -40,12 +41,17 @@ class PasswordScreen extends React.Component {
         const email = navigation.getParam("email", "");
         const mobile = navigation.getParam("mobile", "");
         if (email) {
-            userLogin({ emailormobile: email, password }, navigation.navigate);
+            userLogin(
+                { emailormobile: email, password, isEmail: true },
+                navigation.navigate
+            );
         }
 
         if (mobile) {
             userLogin({ emailormobile: mobile, password }, navigation.navigate);
         }
+
+        this.setState({ loading: false });
     };
 
     snackbarClose = (e, reason) => {
