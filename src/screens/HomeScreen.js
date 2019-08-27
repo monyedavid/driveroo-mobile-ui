@@ -166,7 +166,10 @@ class HomeScreen extends React.Component {
 				// extraHeight={50}
 				// extraScrollHeight={50}
 			>
-				<View style={landing.image_container} ref={el => (this.imageRef = el)}>
+				<View
+					style={[landing.image_container]}
+					ref={el => (this.imageRef = el)}
+				>
 					<Image
 						source={require("../assets/images/bgImage.png")}
 						style={landing.image}
@@ -200,10 +203,11 @@ class HomeScreen extends React.Component {
 									this.handleText(text, "mobile");
 								}}
 								placeholder="Enter Phone Number"
-								keyboardType="numeric"
+								keyboardType="phone-pad"
 							/>
 						) : (
 							<InputField
+								keyboardType="email-address"
 								onChangeText={text => {
 									this.handleText(text, "email");
 								}}

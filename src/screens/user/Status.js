@@ -14,6 +14,7 @@ import Button from "../../components/Button";
 import { userReg } from "../../resources/redux-actions/auth";
 import { utilis } from "../../styles/core/utilis";
 import "../../styles/core/utilis";
+import { Icon } from "native-base";
 
 class Profile extends Component {
 	state = {
@@ -26,6 +27,24 @@ class Profile extends Component {
 		loading: false,
 	};
 
+	static navigationOptions = ({ navigation }) => {
+		return {
+			headerLeft: (
+				<View>
+					<TouchableOpacity transparent onPress={() => navigation.openDrawer()}>
+						<Icon
+							name="menu"
+							style={{ color: "#121B74", fontSize: 24, marginLeft: 20 }}
+						/>
+					</TouchableOpacity>
+				</View>
+			),
+			headerTitle: "Account Status",
+		};
+	};
+	// openDrawer = () => {
+	// 	this.props.navigation.openDrawer();
+	// };
 	render() {
 		const { auth } = this.props;
 		const { loading } = this.state;
@@ -141,10 +160,6 @@ class Profile extends Component {
 		);
 	}
 }
-
-Profile.navigationOptions = {
-	headerTitlt: "Account Status",
-};
 
 const styles = StyleSheet.create({
 	container: {
