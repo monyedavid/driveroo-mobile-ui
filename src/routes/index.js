@@ -24,33 +24,33 @@ const AppNavigator = createStackNavigator(
         // Board: {
         //     screen: OnBoardScreen
         // },
-        Home: {
-            screen: HomeScreen
-        },
-        SignUp: {
-            screen: SignUp
-        },
-        OTP: {
-            screen: OtpVerifications
-        },
-        PassWord: {
-            screen: PassWordScreen
-        },
-        SocialLogin: {
-            screen: SocialLogin
-        },
-        Profile: {
-            screen: Profile
-        },
-        Verification: {
-            screen: VerificationScreen
-        },
-        ResetPassword: {
-            screen: ResetPassword
-        },
-        Confirmation: {
-            screen: ConfirmationScreen
-        },
+        // Home: {
+        //     screen: HomeScreen
+        // },
+        // SignUp: {
+        //     screen: SignUp
+        // },
+        // OTP: {
+        //     screen: OtpVerifications
+        // },
+        // PassWord: {
+        //     screen: PassWordScreen
+        // },
+        // SocialLogin: {
+        //     screen: SocialLogin
+        // },
+        // Profile: {
+        //     screen: Profile
+        // },
+        // Verification: {
+        //     screen: VerificationScreen
+        // },
+        // ResetPassword: {
+        //     screen: ResetPassword
+        // },
+        // Confirmation: {
+        //     screen: ConfirmationScreen
+        // },
         Status: {
             screen: Status
         }
