@@ -18,7 +18,7 @@ import { KeyboardAvoidingView } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 import InputField from "../components/InputField";
 import { previousUser } from "../utils/on-boardin";
-import { Icon } from "native-base";
+
 
 class HomeScreen extends React.Component {
 	static navigationOptions = {
@@ -112,6 +112,7 @@ class HomeScreen extends React.Component {
 			// if email
 			if (response.gotMail) {
 				// move to password | page
+				this.setState({ loading: false });
 				this.props.navigation.navigate("PassWord", {
 					userdata: response.user,
 					email: this.state.email,
@@ -121,6 +122,7 @@ class HomeScreen extends React.Component {
 			// if !email
 			if (!response.gotMail) {
 				// move to register page || show mobile option register
+				this.setState({ loading: false });
 				this.props.navigation.navigate("SignUp", {
 					base: "email",
 					email: this.state.email,

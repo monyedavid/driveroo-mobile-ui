@@ -288,6 +288,7 @@ class Profile extends Component {
 }
 
 Profile.navigationOptions = {
+    headers: null
     // headerLeft: "back",
 };
 

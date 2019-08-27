@@ -41,10 +41,13 @@ class PasswordScreen extends React.Component {
         const mobile = navigation.getParam("mobile", "");
         if (email) {
             userLogin({ emailormobile: email, password }, navigation.navigate);
+            this.setState({ loading: false });
         }
 
         if (mobile) {
+            console.log(":IS-MOBILE: :)");
             userLogin({ emailormobile: mobile, password }, navigation.navigate);
+            this.setState({ loading: false });
         }
     };
 
