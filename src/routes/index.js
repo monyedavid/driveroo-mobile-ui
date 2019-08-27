@@ -1,4 +1,7 @@
 import * as React from "react";
+import { SafeAreaView, StatusBar } from "react-native";
+import { NativeRouter, Route, Switch } from "react-router-native";
+import Drawer from "../components/Drawer";
 import OnBoardScreen from "../screens/OnBoard";
 import HomeScreen from "../screens/HomeScreen";
 import OtpVerifications from "../screens/OtpVerfications";
@@ -10,7 +13,11 @@ import ConfirmationScreen from "../screens/ConfirmationScreen";
 import ResetPassword from "../screens/ResetPassword";
 import PassWordScreen from "../screens/PassWord";
 import Status from "../screens/user/Status";
-import { createStackNavigator, createAppContainer } from "react-navigation";
+import {
+    createStackNavigator,
+    createAppContainer,
+    createDrawerNavigator
+} from "react-navigation";
 
 const AppNavigator = createStackNavigator(
     {
@@ -65,4 +72,23 @@ const AppNavigator = createStackNavigator(
     }
 );
 
-export default createAppContainer(AppNavigator);
+const DrawerNavigator = createDrawerNavigator(
+    {
+        App: {
+            screen: AppNavigator
+        }
+    },
+    {
+        hideStatusBar: true,
+        drawerBackgroundColor: "rgba(255,255,255,.9)",
+        // overlayColor: "#6b52ae",
+        drawerWidth: 350,
+        contentComponent: Drawer,
+        contentOptions: {
+            activeTintColor: "#fff",
+            activeBackgroundColor: "#6b52ae"
+        }
+    }
+);
+
+export default createAppContainer(DrawerNavigator);
