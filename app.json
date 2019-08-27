@@ -1,32 +1,30 @@
 {
-  "expo": {
-    "name": "driveroo-build-6..0.3",
-    "slug": "driverro-v-6-0-3",
-    "privacy": "public",
-    "sdkVersion": "34.0.0",
-    "platforms": [
-      "ios",
-      "android",
-      "web"
-    ],
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./src/assets/images/icon.png",
-    "splash": {
-      "image": "./src/assets/images/ssii.png",
-      "resizeMode": "cover",
-      "backgroundColor": "#0803A5"
-    },
-    "updates": {
-      "fallbackToCacheTimeout": 0
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true
-    },
-    "description": "No Notificcations",
-    "githubUrl": "https://github.com/rasheeddavid/driveroo-mobile-ui.git"
-  }
+    "expo": {
+        "name": "driveroo-build-6..0.4",
+        "slug": "driverro-v-6-0-4",
+        "privacy": "public",
+        "sdkVersion": "34.0.0",
+        "platforms": ["ios", "android", "web"],
+        "version": "1.0.0",
+        "orientation": "portrait",
+        "icon": "./src/assets/images/icon.png",
+        "splash": {
+            "image": "./src/assets/images/ssii.png",
+            "resizeMode": "cover",
+            "backgroundColor": "#0803A5"
+        },
+        "updates": {
+            "fallbackToCacheTimeout": 0
+        },
+        "assetBundlePatterns": ["**/*"],
+        "ios": {
+            "bundleIdentifier": "com.driverroo.driverroo",
+            "supportsTablet": true
+        },
+        "android": {
+            "package": "com.driverroo.driverroo"
+        },
+        "description": "Home Page Build",
+        "githubUrl": "https://github.com/rasheeddavid/driveroo-mobile-ui.git"
+    }
 }

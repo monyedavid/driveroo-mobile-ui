@@ -6,6 +6,9 @@
         "ios": "expo start --ios",
         "clean": "expo r -c",
         "web": "expo start --web",
+        "build:andriod": "expo build:android -t apk",
+        "build:andriod-bundle": "expo build:android -t app-bundle",
+        "build:ios": "expo build:ios",
         "eject": "expo eject",
         "test": "jest --watchAll"
     },
