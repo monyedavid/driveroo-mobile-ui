@@ -10,7 +10,7 @@ import config from "../../../configs";
 const url = config.AUTH_MS;
 
 export const userLogin = (
-    { emailormobile, password },
+    { emailormobile, password, isEmail },
     navigation
 ) => async dispatch => {
     dispatch({ type: CLEAR_ERRORS });
@@ -37,10 +37,15 @@ export const userLogin = (
         if (sessionId) {
             dispatch(userMe(false));
             if (!confirmed) {
-                navigation("Confirmation", {
-                    emailormobile,
-                    incompleteProfile
-                });
+                if (isEmail)
+                    navigation("Confirmation", {
+                        emailormobile,
+                        incompleteProfile
+                    });
+                if (!isEmail)
+                    navigation("Confirmation", {
+                        incompleteProfile
+                    });
                 return;
             }
 
