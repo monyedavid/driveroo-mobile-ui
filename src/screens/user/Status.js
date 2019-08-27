@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { View, StyleSheet, Text, Image, TouchableOpacity } from "react-native";
+import {
+    View,
+    StyleSheet,
+    Text,
+    Image,
+    TouchableOpacity,
+    ScrollView
+} from "react-native";
 import Button from "../../components/Button";
 import { userReg } from "../../resources/redux-actions/auth";
 import { utilis } from "../../styles/core/utilis";
@@ -43,7 +50,7 @@ class Profile extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
+            <ScrollView style={styles.container}>
                 <Text
                     style={[
                         utilis.text_sm,
@@ -157,7 +164,7 @@ class Profile extends Component {
                         </View>
                     </View>
                 </View>
-            </View>
+            </ScrollView>
         );
     }
 }
