@@ -55,7 +55,7 @@ const AppNavigator = createStackNavigator(
         Status: {
             screen: Status
         },
-        Home: {
+        HomePage: {
             screen: Home
         }
     },

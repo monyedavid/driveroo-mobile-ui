@@ -160,7 +160,7 @@ class HomeScreen extends React.Component {
 		const { loading, isPhone } = this.state;
 		return (
 			// <View style={[landing.container, { marginTop: -20 }]}>
-			<KeyboardAwareScrollView
+			<ScrollView
 				style={{ backgroundColor: "#fff" }}
 				resetScrollToCoords={{ x: 0, y: 0 }}
 				contentContainerStyle={landing.container}
@@ -301,7 +301,7 @@ class HomeScreen extends React.Component {
 						) : null}
 					</View>
 				</View>
-			</KeyboardAwareScrollView>
+			</ScrollView>
 		);
 	}
 }

@@ -28,7 +28,7 @@ class ConfirmationScrenn extends React.Component {
 
         // naviagte to main dashboard [ACCOUNT STATUS]
         // DEFINE CHECKS FOR STAGES OF ONBOARD COMPLETMENT
-        navigation.navigate("Home");
+        navigation.navigate("HomePage");
     };
 
     render() {

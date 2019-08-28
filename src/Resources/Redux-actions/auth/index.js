@@ -58,7 +58,7 @@ export const userLogin = (
             }
             // naviagte to main dashboard [ACCOUNT STATUS]
             // DEFINE CHECKS FOR STAGES OF ONBOARD COMPLETMENT
-            navigation("Home");
+            navigation("HomePage");
         }
     } catch (error) {
         dispatch({
@@ -194,7 +194,7 @@ export const profileUpdatde = (
 
         // SUCCESS MODE
         if (ok) {
-            navigation("Home");
+            navigation("HomePage");
             return dispatch({
                 type: GET_TOASTS,
                 payload: [
