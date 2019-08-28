@@ -164,6 +164,16 @@ class Profile extends Component {
                         </View>
                     </View>
                 </View>
+                <Button
+                    title='Continue'
+                    style={{
+                        marginBottom: 10,
+                        left: 12
+                    }}
+                    onPress={() => {
+                        this.props.navigation.navigate("HomePage");
+                    }}
+                />
             </ScrollView>
         );
     }
