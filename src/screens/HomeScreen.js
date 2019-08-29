@@ -186,12 +186,14 @@ class HomeScreen extends React.Component {
 								onChangeText={text => {
 									this.handleText(text, "mobile");
 								}}
+								value={this.state.mobile}
 								placeholder="Enter Phone Number"
 								keyboardType="phone-pad"
 							/>
 						) : (
 							<InputField
 								keyboardType="email-address"
+								value={this.state.email}
 								onChangeText={text => {
 									this.handleText(text, "email");
 								}}

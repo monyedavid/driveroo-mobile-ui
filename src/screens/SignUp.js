@@ -28,7 +28,6 @@ class SignUp extends React.Component {
         gender: "",
         load: "",
         snackbar: "",
-        //	confirm: "",
         loading: false
     };
 
@@ -40,8 +39,6 @@ class SignUp extends React.Component {
         if (base === "email") this.setState({ email });
         if (base === "mobile") this.setState({ mobile });
     }
-
-    componentDidUpdate(prevProps) {}
 
     handleText(value, name) {
         this.setState({
@@ -55,7 +52,7 @@ class SignUp extends React.Component {
         if (reason === "clickaway") {
             return;
         }
-        setSnackbar(false);
+        this.setState({ snackbar: false });
     };
 
     render() {
@@ -68,111 +65,115 @@ class SignUp extends React.Component {
 
         return (
             <KeyboardAvoidingView style={{ ...styles }} behavior='position'>
-                <ScrollView style={utilis.child_container}>
-                    <Text style={utilis.text_header}>The basic</Text>
-                    <Text
-                        style={{
-                            ...utilis.text_sm,
-                            ...utilis.margin_bottom_lg
-                        }}
-                    >
-                        Give us a few details about yourself so we can identify
-                        you
-                    </Text>
-                    <View style={form.form_flex}>
-                        <View style={form.form_left}>
-                            <InputField
-                                autoFocus={true}
-                                onChangeText={text => {
-                                    this.handleText(text, "firstName");
-                                }}
-                                placeholder='First Name'
-                            />
-                        </View>
-
-                        <View style={form.form_right}>
-                            <InputField
-                                onChangeText={text => {
-                                    this.handleText(text, "lastName");
-                                }}
-                                placeholder='Last Name'
-                            />
-                        </View>
-                    </View>
-                    {base === "email" ? (
-                        <View style={form.form_control}>
-                            <InputField
-                                onChangeText={text => {
-                                    this.handleText(text, "mobile");
-                                }}
-                                placeholder='Mobile'
-                            />
-                        </View>
-                    ) : (
-                        <View style={form.form_control}>
-                            <InputField
-                                onChangeText={text => {
-                                    this.handleText(text, "email");
-                                }}
-                                placeholder='Email'
-                            />
-                        </View>
-                    )}
-
-                    <View style={form.form_control}>
-                        <InputField
-                            onChangeText={text => {
-                                this.handleText(text, "gender");
-                            }}
-                            placeholder='Gender'
-                        />
-                    </View>
-                    <View style={form.form_control}>
-                        <InputField
-                            onChangeText={text => {
-                                this.handleText(text, "password");
-                            }}
-                            placeholder='Set Password'
-                            secureTextEntry={true}
-                        />
-                    </View>
-
-                    <View style={form.form_control}>
-                        <InputField
-                            onChangeText={text => {
-                                this.handleText(text, "confirm");
-                            }}
-                            placeholder='Confirm Password'
-                            secureTextEntry={true}
-                        />
-                    </View>
-
-                    {!loading ? (
-                        <Button
-                            title='Continue'
-                            disabled={this.disableSubmit()}
-                            style={{ marginBottom: 10 }}
-                            onPress={() => {
-                                this.setState({ loading: true });
-                                props.userReg(
-                                    { ...this.state },
-                                    props.navigation.navigate
-                                );
-                            }}
-                        />
-                    ) : (
-                        <ActivityIndicator
-                            size='small'
-                            color='#fff'
+                <ScrollView>
+                    <View style={utilis.child_container}>
+                        <Text style={utilis.text_header}>The basic</Text>
+                        <Text
                             style={{
-                                marginBottom: 10,
-                                backgroundColor: "#121B74",
-                                paddingTop: 15,
-                                paddingBottom: 15,
-                                borderRadius: 5
+                                ...utilis.text_sm,
+                                ...utilis.margin_bottom_lg
                             }}
-                        />
-                    )}
+                        >
+                            Give us a few details about yourself so we can
+                            identify you
+                        </Text>
+                        <View style={form.form_flex}>
+                            <View style={form.form_left}>
+                                <InputField
+                                    autoFocus={true}
+                                    onChangeText={text => {
+                                        this.handleText(text, "firstName");
+                                    }}
+                                    placeholder='First Name'
+                                />
+                            </View>
+
+                            <View style={form.form_right}>
+                                <InputField
+                                    onChangeText={text => {
+                                        this.handleText(text, "lastName");
+                                    }}
+                                    placeholder='Last Name'
+                                />
+                            </View>
+                        </View>
+                        {base === "email" ? (
+                            <View style={form.form_control}>
+                                <InputField
+                                    onChangeText={text => {
+                                        this.handleText(text, "mobile");
+                                    }}
+                                    placeholder='Mobile'
+                                />
+                            </View>
+                        ) : (
+                            <View style={form.form_control}>
+                                <InputField
+                                    onChangeText={text => {
+                                        this.handleText(text, "email");
+                                    }}
+                                    placeholder='Email'
+                                />
+                            </View>
+                        )}
+
+                        <View style={form.form_control}>
+                            <InputField
+                                onChangeText={text => {
+                                    this.handleText(text, "gender");
+                                }}
+                                placeholder='Gender'
+                            />
+                        </View>
+                        <View style={form.form_control}>
+                            <InputField
+                                onChangeText={text => {
+                                    this.handleText(text, "password");
+                                }}
+                                placeholder='Set Password'
+                                secureTextEntry={true}
+                            />
+                        </View>
+
+                        <View style={form.form_control}>
+                            <InputField
+                                onChangeText={text => {
+                                    this.handleText(text, "confirm");
+                                }}
+                                placeholder='Confirm Password'
+                                secureTextEntry={true}
+                            />
+                        </View>
+
+                        <View style={form.form_control}>
+                            {!loading ? (
+                                <Button
+                                    title='Continue'
+                                    disabled={this.disableSubmit()}
+                                    style={{ marginBottom: 10 }}
+                                    onPress={() => {
+                                        this.setState({ loading: true });
+                                        props.userReg(
+                                            { ...this.state },
+                                            props.navigation.navigate
+                                        );
+                                    }}
+                                />
+                            ) : (
+                                <ActivityIndicator
+                                    size='small'
+                                    color='#fff'
+                                    style={{
+                                        marginBottom: 10,
+                                        backgroundColor: "#121B74",
+                                        paddingTop: 15,
+                                        paddingBottom: 15,
+                                        borderRadius: 5
+                                    }}
+                                />
+                            )}
+                        </View>
+                    </View>
                 </ScrollView>
             </KeyboardAvoidingView>
         );
