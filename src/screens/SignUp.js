@@ -67,7 +67,7 @@ class SignUp extends React.Component {
             : snackBarGen(props.errors);
 
         return (
-            <KeyboardAvoidingView behavior='position'>
+            <KeyboardAvoidingView style={{ ...styles }} behavior='position'>
                 <ScrollView style={utilis.child_container}>
                     <Text style={utilis.text_header}>The basic</Text>
                     <Text
