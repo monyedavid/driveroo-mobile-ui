@@ -3,19 +3,14 @@ import { connect } from "react-redux";
 import {
 	Image,
 	Text,
-	TextInput,
 	View,
-	Animated,
-	ScrollView,
 	ActivityIndicator,
-	Keyboard,
 } from "react-native";
 import "../styles/landing";
 import { utilis, textColor } from "../styles/core/utilis";
 import Button from "../components/Button";
 import { userMe } from "../resources/redux-actions/auth";
 import { KeyboardAvoidingView } from "react-native";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 import InputField from "../components/InputField";
 import { previousUser } from "../utils/on-boardin";
 
@@ -37,16 +32,6 @@ class HomeScreen extends React.Component {
 		this.imageRef = null;
 	}
 	
-	componentDidMount() {	
-	// this.keyboardWillShowSub = Keyboard.addListener(
-	// 	"keyboardWillShow",
-	// 	this.keyboardWillShow,
-	// );
-	// this.keyboardWillHideSub = Keyboard.addListener(
-	// 	"keyboardWillHide",
-	// 	this.keyboardWillHide,
-	// );
-	}
 
 	handleText(value, name) {
 		this.setState({
@@ -159,14 +144,8 @@ class HomeScreen extends React.Component {
 	render() {
 		const { loading, isPhone } = this.state;
 		return (
-			// <View style={[landing.container, { marginTop: -20 }]}>
-			<ScrollView
-				style={{ backgroundColor: "#fff" }}
-				resetScrollToCoords={{ x: 0, y: 0 }}
-				contentContainerStyle={landing.container}
-				scrollEnabled={true}
-				// extraHeight={50}
-				// extraScrollHeight={50}
+			<KeyboardAvoidingView
+				behavior="position"
 			>
 				<View
 					style={[landing.image_container]}
@@ -301,7 +280,7 @@ class HomeScreen extends React.Component {
 						) : null}
 					</View>
 				</View>
-			</ScrollView>
+			</KeyboardAvoidingView>
 		);
 	}
 }

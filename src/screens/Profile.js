@@ -10,6 +10,7 @@ import {
     ActivityIndicator
 } from "react-native";
 import InputField from "../components/InputField";
+import { KeyboardAvoidingView } from "react-native";
 import Button from "../components/Button";
 import { profileUpdatde } from "../resources/redux-actions/auth";
 import { utilis } from "../styles/core/utilis";
@@ -17,7 +18,6 @@ import * as ImagePicker from "expo-image-picker";
 import Constants from "expo-constants";
 import * as Permissions from "expo-permissions";
 import "../styles/core/utilis";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 
 class Profile extends Component {
     state = {
@@ -86,196 +86,203 @@ class Profile extends Component {
         const { loading } = this.state;
 
         return (
-            <ScrollView>
-                <View style={utilis.child_container}>
-                    <Text
-                        style={{
-                            ...utilis.text_header,
-                            ...utilis.margin_bottom_sm
-                        }}
-                    >
-                        Hello {auth.user.user.firstName}
-                    </Text>
-                    <Text
-                        style={{
-                            ...utilis.text_sm,
-                            ...utilis.margin_bottom_lg
-                        }}
-                    >
-                        Let us help you get verified on Driverroo
-                    </Text>
-
-                    <View style={{ ...styles.profile_pic, marginBottom: 25 }}>
-                        <Image
-                            source={
-                                this.state.avatar
-                                    ? { uri: this.state.avatar }
-                                    : require("../assets/images/dp.png")
-                            }
-                            style={
-                                this.state.avatar
-                                    ? styles.icon
-                                    : {
-                                          height: 100,
-                                          resizeMode: "contain",
-                                          flex: 1,
-                                          marginRight: 20
-                                      }
-                            }
-                        />
-
-                        <TouchableOpacity
-                            onPress={() => {
-                                this._pickImage("avatar");
+            <KeyboardAvoidingView behavior='position'>
+                <ScrollView>
+                    <View style={utilis.child_container}>
+                        <Text
+                            style={{
+                                ...utilis.text_header,
+                                ...utilis.margin_bottom_sm
                             }}
-                            style={
-                                ([styles.form_upload],
-                                {
-                                    flex: 2,
-                                    borderColor: "#A6AAB4",
-                                    borderWidth: 1,
-                                    padding: 17,
-                                    paddingBottom: 17,
-                                    alignItems: "center",
-                                    borderRadius: 5,
-                                    alignItems: "center"
-                                })
-                            }
                         >
-                            <Text
-                                style={{
-                                    fontSize: 14,
-                                    color: "#A6AAB4",
-                                    fontWeight: "600"
-                                }}
-                            >
-                                Upload a profile picture
-                            </Text>
-                        </TouchableOpacity>
-                    </View>
+                            Hello {auth.user.user.firstName}
+                        </Text>
+                        <Text
+                            style={{
+                                ...utilis.text_sm,
+                                ...utilis.margin_bottom_lg
+                            }}
+                        >
+                            Let us help you get verified on Driverroo
+                        </Text>
 
-                    <View style={form.form_flex}>
-                        <View style={form.form_left}>
-                            <InputField
-                                autoFocus={true}
-                                onChangeText={text => {
-                                    this.handleText(text, "dob");
+                        <View
+                            style={{ ...styles.profile_pic, marginBottom: 25 }}
+                        >
+                            <Image
+                                source={
+                                    this.state.avatar
+                                        ? { uri: this.state.avatar }
+                                        : require("../assets/images/dp.png")
+                                }
+                                style={
+                                    this.state.avatar
+                                        ? styles.icon
+                                        : {
+                                              height: 100,
+                                              resizeMode: "contain",
+                                              flex: 1,
+                                              marginRight: 20
+                                          }
+                                }
+                            />
+
+                            <TouchableOpacity
+                                onPress={() => {
+                                    this._pickImage("avatar");
                                 }}
-                                placeholder='Date of Birth'
+                                style={
+                                    ([styles.form_upload],
+                                    {
+                                        flex: 2,
+                                        borderColor: "#A6AAB4",
+                                        borderWidth: 1,
+                                        padding: 17,
+                                        paddingBottom: 17,
+                                        alignItems: "center",
+                                        borderRadius: 5,
+                                        alignItems: "center"
+                                    })
+                                }
+                            >
+                                <Text
+                                    style={{
+                                        fontSize: 14,
+                                        color: "#A6AAB4",
+                                        fontWeight: "600"
+                                    }}
+                                >
+                                    Upload a profile picture
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
+
+                        <View style={form.form_flex}>
+                            <View style={form.form_left}>
+                                <InputField
+                                    autoFocus={true}
+                                    onChangeText={text => {
+                                        this.handleText(text, "dob");
+                                    }}
+                                    placeholder='Date of Birth'
+                                />
+                            </View>
+
+                            <View style={form.form_right}>
+                                <InputField
+                                    onChangeText={text => {
+                                        this.handleText(
+                                            text,
+                                            "mothers_maiden_name"
+                                        );
+                                    }}
+                                    placeholder='Maiden name'
+                                />
+                            </View>
+                        </View>
+
+                        <View style={form.form_control}>
+                            <InputField
+                                onChangeText={text => {
+                                    this.handleText(text, "primary_location");
+                                }}
+                                placeholder='Your primary address?'
                             />
                         </View>
 
-                        <View style={form.form_right}>
+                        <View style={form.form_control}>
+                            <InputField
+                                onChangeText={text => {
+                                    this.handleText(text, "secondary_location");
+                                }}
+                                placeholder='Your secondary address?'
+                            />
+                        </View>
+
+                        <View style={form.form_control}>
+                            <InputField
+                                onChangeText={text => {
+                                    this.handleText(text, "tertiary_location");
+                                }}
+                                placeholder='Your tertiary address?'
+                            />
+                        </View>
+
+                        <View style={form.form_control}>
+                            <InputField
+                                onChangeText={text => {
+                                    this.handleText(text, "bvn");
+                                }}
+                                placeholder='What is your BVN?'
+                            />
+                        </View>
+
+                        <View style={form.form_control}>
                             <InputField
                                 onChangeText={text => {
                                     this.handleText(
                                         text,
-                                        "mothers_maiden_name"
+                                        "driverLisenceNumber"
                                     );
                                 }}
-                                placeholder='Maiden name'
+                                placeholder='Please provide your driver’s license number?'
                             />
                         </View>
-                    </View>
 
-                    <View style={form.form_control}>
-                        <InputField
-                            onChangeText={text => {
-                                this.handleText(text, "primary_location");
+                        <TouchableOpacity
+                            onPress={() => {
+                                this._pickImage("driversLisence");
                             }}
-                            placeholder='Your primary address?'
-                        />
-                    </View>
-
-                    <View style={form.form_control}>
-                        <InputField
-                            onChangeText={text => {
-                                this.handleText(text, "secondary_location");
-                            }}
-                            placeholder='Your secondary address?'
-                        />
-                    </View>
-
-                    <View style={form.form_control}>
-                        <InputField
-                            onChangeText={text => {
-                                this.handleText(text, "tertiary_location");
-                            }}
-                            placeholder='Your tertiary address?'
-                        />
-                    </View>
-
-                    <View style={form.form_control}>
-                        <InputField
-                            onChangeText={text => {
-                                this.handleText(text, "bvn");
-                            }}
-                            placeholder='What is your BVN?'
-                        />
-                    </View>
-
-                    <View style={form.form_control}>
-                        <InputField
-                            onChangeText={text => {
-                                this.handleText(text, "driverLisenceNumber");
-                            }}
-                            placeholder='Please provide your driver’s license number?'
-                        />
-                    </View>
-
-                    <TouchableOpacity
-                        onPress={() => {
-                            this._pickImage("driversLisence");
-                        }}
-                        style={[styles.form_upload]}
-                    >
-                        <Image
-                            source={
-                                this.state.driversLisence
-                                    ? { uri: this.state.driversLisence }
-                                    : require("../assets/images/add_icon.png")
-                            }
-                            style={styles.icon}
-                        />
-                        <Text style={{ fontSize: 16, color: "#A6AAB4" }}>
-                            Upload Driver’s License
-                        </Text>
-                    </TouchableOpacity>
-
-                    <View style={form.form_control}>
-                        {!loading ? (
-                            <Button
-                                title='Continue'
-                                style={{ marginBottom: 10 }}
-                                onPress={() => {
-                                    this.setState({ loading: true });
-                                    profileUpdatde(
-                                        {
-                                            ...this.state,
-                                            id: auth.user.user.id,
-                                            token: auth.user.token
-                                        },
-                                        this.handleText(),
-                                        this.props.navigation.navigate
-                                    );
-                                }}
+                            style={[styles.form_upload]}
+                        >
+                            <Image
+                                source={
+                                    this.state.driversLisence
+                                        ? { uri: this.state.driversLisence }
+                                        : require("../assets/images/add_icon.png")
+                                }
+                                style={styles.icon}
                             />
-                        ) : (
-                            <ActivityIndicator
-                                size='small'
-                                color='#fff'
-                                style={{
-                                    marginBottom: 10,
-                                    backgroundColor: "#121B74",
-                                    paddingTop: 15,
-                                    paddingBottom: 15,
-                                    borderRadius: 5
-                                }}
-                            />
-                        )}
+                            <Text style={{ fontSize: 16, color: "#A6AAB4" }}>
+                                Upload Driver’s License
+                            </Text>
+                        </TouchableOpacity>
+
+                        <View style={form.form_control}>
+                            {!loading ? (
+                                <Button
+                                    title='Continue'
+                                    style={{ marginBottom: 10 }}
+                                    onPress={() => {
+                                        this.setState({ loading: true });
+                                        profileUpdatde(
+                                            {
+                                                ...this.state,
+                                                id: auth.user.user.id,
+                                                token: auth.user.token
+                                            },
+                                            this.handleText(),
+                                            this.props.navigation.navigate
+                                        );
+                                    }}
+                                />
+                            ) : (
+                                <ActivityIndicator
+                                    size='small'
+                                    color='#fff'
+                                    style={{
+                                        marginBottom: 10,
+                                        backgroundColor: "#121B74",
+                                        paddingTop: 15,
+                                        paddingBottom: 15,
+                                        borderRadius: 5
+                                    }}
+                                />
+                            )}
+                        </View>
                     </View>
-                </View>
-            </ScrollView>
+                </ScrollView>
+            </KeyboardAvoidingView>
         );
     }
 }
