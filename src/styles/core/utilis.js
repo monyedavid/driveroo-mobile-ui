@@ -22,7 +22,7 @@ const styles = {
         width: "100%",
         marginLeft: "auto",
         marginRight: "auto",
-        paddingTop: 0
+        paddingTop: 50
     },
     child_container_lg: {
         maxWidth: "90%",

@@ -23,6 +23,7 @@ class SignUp extends React.Component {
         mobile: "",
         password: "",
         firstName: "",
+        confirm: "",
         lastName: "",
         dob: "",
         gender: "",
@@ -64,9 +65,18 @@ class SignUp extends React.Component {
             : snackBarGen(props.errors);
 
         return (
-            <KeyboardAvoidingView style={{ ...styles }} behavior='position'>
-                <ScrollView>
-                    <View style={utilis.child_container}>
+            <ScrollView style={utilis.child_container}>
+                <KeyboardAvoidingView
+                    style={{
+                        flex: 1,
+                        flexDirection: "column",
+                        justifyContent: "center"
+                    }}
+                    behavior='padding'
+                    enabled
+                    keyboardVerticalOffset={100}
+                >
+                    <View>
                         <Text style={utilis.text_header}>The basic</Text>
                         <Text
                             style={{
@@ -81,6 +91,7 @@ class SignUp extends React.Component {
                             <View style={form.form_left}>
                                 <InputField
                                     autoFocus={true}
+                                    value={this.state.firstName}
                                     onChangeText={text => {
                                         this.handleText(text, "firstName");
                                     }}
@@ -93,6 +104,7 @@ class SignUp extends React.Component {
                                     onChangeText={text => {
                                         this.handleText(text, "lastName");
                                     }}
+                                    value={this.state.lastName}
                                     placeholder='Last Name'
                                 />
                             </View>
@@ -100,6 +112,7 @@ class SignUp extends React.Component {
                         {base === "email" ? (
                             <View style={form.form_control}>
                                 <InputField
+                                    value={this.state.mobile}
                                     onChangeText={text => {
                                         this.handleText(text, "mobile");
                                     }}
@@ -109,6 +122,7 @@ class SignUp extends React.Component {
                         ) : (
                             <View style={form.form_control}>
                                 <InputField
+                                    value={this.state.email}
                                     onChangeText={text => {
                                         this.handleText(text, "email");
                                     }}
@@ -119,6 +133,7 @@ class SignUp extends React.Component {
 
                         <View style={form.form_control}>
                             <InputField
+                                value={this.state.gender}
                                 onChangeText={text => {
                                     this.handleText(text, "gender");
                                 }}
@@ -127,6 +142,7 @@ class SignUp extends React.Component {
                         </View>
                         <View style={form.form_control}>
                             <InputField
+                                value={this.state.password}
                                 onChangeText={text => {
                                     this.handleText(text, "password");
                                 }}
@@ -137,6 +153,7 @@ class SignUp extends React.Component {
 
                         <View style={form.form_control}>
                             <InputField
+                                value={this.state.confirm}
                                 onChangeText={text => {
                                     this.handleText(text, "confirm");
                                 }}
@@ -174,8 +191,8 @@ class SignUp extends React.Component {
                             )}
                         </View>
                     </View>
-                </ScrollView>
-            </KeyboardAvoidingView>
+                </KeyboardAvoidingView>
+            </ScrollView>
         );
     }
 }

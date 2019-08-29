@@ -86,16 +86,26 @@ class Profile extends Component {
         const { loading } = this.state;
 
         return (
-            <KeyboardAvoidingView behavior='position'>
-                <ScrollView>
-                    <View style={utilis.child_container}>
+            <ScrollView style={utilis.child_container}>
+                <KeyboardAvoidingView
+                    style={{
+                        flex: 1,
+                        flexDirection: "column",
+                        justifyContent: "center"
+                    }}
+                    behavior='padding'
+                    enabled
+                    keyboardVerticalOffset={100}
+                >
+                    <View>
                         <Text
                             style={{
                                 ...utilis.text_header,
                                 ...utilis.margin_bottom_sm
                             }}
                         >
-                            Hello {auth.user.user.firstName}
+                            Hello{" "}
+                            {/* Hello {auth.user && auth.user.user.firstName} */}
                         </Text>
                         <Text
                             style={{
@@ -161,6 +171,7 @@ class Profile extends Component {
                             <View style={form.form_left}>
                                 <InputField
                                     autoFocus={true}
+                                    value={this.state.dob}
                                     onChangeText={text => {
                                         this.handleText(text, "dob");
                                     }}
@@ -170,6 +181,7 @@ class Profile extends Component {
 
                             <View style={form.form_right}>
                                 <InputField
+                                    value={this.state.mothers_maiden_name}
                                     onChangeText={text => {
                                         this.handleText(
                                             text,
@@ -183,6 +195,7 @@ class Profile extends Component {
 
                         <View style={form.form_control}>
                             <InputField
+                                value={this.state.primary_location}
                                 onChangeText={text => {
                                     this.handleText(text, "primary_location");
                                 }}
@@ -192,6 +205,7 @@ class Profile extends Component {
 
                         <View style={form.form_control}>
                             <InputField
+                                value={this.state.secondary_location}
                                 onChangeText={text => {
                                     this.handleText(text, "secondary_location");
                                 }}
@@ -201,6 +215,7 @@ class Profile extends Component {
 
                         <View style={form.form_control}>
                             <InputField
+                                value={this.state.tertiary_location}
                                 onChangeText={text => {
                                     this.handleText(text, "tertiary_location");
                                 }}
@@ -210,6 +225,7 @@ class Profile extends Component {
 
                         <View style={form.form_control}>
                             <InputField
+                                value={this.state.bvn}
                                 onChangeText={text => {
                                     this.handleText(text, "bvn");
                                 }}
@@ -219,6 +235,7 @@ class Profile extends Component {
 
                         <View style={form.form_control}>
                             <InputField
+                                value={this.state.driverLisenceNumber}
                                 onChangeText={text => {
                                     this.handleText(
                                         text,
@@ -281,8 +298,8 @@ class Profile extends Component {
                             )}
                         </View>
                     </View>
-                </ScrollView>
-            </KeyboardAvoidingView>
+                </KeyboardAvoidingView>
+            </ScrollView>
         );
     }
 }
