@@ -10,7 +10,7 @@ import "../styles/landing";
 import { utilis, textColor } from "../styles/core/utilis";
 import Button from "../components/Button";
 import { userMe } from "../resources/redux-actions/auth";
-import { KeyboardAvoidingView } from "react-native";
+import { KeyboardAvoidingView, ScrollView } from "react-native";
 import InputField from "../components/InputField";
 import { previousUser } from "../utils/on-boardin";
 
@@ -147,6 +147,9 @@ class HomeScreen extends React.Component {
 			<KeyboardAvoidingView
 				behavior="position"
 			>
+				<ScrollView
+				style={[landing.container]}
+				>
 				<View
 					style={[landing.image_container]}
 					ref={el => (this.imageRef = el)}
@@ -280,6 +283,7 @@ class HomeScreen extends React.Component {
 						) : null}
 					</View>
 				</View>
+				</ScrollView>
 			</KeyboardAvoidingView>
 		);
 	}
