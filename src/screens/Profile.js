@@ -52,6 +52,7 @@ class Profile extends Component {
     }
 
     setLoadFalse = () => {
+        console.log("UPDATE LOADING | FALSe");
         this.setState({ loading: false });
     };
 
@@ -325,8 +326,8 @@ class Profile extends Component {
                                                     id: auth.user.user.id,
                                                     token: auth.user.token
                                                 },
-                                                this.setLoadFalse,
-                                                this.props.navigation.navigate
+                                                this.props.navigation.navigate,
+                                                this.setLoadFalse
                                             );
                                         }}
                                     />

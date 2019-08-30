@@ -150,7 +150,8 @@ export const userReg = (
                 userLogin(
                     {
                         emailormobile: userdata.email,
-                        password: userdata.password
+                        password: userdata.password,
+                        isEmail: true
                     },
                     navigation
                 )
@@ -177,19 +178,19 @@ export const userLogout = () => async dispatch => {
 
 export const profileUpdatde = (
     userData,
-    setLoading,
-    navigation
+    navigation,
+    setLoading
 ) => async dispatch => {
     try {
-        const service = new g_Auth();
-        const { data } = await service.updateProfile({
+        const service = new g_Auth(url);
+        const req = await service.updateProfile({
             ...userData
         });
 
+        const { data } = req;
         const { ok, error } = data.data.firstUpdate;
 
         setLoading();
-
         // ERROR HANDLING
         if (!ok) {
             return dispatch({

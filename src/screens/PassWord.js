@@ -67,8 +67,6 @@ class PasswordScreen extends React.Component {
             ? null
             : snackBarGen(props.errors);
 
-        console.log(displayTheSnack$, "| FROM PASSWORD>JS");
-
         return (
             <React.Fragment>
                 {displayTheSnack$ &&
