@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "driveroo-build-6.0.5.2.1",
-    "slug": "driverro-v-6-0-5-2-1",
+    "name": "driveroo-build-6.0.5.2.2",
+    "slug": "driverro-v-6-0-5-2-2",
     "privacy": "public",
     "sdkVersion": "34.0.0",
     "platforms": [
@@ -30,7 +30,7 @@
     "android": {
       "package": "com.driverroo.driverroo"
     },
-    "description": "KeyBoard VIEW ",
+    "description": "Android Optimizations",
     "githubUrl": "https://github.com/rasheeddavid/driveroo-mobile-ui.git"
   }
 }
