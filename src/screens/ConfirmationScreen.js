@@ -66,6 +66,10 @@ class ConfirmationScrenn extends React.Component {
     }
 }
 
+ConfirmationScrenn.navigationOptions = {
+    headers: null
+};
+
 const map_state_to_props = state => ({
     auth: state.auth
 });

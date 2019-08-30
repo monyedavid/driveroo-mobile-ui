@@ -115,7 +115,11 @@ export const set_current_user = userdata => {
     };
 };
 
-export const userReg = (userdata, navigation) => async dispatch => {
+export const userReg = (
+    userdata,
+    navigation,
+    setLoadFalse
+) => async dispatch => {
     dispatch({ type: CLEAR_ERRORS });
     dispatch({ type: CLEAR_TOASTS });
     try {
@@ -127,6 +131,8 @@ export const userReg = (userdata, navigation) => async dispatch => {
 
         const { ok, error, success } = data.data.register;
         // ERROR HANDLING
+        //  UPDATE LOADING
+        setLoadFalse();
         if (!ok) {
             return dispatch({
                 type: GET_ERRORS,

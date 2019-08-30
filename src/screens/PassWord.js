@@ -17,7 +17,6 @@ import { userLogin } from "../resources/redux-actions/auth";
 import { clearErrors } from "../resources/redux-actions/shared";
 import "../styles/core/utilis";
 import { utilis } from "../styles/core/utilis";
-
 import { Snackbar } from "react-native-material-ui";
 
 class PasswordScreen extends React.Component {
@@ -25,7 +24,6 @@ class PasswordScreen extends React.Component {
         password: "",
         hidden: false,
         load: "",
-        snackbar: true,
         loading: false
     };
 
@@ -56,13 +54,6 @@ class PasswordScreen extends React.Component {
         }
 
         this.setState({ loading: false });
-    };
-
-    snackbarClose = (e, reason) => {
-        if (reason === "clickaway") {
-            return;
-        }
-        this.setState({ snackbar: false });
     };
 
     render() {
