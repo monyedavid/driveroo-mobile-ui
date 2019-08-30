@@ -1,11 +1,14 @@
 import * as React from "react";
-import { View, StyleSheet, Image, Text } from "react-native";
-import moment from "moment-timer";
+import {
+    View,
+    StyleSheet,
+    Text,
+    KeyboardAvoidingView,
+    ScrollView
+} from "react-native";
 import InputField from "../components/InputField";
 import Button from "../components/Button";
 import "../styles/core/utilis";
-import Timer from "../components/Timer";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 import { utilis, textColor } from "../styles/core/utilis";
 
 export default function OtpVerification(props) {
@@ -36,14 +39,17 @@ export default function OtpVerification(props) {
     };
 
     return (
-        <KeyboardAwareScrollView
-            resetScrollToCoords={{ x: 0, y: 0 }}
-            contentContainerStyle={styles.container}
-            scrollEnabled={true}
-            // extraHeight={50}
-            // extraScrollHeight={50}
-        >
-            <View style={utilis.child_container}>
+        <ScrollView style={utilis.child_container_password}>
+            <KeyboardAvoidingView
+                style={{
+                    flex: 1,
+                    flexDirection: "column",
+                    justifyContent: "center"
+                }}
+                behavior='padding'
+                enabled
+                keyboardVerticalOffset={100}
+            >
                 <View style={styles.top}>
                     <Text
                         style={{
@@ -73,6 +79,7 @@ export default function OtpVerification(props) {
                     onChangeText={text => {
                         setCode(text);
                     }}
+                    value={code}
                     placeholder='Enter Code'
                     style={{ marginBottom: 50 }}
                 />
@@ -101,7 +108,7 @@ export default function OtpVerification(props) {
                 />
                 <Button
                     onPress={() => {
-                        props.navigation.navigate("Home", {
+                        props.navigation.navigate("Landing", {
                             fromOtp: true
                         });
                     }}
@@ -113,8 +120,8 @@ export default function OtpVerification(props) {
                     By signing up, you confirm that you agree to our Terms of
                     Use and have read and understood our Privacy Policy
                 </Text>
-            </View>
-        </KeyboardAwareScrollView>
+            </KeyboardAvoidingView>
+        </ScrollView>
     );
 }
 

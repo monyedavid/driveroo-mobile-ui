@@ -4,7 +4,7 @@ import Drawer from "../components/Drawer";
 import HomeScreen from "../screens/HomeScreen";
 import OtpVerifications from "../screens/OtpVerfications";
 import SignUp from "../screens/SignUp";
-import SocialLogin from "../screens/SocialLogin";
+// import SocialLogin from "../screens/SocialLogin";
 import Profile from "../screens/Profile";
 import VerificationScreen from "../screens/VerificationScreen";
 import ConfirmationScreen from "../screens/ConfirmationScreen";
@@ -35,9 +35,7 @@ const AppNavigator = createStackNavigator(
         PassWord: {
             screen: PassWordScreen
         },
-        SocialLogin: {
-            screen: SocialLogin
-        },
+
         Profile: {
             screen: Profile
         },

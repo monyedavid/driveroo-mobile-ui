@@ -186,6 +186,7 @@ class HomeScreen extends React.Component {
 								onChangeText={text => {
 									this.handleText(text, "mobile");
 								}}
+								autoCapitalize='none'
 								value={this.state.mobile}
 								placeholder="Enter Phone Number"
 								keyboardType="phone-pad"
@@ -193,6 +194,7 @@ class HomeScreen extends React.Component {
 						) : (
 							<InputField
 								keyboardType="email-address"
+								autoCapitalize='none'
 								value={this.state.email}
 								onChangeText={text => {
 									this.handleText(text, "email");
@@ -290,6 +292,8 @@ class HomeScreen extends React.Component {
 		);
 	}
 }
+
+
 
 const map_state_to_props = state => ({
 	auth: state.auth,

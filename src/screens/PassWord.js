@@ -14,14 +14,18 @@ import { KeyboardAvoidingView } from "react-native";
 import isEmpty from "../utils/is.empty";
 import { snackBarGen } from "../utils/errors/errorHandler";
 import { userLogin } from "../resources/redux-actions/auth";
+import { clearErrors } from "../resources/redux-actions/shared";
 import "../styles/core/utilis";
 import { utilis } from "../styles/core/utilis";
+
+import { Snackbar } from "react-native-material-ui";
 
 class PasswordScreen extends React.Component {
     state = {
         password: "",
+        hidden: false,
         load: "",
-        snackbar: "",
+        snackbar: true,
         loading: false
     };
 
@@ -58,7 +62,7 @@ class PasswordScreen extends React.Component {
         if (reason === "clickaway") {
             return;
         }
-        setSnackbar(false);
+        this.setState({ snackbar: false });
     };
 
     render() {
@@ -67,76 +71,105 @@ class PasswordScreen extends React.Component {
             state: { loading }
         } = this;
         const userdata = props.navigation.getParam("userdata", "");
+
         displayTheSnack$ = isEmpty(props.errors)
             ? null
             : snackBarGen(props.errors);
 
+        console.log(displayTheSnack$, "| FROM PASSWORD>JS");
+
         return (
-            <ScrollView style={utilis.child_container_password}>
-                <KeyboardAvoidingView
-                    style={{
-                        flex: 1,
-                        flexDirection: "column",
-                        justifyContent: "center"
-                    }}
-                    behavior='padding'
-                    enabled
-                    keyboardVerticalOffset={100}
-                >
-                    <View style={styles.top}>
-                        <Text
-                            style={{
-                                ...utilis.text_header,
-                                ...utilis.margin_bottom_sm
+            <React.Fragment>
+                {displayTheSnack$ &&
+                    displayTheSnack$.map(({ message, variant }, i) => (
+                        <Snackbar
+                            key={i}
+                            visible={true}
+                            timeout={500}
+                            bottomNavigation={true}
+                            message={message}
+                            onPress={() => props.clearErrors()}
+                            onRequestClose={() => {
+                                props.clearErrors();
                             }}
-                        >
-                            Enter your password
-                        </Text>
-                        <Text
                             style={{
-                                ...utilis.text_sm,
-                                ...utilis.margin_bottom_sm
+                                container: {
+                                    backgroundColor:
+                                        variant === "error" ? "red" : "green"
+                                }
                             }}
-                        >
-                            Welcome {userdata && userdata.firstName}. Please
-                            enter your password to continue
-                        </Text>
-                    </View>
-
-                    <InputField
-                        onChangeText={text => {
-                            this.handleText(text, "password");
+                        />
+                    ))}
+                <ScrollView style={utilis.child_container_password}>
+                    <KeyboardAvoidingView
+                        style={{
+                            flex: 1,
+                            flexDirection: "column",
+                            justifyContent: "center"
                         }}
-                        value={this.state.password}
-                        placeholder='********'
-                        style={{ marginBottom: 50 }}
-                    />
+                        behavior='padding'
+                        enabled
+                        keyboardVerticalOffset={100}
+                    >
+                        <View style={styles.top}>
+                            <Text
+                                style={{
+                                    ...utilis.text_header,
+                                    ...utilis.margin_bottom_sm
+                                }}
+                            >
+                                Enter your password
+                            </Text>
+                            <Text
+                                style={{
+                                    ...utilis.text_sm,
+                                    ...utilis.margin_bottom_sm
+                                }}
+                            >
+                                Welcome {userdata && userdata.firstName}. Please
+                                enter your password to continue
+                            </Text>
+                        </View>
 
-                    {!loading ? (
-                        <Button
-                            title='Continue'
-                            disabled={this.state.password === "" ? true : false}
-                            onPress={() => {
-                                this.setState({ loading: true });
-                                this.handleSubmit();
+                        <InputField
+                            onChangeText={text => {
+                                this.handleText(text, "password");
                             }}
-                            style={{ marginBottom: 10 }}
+                            autoCapitalize='none'
+                            value={this.state.password}
+                            secureTextEntry={this.state.hidden}
+                            placeholder='********'
+                            style={{ marginBottom: 50 }}
                         />
-                    ) : (
-                        <ActivityIndicator
-                            size='small'
-                            color='#fff'
-                            style={{
-                                marginBottom: 10,
-                                backgroundColor: "#121B74",
-                                paddingTop: 15,
-                                paddingBottom: 15,
-                                borderRadius: 5
-                            }}
-                        />
-                    )}
-                </KeyboardAvoidingView>
-            </ScrollView>
+
+                        {!loading ? (
+                            <Button
+                                title='Continue'
+                                disabled={
+                                    this.state.password === "" ? true : false
+                                }
+                                onPress={() => {
+                                    this.setState({ loading: true });
+                                    this.handleSubmit();
+                                }}
+                                style={{ marginBottom: 10 }}
+                            />
+                        ) : (
+                            <ActivityIndicator
+                                size='small'
+                                color='#fff'
+                                style={{
+                                    marginBottom: 10,
+                                    backgroundColor: "#121B74",
+                                    paddingTop: 15,
+                                    paddingBottom: 15,
+                                    borderRadius: 5
+                                }}
+                            />
+                        )}
+                    </KeyboardAvoidingView>
+                </ScrollView>
+            </React.Fragment>
         );
     }
 }
@@ -159,5 +192,5 @@ const map_state_to_props = ({ auth, errors }) => ({
 
 export default connect(
     map_state_to_props,
-    { userLogin }
+    { userLogin, clearErrors }
 )(PasswordScreen);

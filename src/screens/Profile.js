@@ -86,7 +86,10 @@ class Profile extends Component {
         const { loading } = this.state;
 
         return (
-            <ScrollView style={utilis.child_container}>
+            <ScrollView
+                showsHorizontalScrollIndicato={false}
+                style={utilis.child_container}
+            >
                 <KeyboardAvoidingView
                     style={{
                         flex: 1,
@@ -95,7 +98,7 @@ class Profile extends Component {
                     }}
                     behavior='padding'
                     enabled
-                    keyboardVerticalOffset={100}
+                    keyboardVerticalOffset={150}
                 >
                     <View>
                         <Text
@@ -104,8 +107,7 @@ class Profile extends Component {
                                 ...utilis.margin_bottom_sm
                             }}
                         >
-                            Hello{" "}
-                            {/* Hello {auth.user && auth.user.user.firstName} */}
+                            Hello {auth.user && auth.user.user.firstName}
                         </Text>
                         <Text
                             style={{
@@ -305,8 +307,8 @@ class Profile extends Component {
 }
 
 Profile.navigationOptions = {
-    headers: null
-    // headerLeft: "back",
+    headers: null,
+    drawerLockMode: "locked-closed"
 };
 
 const styles = StyleSheet.create({

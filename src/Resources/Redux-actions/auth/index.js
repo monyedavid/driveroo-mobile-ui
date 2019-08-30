@@ -18,7 +18,7 @@ export const userLogin = (
         const service = new g_Auth(url);
         const { data } = await service.login({ emailormobile, password });
 
-        console.log(data, "data");
+        // console.log(data, "data");
 
         const {
             path,
