@@ -237,7 +237,7 @@ SignUp.navigationOptions = {
 
 const map_state_to_props = ({ auth, errors }) => ({
     isAuthenticated: auth.isAuthenticated,
-    errors: errors
+    errors
 });
 
 export default connect(

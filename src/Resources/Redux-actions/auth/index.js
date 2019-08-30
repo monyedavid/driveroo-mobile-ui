@@ -188,7 +188,7 @@ export const profileUpdatde = (
 
         const { ok, error } = data.data.firstUpdate;
 
-        setLoading(false, "loading");
+        setLoading();
 
         // ERROR HANDLING
         if (!ok) {
@@ -200,8 +200,7 @@ export const profileUpdatde = (
 
         // SUCCESS MODE
         if (ok) {
-            navigation("HomePage");
-            return dispatch({
+            dispatch({
                 type: GET_TOASTS,
                 payload: [
                     {
@@ -210,6 +209,8 @@ export const profileUpdatde = (
                     }
                 ]
             });
+
+            return navigation("HomePage");
         }
     } catch (error) {
         dispatch({
