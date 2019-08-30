@@ -24,6 +24,13 @@ const styles = {
         marginRight: "auto",
         paddingTop: 50
     },
+    child_container_password: {
+        maxWidth: "80%",
+        width: "100%",
+        marginLeft: "auto",
+        marginRight: "auto",
+        paddingTop: 10
+    },
     child_container_lg: {
         maxWidth: "90%",
         width: "100%",

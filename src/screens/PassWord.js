@@ -2,20 +2,20 @@ import * as React from "react";
 import { connect } from "react-redux";
 import {
     View,
+    ScrollView,
     StyleSheet,
     Text,
-    ActivityIndicator,
-    Keyboard
+    ActivityIndicator
 } from "react-native";
 import InputField from "../components/InputField";
 import Button from "../components/Button";
-import { Snackbar } from "react-native-material-ui";
+// import { Snackbar } from "react-native-material-ui";
+import { KeyboardAvoidingView } from "react-native";
 import isEmpty from "../utils/is.empty";
 import { snackBarGen } from "../utils/errors/errorHandler";
 import { userLogin } from "../resources/redux-actions/auth";
 import "../styles/core/utilis";
 import { utilis } from "../styles/core/utilis";
-import { ToastAndroid } from "react-native";
 
 class PasswordScreen extends React.Component {
     state = {
@@ -72,8 +72,17 @@ class PasswordScreen extends React.Component {
             : snackBarGen(props.errors);
 
         return (
-            <View style={styles.container}>
-                <View style={utilis.child_container}>
+            <ScrollView style={utilis.child_container_password}>
+                <KeyboardAvoidingView
+                    style={{
+                        flex: 1,
+                        flexDirection: "column",
+                        justifyContent: "center"
+                    }}
+                    behavior='padding'
+                    enabled
+                    keyboardVerticalOffset={100}
+                >
                     <View style={styles.top}>
                         <Text
                             style={{
@@ -98,6 +107,7 @@ class PasswordScreen extends React.Component {
                         onChangeText={text => {
                             this.handleText(text, "password");
                         }}
+                        value={this.state.password}
                         placeholder='********'
                         style={{ marginBottom: 50 }}
                     />
@@ -125,8 +135,8 @@ class PasswordScreen extends React.Component {
                             }}
                         />
                     )}
-                </View>
-            </View>
+                </KeyboardAvoidingView>
+            </ScrollView>
         );
     }
 }
