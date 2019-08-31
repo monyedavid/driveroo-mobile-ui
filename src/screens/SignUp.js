@@ -52,7 +52,6 @@ class SignUp extends React.Component {
     };
 
     disableSubmit = () => {
-        console.log(this.state, "STATE DATA");
         if (
             this.state.email === "" ||
             this.state.mobile === "" ||

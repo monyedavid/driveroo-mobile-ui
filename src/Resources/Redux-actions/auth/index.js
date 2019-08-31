@@ -125,9 +125,13 @@ export const userReg = (
     try {
         const service = new g_Auth(url);
 
-        const { data } = await service.register({
+        const req = await service.register({
             ...userdata
         });
+
+        console.log(req, ":REQ");
+
+        const { data } = req;
 
         const { ok, error, success } = data.data.register;
         // ERROR HANDLING
@@ -158,6 +162,7 @@ export const userReg = (
             );
         }
     } catch (error) {
+        console.log(error, ":ERROR?");
         dispatch({
             type: GET_ERRORS,
             payload: [
