@@ -120,10 +120,12 @@ class Profile extends Component {
                     ))}
                 <ScrollView
                     showsHorizontalScrollIndicato={false}
-                    style={utilis.child_container}
+                    style={{...utilis.child_container}}
+                    showsVerticalScrollIndicator={false}
                 >
-                    <KeyboardAvoidingView
+                    {/* <KeyboardAvoidingView
                         style={{
+                            ...utilis.child_container,
                             flex: 1,
                             flexDirection: "column",
                             justifyContent: "center"
@@ -131,7 +133,7 @@ class Profile extends Component {
                         behavior='padding'
                         enabled
                         keyboardVerticalOffset={150}
-                    >
+                    > */}
                         <View>
                             <Text
                                 style={{
@@ -139,7 +141,7 @@ class Profile extends Component {
                                     ...utilis.margin_bottom_sm
                                 }}
                             >
-                                Hello {auth.user && auth.user.user.firstName}
+                                Hello {auth && auth.user && auth.user.user.firstName}
                             </Text>
                             <Text
                                 style={{
@@ -288,6 +290,7 @@ class Profile extends Component {
                                             "driverLisenceNumber"
                                         );
                                     }}
+                                    
                                     placeholder='Please provide your driver’s license number?'
                                 />
                             </View>
@@ -313,7 +316,7 @@ class Profile extends Component {
                                 </Text>
                             </TouchableOpacity>
 
-                            <View style={form.form_control}>
+                            <View style={{...form.form_control , marginBottom : 100}}>
                                 {!loading ? (
                                     <Button
                                         title='Continue'
@@ -346,7 +349,7 @@ class Profile extends Component {
                                 )}
                             </View>
                         </View>
-                    </KeyboardAvoidingView>
+                    {/* </KeyboardAvoidingView> */}
                 </ScrollView>
             </React.Fragment>
         );
