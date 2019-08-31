@@ -142,7 +142,7 @@ class Profile extends Component {
                             }}
                         >
                             Hello{" "}
-                            {auth && auth.user && auth.user.user.firstName}
+                            {/* {auth && auth.user && auth.user.user.firstName} */}
                         </Text>
                         <Text
                             style={{

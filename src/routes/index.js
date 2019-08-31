@@ -35,7 +35,6 @@ const AppNavigator = createStackNavigator(
         PassWord: {
             screen: PassWordScreen
         },
-
         Profile: {
             screen: Profile
         },

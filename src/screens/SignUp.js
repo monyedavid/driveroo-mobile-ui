@@ -97,7 +97,11 @@ class SignUp extends React.Component {
                             }}
                         />
                     ))}
-                <ScrollView style={utilis.child_container}>
+                <ScrollView
+                    showsVerticalScrollIndicator={false}
+                    showsHorizontalScrollIndicato={false}
+                    style={utilis.child_container}
+                >
                     <KeyboardAvoidingView
                         style={{
                             flex: 1,
