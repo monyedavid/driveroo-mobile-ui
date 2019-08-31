@@ -23,31 +23,31 @@ const AppNavigator = createStackNavigator(
 		// Board: {
 		//     screen: OnBoardScreen
 		// },
-		// Landing: {
-		//     screen: HomeScreen
-		// },
-		// SignUp: {
-		// 	screen: SignUp,
-		// },
-		// OTP: {
-		// 	screen: OtpVerifications,
-		// },
-		// PassWord: {
-		// 	screen: PassWordScreen,
-		// },
+		Landing: {
+			screen: HomeScreen,
+		},
+		SignUp: {
+			screen: SignUp,
+		},
+		OTP: {
+			screen: OtpVerifications,
+		},
+		PassWord: {
+			screen: PassWordScreen,
+		},
 
-		// Profile: {
-		// 	screen: Profile,
-		// },
-		// Verification: {
-		// 	screen: VerificationScreen,
-		// },
-		// ResetPassword: {
-		// 	screen: ResetPassword,
-		// },
-		// Confirmation: {
-		// 	screen: ConfirmationScreen,
-		// },
+		Profile: {
+			screen: Profile,
+		},
+		Verification: {
+			screen: VerificationScreen,
+		},
+		ResetPassword: {
+			screen: ResetPassword,
+		},
+		Confirmation: {
+			screen: ConfirmationScreen,
+		},
 		Status: {
 			screen: Status,
 		},
