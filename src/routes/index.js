@@ -13,82 +13,82 @@ import PassWordScreen from "../screens/PassWord";
 import Status from "../screens/user/Status";
 import Home from "../screens/user/Home";
 import {
-	createStackNavigator,
-	createAppContainer,
-	createDrawerNavigator,
+    createStackNavigator,
+    createAppContainer,
+    createDrawerNavigator
 } from "react-navigation";
 
 const AppNavigator = createStackNavigator(
-	{
-		// Board: {
-		//     screen: OnBoardScreen
-		// },
-		Landing: {
-			screen: HomeScreen,
-		},
-		SignUp: {
-			screen: SignUp,
-		},
-		OTP: {
-			screen: OtpVerifications,
-		},
-		PassWord: {
-			screen: PassWordScreen,
-		},
+    {
+        // Board: {
+        //     screen: OnBoardScreen
+        // },
+        Landing: {
+            screen: HomeScreen
+        },
+        SignUp: {
+            screen: SignUp
+        },
+        OTP: {
+            screen: OtpVerifications
+        },
+        PassWord: {
+            screen: PassWordScreen
+        },
 
-		Profile: {
-			screen: Profile,
-		},
-		Verification: {
-			screen: VerificationScreen,
-		},
-		ResetPassword: {
-			screen: ResetPassword,
-		},
-		Confirmation: {
-			screen: ConfirmationScreen,
-		},
-		Status: {
-			screen: Status,
-		},
-		HomePage: {
-			screen: Home,
-		},
-	},
-	{
-		// initialRouteName: "Profile",
-		defaultNavigationOptions: {
-			headerStyle: {
-				backgroundColor: "#fff",
-				borderBottomColor: "#f3f3f3",
-				borderBottomWidth: 4,
-			},
-			headerTitleStyle: {
-				fontWeight: "bold",
-				fontSize: 18,
-				color: "#121B74",
-			},
-		},
-	},
+        Profile: {
+            screen: Profile
+        },
+        Verification: {
+            screen: VerificationScreen
+        },
+        ResetPassword: {
+            screen: ResetPassword
+        },
+        Confirmation: {
+            screen: ConfirmationScreen
+        },
+        Status: {
+            screen: Status
+        },
+        HomePage: {
+            screen: Home
+        }
+    },
+    {
+        // initialRouteName: "Profile",
+        defaultNavigationOptions: {
+            headerStyle: {
+                backgroundColor: "#fff",
+                borderBottomColor: "#f3f3f3",
+                borderBottomWidth: 4
+            },
+            headerTitleStyle: {
+                fontWeight: "bold",
+                fontSize: 18,
+                color: "#121B74"
+            }
+        }
+    }
 );
 
 const DrawerNavigator = createDrawerNavigator(
-	{
-		App: {
-			screen: AppNavigator,
-		},
-	},
-	{
-		hideStatusBar: true,
-		drawerBackgroundColor: "rgba(255,255,255,.9)",
-		// overlayColor: "#6b52ae",
-		drawerWidth: 350,
-		contentComponent: Drawer,
-		contentOptions: {
-			activeTintColor: "#fff",
-			activeBackgroundColor: "#6b52ae",
-		},
-	},
+    {
+        App: {
+            screen: AppNavigator
+        }
+    },
+    {
+        hideStatusBar: true,
+        drawerBackgroundColor: "rgba(255,255,255,.9)",
+        // overlayColor: "#6b52ae",
+        drawerWidth: 350,
+        contentComponent: Drawer,
+        contentOptions: {
+            activeTintColor: "#fff",
+            activeBackgroundColor: "#6b52ae"
+        }
+    }
 );
 
 export default createAppContainer(DrawerNavigator);
