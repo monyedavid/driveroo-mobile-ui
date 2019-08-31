@@ -9,10 +9,8 @@ import { userLogout } from "../resources/redux-actions/auth";
 class ConfirmationScrenn extends React.Component {
     componentDidUpdate() {
         if (this.props.auth.isAuthenticated) {
-            console.log("do nothing");
             return;
         }
-
         console.log("go to home");
     }
 
