@@ -1,19 +1,14 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import {
-    View,
-    StyleSheet,
-    Text,
-    ActivityIndicator,
-    ScrollView
-} from "react-native";
-import InputField from "../components/InputField";
+import { View, Text, ActivityIndicator, ScrollView } from "react-native";
+import InputField, { inputstyles } from "../components/InputField";
 import Button from "../components/Button";
 import isEmpty from "../utils/is.empty";
 import { snackBarGen } from "../utils/errors/errorHandler";
 import { userReg } from "../resources/redux-actions/auth";
 import { KeyboardAvoidingView } from "react-native";
 import { Snackbar } from "react-native-material-ui";
+import { Dropdown } from "react-native-material-dropdown";
 import { clearErrors } from "../resources/redux-actions/shared";
 import "../styles/core/utilis";
 import "../styles/core/form";
@@ -73,6 +68,18 @@ class SignUp extends React.Component {
         displayTheSnack$ = isEmpty(props.errors)
             ? null
             : snackBarGen(props.errors);
+
+        let data = [
+            {
+                value: "Male"
+            },
+            {
+                value: "Female"
+            },
+            {
+                value: "Rather not say"
+            }
+        ];
 
         return (
             <React.Fragment>
@@ -166,15 +173,13 @@ class SignUp extends React.Component {
                                 </View>
                             )}
 
-                            <View style={form.form_control}>
-                                <InputField
-                                    value={this.state.gender}
-                                    onChangeText={text => {
-                                        this.handleText(text, "gender");
-                                    }}
-                                    placeholder='Gender'
-                                />
-                            </View>
+                            <Dropdown
+                                overlayStyle={{ paddingTop: 60 }}
+                                containerStyle={form.form_control}
+                                label='Gender'
+                                data={data}
+                            />
+
                             <View style={form.form_control}>
                                 <InputField
                                     value={this.state.password}

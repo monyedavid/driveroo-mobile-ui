@@ -73,7 +73,7 @@ export class g_Auth {
      * @param {*} model
      */
     async register(
-        { email, password, mobile, firstName, lastName },
+        { email, password, mobile, firstName, lastName, gender },
         model = "driver"
     ) {
         return rps.post(this.url, {
@@ -86,7 +86,7 @@ export class g_Auth {
                             mobile: "${mobile}",
                             firstName: "${firstName}",
                             lastName: "${lastName}",
-                        
+                            gender: "${gender}"                 
                         },
                             model: "${model}"
                         ) {
