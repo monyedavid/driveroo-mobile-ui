@@ -129,8 +129,6 @@ export const userReg = (
             ...userdata
         });
 
-        console.log(req, ":REQ");
-
         const { data } = req;
 
         const { ok, error, success } = data.data.register;
@@ -162,7 +160,6 @@ export const userReg = (
             );
         }
     } catch (error) {
-        console.log(error, ":ERROR?");
         dispatch({
             type: GET_ERRORS,
             payload: [
