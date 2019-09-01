@@ -26,15 +26,15 @@ const AppNavigator = createStackNavigator(
         // Landing: {
         //     screen: HomeScreen
         // },
-        SignUp: {
-            screen: SignUp
-        },
-        OTP: {
-            screen: OtpVerifications
-        },
-        PassWord: {
-            screen: PassWordScreen
-        },
+        // SignUp: {
+        //     screen: SignUp
+        // },
+        // OTP: {
+        //     screen: OtpVerifications
+        // },
+        // PassWord: {
+        //     screen: PassWordScreen
+        // },
         Profile: {
             screen: Profile
         },

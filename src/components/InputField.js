@@ -1,6 +1,6 @@
-import * as WebBrowser from "expo-web-browser";
 import React, { useState } from "react";
-import { TextInput, StyleSheet } from "react-native";
+import { View, TextInput, StyleSheet } from "react-native";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 export default function Input(props) {
     const [focus, setFocus] = useState(true);
@@ -23,6 +23,44 @@ export default function Input(props) {
                 setFocus(true);
             }}
         />
+    );
+}
+
+export function DateInput(props) {
+    const [focus, setFocus] = useState(true);
+    const calenderIcon = (
+        <Icon
+            name='calendar'
+            size={30}
+            onPress={() => {
+                props.showDateTimePicker();
+            }}
+            color='#121B74'
+        />
+    );
+
+    return (
+        <View
+            style={[
+                !focus ? inputstyles.field_inactive : inputstyles.field,
+                { ...props.style }
+            ]}
+        >
+            {calenderIcon}
+            <TextInput
+                {...props}
+                placeholderTextColor='#A6AAB4'
+                ref={props.inputRef}
+                autoCapitalize='none'
+                autoComplete='off'
+                onBlur={() => {
+                    setFocus(false);
+                }}
+                onFocus={() => {
+                    setFocus(true);
+                }}
+            />
+        </View>
     );
 }
 

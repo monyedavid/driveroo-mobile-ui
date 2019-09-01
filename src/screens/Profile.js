@@ -9,7 +9,7 @@ import {
     TouchableOpacity,
     ActivityIndicator
 } from "react-native";
-import InputField from "../components/InputField";
+import InputField, { DateInput } from "../components/InputField";
 import { KeyboardAvoidingView } from "react-native";
 import Button from "../components/Button";
 import { profileUpdatde } from "../resources/redux-actions/auth";
@@ -19,6 +19,8 @@ import { snackBarGen } from "../utils/errors/errorHandler";
 import { clearErrors } from "../resources/redux-actions/shared";
 import { utilis } from "../styles/core/utilis";
 import * as ImagePicker from "expo-image-picker";
+import DateTimePicker from "react-native-modal-datetime-picker";
+
 import Constants from "expo-constants";
 import * as Permissions from "expo-permissions";
 import "../styles/core/utilis";
@@ -38,7 +40,8 @@ class Profile extends Component {
         bvn: "",
         dob: "",
         mothers_maiden_name: "",
-        loading: false
+        loading: false,
+        isDateTimePickerVisible: false
     };
 
     componentDidMount() {
@@ -54,6 +57,19 @@ class Profile extends Component {
     setLoadFalse = () => {
         console.log("UPDATE LOADING | FALSe");
         this.setState({ loading: false });
+    };
+
+    showDateTimePicker = () => {
+        this.setState({ isDateTimePickerVisible: true });
+    };
+
+    hideDateTimePicker = () => {
+        this.setState({ isDateTimePickerVisible: false });
+    };
+
+    handleDatePicked = date => {
+        this.setState({ dob: date.toISOString().split("T")[0] });
+        this.hideDateTimePicker();
     };
 
     getPermissionAsync = async () => {
@@ -210,13 +226,21 @@ class Profile extends Component {
 
                             <View style={form.form_flex}>
                                 <View style={form.form_left}>
-                                    <InputField
+                                    <DateInput
+                                        showDateTimePicker={
+                                            this.showDateTimePicker
+                                        }
+                                        disabled={true}
                                         autoFocus={true}
                                         value={this.state.dob}
-                                        onChangeText={text => {
-                                            this.handleText(text, "dob");
-                                        }}
                                         placeholder='Date of Birth'
+                                    />
+                                    <DateTimePicker
+                                        isVisible={
+                                            this.state.isDateTimePickerVisible
+                                        }
+                                        onConfirm={this.handleDatePicked}
+                                        onCancel={this.hideDateTimePicker}
                                     />
                                 </View>
 

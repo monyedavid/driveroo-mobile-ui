@@ -178,6 +178,9 @@ class SignUp extends React.Component {
                                 containerStyle={form.form_control}
                                 label='Gender'
                                 data={data}
+                                onChangeText={text => {
+                                    this.handleText(text, "gender");
+                                }}
                             />
 
                             <View style={form.form_control}>
