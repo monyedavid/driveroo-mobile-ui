@@ -139,6 +139,8 @@ class Profile extends Component {
                     style={{ ...utilis.child_container }}
                     showsVerticalScrollIndicator={false}
                 >
+                    {/* 
+                    Dont add this back . It is not needed
                     <KeyboardAvoidingView
                         style={{
                             ...utilis.child_container,
@@ -150,7 +152,7 @@ class Profile extends Component {
                         behavior='padding'
                         enabled
                         keyboardVerticalOffset={150}
-                    >
+                    > */}
                         <View>
                             <Text
                                 style={{
@@ -226,36 +228,40 @@ class Profile extends Component {
 
                             <View style={form.form_flex}>
                                 <View style={form.form_left}>
-                                    <DateInput
-                                        showDateTimePicker={
-                                            this.showDateTimePicker
-                                        }
-                                        disabled={true}
-                                        autoFocus={true}
-                                        value={this.state.dob}
-                                        placeholder='Date of Birth'
-                                    />
-                                    <DateTimePicker
-                                        isVisible={
-                                            this.state.isDateTimePickerVisible
-                                        }
-                                        onConfirm={this.handleDatePicked}
-                                        onCancel={this.hideDateTimePicker}
-                                    />
-                                </View>
+                                   
+                                        <DateInput
+                                            showDateTimePicker={
+                                                this.showDateTimePicker
+                                            }
+                                            disabled={true}
+                                            autoFocus={true}
+                                            value={this.state.dob}
+                                            placeholder='Date of Birth'
+                                            style={{flexDirection:"row"}}
+                                        />
+                                        <DateTimePicker
+                                            isVisible={
+                                                this.state.isDateTimePickerVisible
+                                            }
+                                            onConfirm={this.handleDatePicked}
+                                            onCancel={this.hideDateTimePicker}
+                                        />
+                                   
+                                   </View>
 
-                                <View style={form.form_right}>
-                                    <InputField
-                                        value={this.state.mothers_maiden_name}
-                                        onChangeText={text => {
-                                            this.handleText(
-                                                text,
-                                                "mothers_maiden_name"
-                                            );
-                                        }}
-                                        placeholder='Maiden name'
-                                    />
-                                </View>
+                                    <View style={form.form_right}>
+                                        <InputField
+                                            value={this.state.mothers_maiden_name}
+                                            onChangeText={text => {
+                                                this.handleText(
+                                                    text,
+                                                    "mothers_maiden_name"
+                                                );
+                                            }}
+                                            placeholder='Maiden name'
+                                        />
+                                    </View>
+                                
                             </View>
 
                             <View style={form.form_control}>
@@ -379,7 +385,7 @@ class Profile extends Component {
                                 )}
                             </View>
                         </View>
-                    </KeyboardAvoidingView>
+                    {/* </KeyboardAvoidingView> */}
                 </ScrollView>
             </React.Fragment>
         );
