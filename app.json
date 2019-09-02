@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "driveroo-build-7",
-    "slug": "driverro-v-7",
+    "name": "driveroo-build-8",
+    "slug": "driverro-v-8",
     "privacy": "public",
     "sdkVersion": "34.0.0",
     "platforms": [
@@ -30,7 +30,7 @@
     "android": {
       "package": "com.driverroo.driverroo"
     },
-    "description": "&7",
+    "description": "&&8",
     "githubUrl": "https://github.com/rasheeddavid/driveroo-mobile-ui.git"
   }
 }
