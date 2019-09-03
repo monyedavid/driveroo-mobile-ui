@@ -7,16 +7,16 @@ import {
     Text,
     ActivityIndicator
 } from "react-native";
-import InputField from "../components/InputField";
-import Button from "../components/Button";
+import InputField from "../../components/InputField";
+import Button from "../../components/Button";
 // import { Snackbar } from "react-native-material-ui";
 import { KeyboardAvoidingView } from "react-native";
-import isEmpty from "../utils/is.empty";
-import { snackBarGen } from "../utils/errors/errorHandler";
-import { userLogin } from "../resources/redux-actions/auth";
-import { clearErrors } from "../resources/redux-actions/shared";
-import "../styles/core/utilis";
-import { utilis } from "../styles/core/utilis";
+import isEmpty from "../../utils/is.empty";
+import { snackBarGen } from "../../utils/errors/errorHandler";
+import { userLogin } from "../../resources/redux-actions/auth";
+import { clearErrors } from "../../resources/redux-actions/shared";
+import "../../styles/core/utilis";
+import { utilis } from "../../styles/core/utilis";
 import { Snackbar } from "react-native-material-ui";
 
 class PasswordScreen extends React.Component {

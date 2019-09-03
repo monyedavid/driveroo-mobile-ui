@@ -7,9 +7,9 @@ import {
     TouchableHighlight
 } from "react-native";
 import { Icon } from "native-base";
-import "../styles/core/utilis";
-import { utilis } from "../styles/core/utilis";
-import "../styles/core/utilis";
+import "../../styles/core/utilis";
+import { utilis } from "../../styles/core/utilis";
+import "../../styles/core/utilis";
 
 export default function SocailLogin(props) {
     return (

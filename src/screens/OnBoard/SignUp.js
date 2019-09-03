@@ -1,18 +1,18 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { View, Text, ActivityIndicator, ScrollView } from "react-native";
-import InputField, { inputstyles } from "../components/InputField";
-import Button from "../components/Button";
-import isEmpty from "../utils/is.empty";
-import { snackBarGen } from "../utils/errors/errorHandler";
-import { userReg } from "../resources/redux-actions/auth";
+import InputField, { inputstyles } from "../../components/InputField";
+import Button from "../../components/Button";
+import isEmpty from "../../utils/is.empty";
+import { snackBarGen } from "../../utils/errors/errorHandler";
+import { userReg } from "../../resources/redux-actions/auth";
 import { KeyboardAvoidingView } from "react-native";
 import { Snackbar } from "react-native-material-ui";
 import { Dropdown } from "react-native-material-dropdown";
-import { clearErrors } from "../resources/redux-actions/shared";
-import "../styles/core/utilis";
-import "../styles/core/form";
-import { utilis } from "../styles/core/utilis";
+import { clearErrors } from "../../resources/redux-actions/shared";
+import "../../styles/core/utilis";
+import "../../styles/core/form";
+import { utilis } from "../../styles/core/utilis";
 
 class SignUp extends React.Component {
     state = {

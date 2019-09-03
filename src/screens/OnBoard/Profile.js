@@ -9,21 +9,21 @@ import {
     TouchableOpacity,
     ActivityIndicator
 } from "react-native";
-import InputField, { DateInput } from "../components/InputField";
+import InputField, { DateInput } from "../../components/InputField";
 import { KeyboardAvoidingView } from "react-native";
-import Button from "../components/Button";
-import { profileUpdatde } from "../resources/redux-actions/auth";
-import isEmpty from "../utils/is.empty";
+import Button from "../../components/Button";
+import { profileUpdatde } from "../../resources/redux-actions/auth";
+import isEmpty from "../../utils/is.empty";
 import { Snackbar } from "react-native-material-ui";
-import { snackBarGen } from "../utils/errors/errorHandler";
-import { clearErrors } from "../resources/redux-actions/shared";
-import { utilis } from "../styles/core/utilis";
+import { snackBarGen } from "../../utils/errors/errorHandler";
+import { clearErrors } from "../../resources/redux-actions/shared";
+import { utilis } from "../../styles/core/utilis";
 import * as ImagePicker from "expo-image-picker";
 import DateTimePicker from "react-native-modal-datetime-picker";
 
 import Constants from "expo-constants";
 import * as Permissions from "expo-permissions";
-import "../styles/core/utilis";
+import "../../styles/core/utilis";
 
 class Profile extends Component {
     state = {
@@ -151,7 +151,7 @@ class Profile extends Component {
                             }}
                         >
                             Hello{" "}
-                            {/* {auth && auth.user && auth.user.user.firstName} */}
+                            {auth && auth.user && auth.user.user.firstName}
                         </Text>
                         <Text
                             style={{

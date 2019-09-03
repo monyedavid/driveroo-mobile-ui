@@ -1,11 +1,11 @@
 import * as React from "react";
 import { View, StyleSheet, Text } from "react-native";
-import "../styles/core/utilis";
-import "../styles/verification";
+import "../../styles/core/utilis";
+import "../../styles/verification";
 import Constants from "expo-constants";
 import * as Permissions from "expo-permissions";
 import * as ImagePicker from "expo-image-picker";
-import Button from "../components/Button";
+import Button from "../../components/Button";
 
 export default class VerificationScreen extends React.Component {
     componentDidMount() {

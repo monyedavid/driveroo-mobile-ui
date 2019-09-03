@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { View, StyleSheet, Image, Text } from "react-native";
 import moment from "moment-timer";
 // import InputField from "../components/InputField";
-import Button from "../components/Button";
-import { utilis, textColor } from "../styles/core/utilis";
+import Button from "../../components/Button";
+import { utilis, textColor } from "../../styles/core/utilis";
 import { connect } from "react-redux";
-import { userLogout } from "../resources/redux-actions/auth";
+import { userLogout } from "../../resources/redux-actions/auth";
 class ConfirmationScrenn extends React.Component {
     componentDidUpdate() {
         if (this.props.auth.isAuthenticated) {

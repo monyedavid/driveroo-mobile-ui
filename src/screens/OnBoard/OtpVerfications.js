@@ -6,10 +6,10 @@ import {
     KeyboardAvoidingView,
     ScrollView
 } from "react-native";
-import InputField from "../components/InputField";
-import Button from "../components/Button";
-import "../styles/core/utilis";
-import { utilis, textColor } from "../styles/core/utilis";
+import InputField from "../../components/InputField";
+import Button from "../../components/Button";
+import "../../styles/core/utilis";
+import { utilis, textColor } from "../../styles/core/utilis";
 
 export default function OtpVerification(props) {
     const signup = props.navigation.getParam("signup", "");

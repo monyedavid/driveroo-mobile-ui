@@ -6,13 +6,13 @@ import {
 	View,
 	ActivityIndicator,
 } from "react-native";
-import "../styles/landing";
-import { utilis, textColor } from "../styles/core/utilis";
-import Button from "../components/Button";
-import { userMe } from "../resources/redux-actions/auth";
+import "../../styles/landing";
+import { utilis, textColor } from "../../styles/core/utilis";
+import Button from "../../components/Button";
+import { userMe } from "../../resources/redux-actions/auth";
 import { KeyboardAvoidingView, ScrollView } from "react-native";
-import InputField from "../components/InputField";
-import { previousUser } from "../utils/on-boardin";
+import InputField from "../../components/InputField";
+import { previousUser } from "../../utils/on-boardin";
 
 
 class HomeScreen extends React.Component {

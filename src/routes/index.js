@@ -1,15 +1,15 @@
 // import * as React from "react";
 import Drawer from "../components/Drawer";
 // import OnBoardScreen from "../screens/OnBoard";
-import HomeScreen from "../screens/HomeScreen";
-import OtpVerifications from "../screens/OtpVerfications";
-import SignUp from "../screens/SignUp";
+import HomeScreen from "../screens/OnBoard/HomeScreen";
+import OtpVerifications from "../screens/OnBoard/OtpVerfications";
+import SignUp from "../screens/OnBoard/SignUp";
 // import SocialLogin from "../screens/SocialLogin";
-import Profile from "../screens/Profile";
-import VerificationScreen from "../screens/VerificationScreen";
-import ConfirmationScreen from "../screens/ConfirmationScreen";
-import ResetPassword from "../screens/ResetPassword";
-import PassWordScreen from "../screens/PassWord";
+import Profile from "../screens/OnBoard/Profile";
+import VerificationScreen from "../screens/OnBoard/VerificationScreen";
+import ConfirmationScreen from "../screens/OnBoard/ConfirmationScreen";
+import ResetPassword from "../screens/OnBoard/ResetPassword";
+import PassWordScreen from "../screens/OnBoard/PassWord";
 import Status from "../screens/user/Status";
 import Home from "../screens/user/Home";
 import {
