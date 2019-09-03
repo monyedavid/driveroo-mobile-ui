@@ -40,7 +40,7 @@ class ConfirmationScrenn extends React.Component {
                 <View style={utilis.child_container}>
                     <View style={styles.image_container}>
                         <Image
-                            source={require("../assets/images/check.png")}
+                            source={require("../../assets/images/check.png")}
                             style={styles.image}
                         />
                     </View>

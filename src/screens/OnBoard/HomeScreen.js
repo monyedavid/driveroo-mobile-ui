@@ -155,7 +155,7 @@ class HomeScreen extends React.Component {
 					ref={el => (this.imageRef = el)}
 				>
 					<Image
-						source={require("../assets/images/bgImage.png")}
+						source={require("../../assets/images/bgImage.png")}
 						style={landing.image}
 					/>
 					{/* <View style={landing.overlay} /> */}
@@ -163,7 +163,7 @@ class HomeScreen extends React.Component {
 				<View style={utilis.child_container}>
 					{/* Image */}
 					<Image
-						source={require("../assets/images/logo.png")}
+						source={require("../../assets/images/logo.png")}
 						style={landing.logo}
 					/>
 					{/* <View> */}

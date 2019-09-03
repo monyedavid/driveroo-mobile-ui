@@ -16,7 +16,7 @@ export default function SocailLogin(props) {
         <View style={styles.container}>
             <View style={utilis.child_container}>
                 <Image
-                    source={require("../assets/images/left-arrow.png")}
+                    source={require("../../assets/images/left-arrow.png")}
                     style={utilis.margin_bottom_lg}
                 />
                 <Text style={{ ...utilis.text, ...utilis.margin_bottom }}>
@@ -26,7 +26,7 @@ export default function SocailLogin(props) {
             <View>
                 <View style={{ ...utilis.flex_horizaontal, ...styles.tab }}>
                     <Image
-                        source={require("../assets/images/facebook.png")}
+                        source={require("../../assets/images/facebook.png")}
                         style={{ height: 20 }}
                         resizeMode='contain'
                     />
@@ -39,7 +39,7 @@ export default function SocailLogin(props) {
                         }}
                     >
                         <Image
-                            source={require("../assets/images/right-arrow.png")}
+                            source={require("../../assets/images/right-arrow.png")}
                             style={{ height: 20 }}
                             resizeMode='contain'
                         />
@@ -49,7 +49,7 @@ export default function SocailLogin(props) {
                     style={{ ...utilis.flex_horizaontal, ...styles.tab_bottom }}
                 >
                     <Image
-                        source={require("../assets/images/search.png")}
+                        source={require("../../assets/images/search.png")}
                         style={{ height: 20 }}
                         resizeMode='contain'
                     />
@@ -57,7 +57,7 @@ export default function SocailLogin(props) {
                         <Text style={utilis.text_light}>Google</Text>
                     </View>
                     <Image
-                        source={require("../assets/images/right-arrow.png")}
+                        source={require("../../assets/images/right-arrow.png")}
                         style={{ height: 20 }}
                         resizeMode='contain'
                     />

@@ -172,7 +172,7 @@ class Profile extends Component {
                                 source={
                                     this.state.avatar
                                         ? { uri: this.state.avatar }
-                                        : require("../assets/images/dp.png")
+                                        : require("../../assets/images/dp.png")
                                 }
                                 style={
                                     this.state.avatar
@@ -312,7 +312,7 @@ class Profile extends Component {
                                 source={
                                     this.state.driversLisence
                                         ? { uri: this.state.driversLisence }
-                                        : require("../assets/images/add_icon.png")
+                                        : require("../../assets/images/add_icon.png")
                                 }
                                 style={styles.icon}
                             />
