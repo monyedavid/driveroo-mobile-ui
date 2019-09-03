@@ -7,7 +7,7 @@ import {
 } from "../../../../constants/redux-constants/main.index";
 import { g_Auth } from "../../../graphql/auth.graphql";
 import config from "../../../configs";
-const url = config.AUTH_MS;
+const url = config.AUTH_MS_OCEAN;
 
 export const userLogin = (
     { emailormobile, password, isEmail },

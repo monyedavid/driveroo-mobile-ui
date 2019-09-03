@@ -1,6 +1,6 @@
 import config from "../../configs";
 import { g_Auth } from "../../graphql/auth.graphql";
-const url = config.AUTH_MS;
+const url = config.AUTH_MS_OCEAN;
 
 export const previousUser = async userdata => {
     try {
