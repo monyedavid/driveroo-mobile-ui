@@ -190,6 +190,7 @@ export const profileUpdatde = (
         });
 
         const { data } = req;
+
         const { ok, error } = data.data.firstUpdate;
 
         setLoading();

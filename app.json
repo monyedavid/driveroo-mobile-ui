@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "driveroo-build-ocean-places-api",
-    "slug": "driverro-v-0-1",
+    "name": "driveroo-build-1",
+    "slug": "driverro-v-1",
     "privacy": "public",
     "sdkVersion": "34.0.0",
     "platforms": [
@@ -30,7 +30,7 @@
     "android": {
       "package": "com.driverroo.driverroo"
     },
-    "description": "GOOGLE PLACES API",
+    "description": "GOOGLE PLACES API && INTEGRATION",
     "githubUrl": "https://github.com/rasheeddavid/driveroo-mobile-ui.git"
   }
 }
