@@ -13,7 +13,6 @@ export class g_Auth {
      * login
      */
     async login({ emailormobile, password }) {
-        console.log({ emailormobile, password });
         return await rps.post(this.url, {
             query: `
                     mutation {
