@@ -186,7 +186,7 @@ class Profile extends Component {
                                 }}
                             >
                                 Hello{" "}
-                                {/* {auth && auth.user && auth.user.user.firstName} */}
+                                {auth && auth.user && auth.user.user.firstName}
                             </Text>
                             <Text
                                 style={{
@@ -305,7 +305,7 @@ class Profile extends Component {
                                             this.setState({
                                                 candidates: await autoMatic(
                                                     this.state.primary_location,
-                                                    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDZiOTcxOTNhNDI1NzAwMDMwYzQ5MWYiLCJ1c2VyZnVsbG5hbWUiOiJUZXN0IEFkbWluIEJPdCIsIm1vYmlsZSI6IjA5MDcyNzc3MTQxIiwibW9kZWwiOiJkcml2ZXIiLCJpYXQiOjE1Njc2NTM1MTIsImV4cCI6MTU2ODI1ODMxMn0.pc64ITKyLfxM1mNIJfUFMzQRR9xY3NZYDJ-y4SPIoAU"
+                                                    auth && auth.user.token
                                                 )
                                             });
                                     }}
@@ -371,7 +371,7 @@ class Profile extends Component {
                                                 candidates: await autoMatic(
                                                     this.state
                                                         .secondary_location,
-                                                    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDZiOTcxOTNhNDI1NzAwMDMwYzQ5MWYiLCJ1c2VyZnVsbG5hbWUiOiJUZXN0IEFkbWluIEJPdCIsIm1vYmlsZSI6IjA5MDcyNzc3MTQxIiwibW9kZWwiOiJkcml2ZXIiLCJpYXQiOjE1Njc2NTM1MTIsImV4cCI6MTU2ODI1ODMxMn0.pc64ITKyLfxM1mNIJfUFMzQRR9xY3NZYDJ-y4SPIoAU"
+                                                    auth && auth.user.token
                                                 )
                                             });
                                     }}
@@ -437,7 +437,7 @@ class Profile extends Component {
                                                 candidates: await autoMatic(
                                                     this.state
                                                         .tertiary_location,
-                                                    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDZiOTcxOTNhNDI1NzAwMDMwYzQ5MWYiLCJ1c2VyZnVsbG5hbWUiOiJUZXN0IEFkbWluIEJPdCIsIm1vYmlsZSI6IjA5MDcyNzc3MTQxIiwibW9kZWwiOiJkcml2ZXIiLCJpYXQiOjE1Njc2NTM1MTIsImV4cCI6MTU2ODI1ODMxMn0.pc64ITKyLfxM1mNIJfUFMzQRR9xY3NZYDJ-y4SPIoAU"
+                                                    auth && auth.user.token
                                                 )
                                             });
                                     }}
