@@ -313,18 +313,108 @@ class Profile extends Component {
                                 />
                             </View>
 
+                            {this.state.candidates &&
+                                this.state.current_Location_select ===
+                                    "primary_location" && (
+                                    <View
+                                        style={{ flex: 1 }}
+                                        containerStyle={{
+                                            borderTopWidth: 0,
+                                            borderBottomWidth: 0
+                                        }}
+                                    >
+                                        <FlatList
+                                            data={this.state.candidates}
+                                            renderItem={({ item }) => (
+                                                <ListItem
+                                                    title={`${item.description}`}
+                                                    onPress={() => {
+                                                        this._setPlaceId(
+                                                            item.place_id
+                                                        );
+                                                        this.handleText(
+                                                            item.description,
+                                                            "primary_location"
+                                                        );
+                                                        this.setState({
+                                                            candidates: null
+                                                        });
+                                                    }}
+                                                />
+                                            )}
+                                            keyExtractor={item => item.id}
+                                            ItemSeparatorComponent={
+                                                this._renderSeparator
+                                            }
+                                        />
+                                    </View>
+                                )}
+
                             <View style={form.form_control}>
                                 <InputField
                                     value={this.state.secondary_location}
-                                    onChangeText={text => {
+                                    onChangeText={async text => {
                                         this.handleText(
                                             text,
                                             "secondary_location"
                                         );
+
+                                        this.setState({
+                                            current_Location_select:
+                                                "secondary_location"
+                                        });
+                                        if (
+                                            this.state.secondary_location
+                                                .length > 4
+                                        )
+                                            this.setState({
+                                                candidates: await autoMatic(
+                                                    this.state
+                                                        .secondary_location,
+                                                    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDZiOTcxOTNhNDI1NzAwMDMwYzQ5MWYiLCJ1c2VyZnVsbG5hbWUiOiJUZXN0IEFkbWluIEJPdCIsIm1vYmlsZSI6IjA5MDcyNzc3MTQxIiwibW9kZWwiOiJkcml2ZXIiLCJpYXQiOjE1Njc2NTM1MTIsImV4cCI6MTU2ODI1ODMxMn0.pc64ITKyLfxM1mNIJfUFMzQRR9xY3NZYDJ-y4SPIoAU"
+                                                )
+                                            });
                                     }}
                                     placeholder='Your secondary address?'
                                 />
                             </View>
+
+                            {this.state.candidates &&
+                                this.state.current_Location_select ===
+                                    "secondary_location" && (
+                                    <View
+                                        style={{ flex: 1 }}
+                                        containerStyle={{
+                                            borderTopWidth: 0,
+                                            borderBottomWidth: 0
+                                        }}
+                                    >
+                                        <FlatList
+                                            data={this.state.candidates}
+                                            renderItem={({ item }) => (
+                                                <ListItem
+                                                    title={`${item.description}`}
+                                                    onPress={() => {
+                                                        this._setPlaceId(
+                                                            item.place_id
+                                                        );
+                                                        this.handleText(
+                                                            item.description,
+                                                            "secondary_location"
+                                                        );
+                                                        this.setState({
+                                                            candidates: null
+                                                        });
+                                                    }}
+                                                />
+                                            )}
+                                            keyExtractor={item => item.id}
+                                            ItemSeparatorComponent={
+                                                this._renderSeparator
+                                            }
+                                        />
+                                    </View>
+                                )}
 
                             <View style={form.form_control}>
                                 <InputField
