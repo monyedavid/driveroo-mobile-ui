@@ -84,7 +84,7 @@ class Profile extends Component {
     };
 
     getPermissionAsync = async () => {
-        if (Constants.platform.ios) {
+        if (Constants.platform.ios || Constants.platform.android) {
             const { status } = await Permissions.askAsync(
                 Permissions.CAMERA_ROLL
             );
