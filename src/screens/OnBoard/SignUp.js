@@ -91,9 +91,15 @@ class SignUp extends React.Component {
                             timeout={500}
                             bottomNavigation={true}
                             message={message}
-                            onPress={() => props.clearErrors()}
-                            onRequestClose={() => {
+                            onPress={() => {
+                                this.setState({ loading: false });
                                 props.clearErrors();
+                            }}
+                            onRequestClose={() => {
+                                {
+                                    this.setState({ loading: false });
+                                    props.clearErrors();
+                                }
                             }}
                             style={{
                                 container: {
