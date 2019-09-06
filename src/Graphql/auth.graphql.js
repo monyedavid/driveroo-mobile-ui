@@ -127,33 +127,35 @@ export class g_Auth {
         id,
         token,
         avatarExt,
-        driversLisenceExt
+        driversLisenceExt,
+        mocksessionAndriod
     }) {
+        console.log(typeof driversLisenceBase64, "msa");
         return rps.post(this.url, {
             query: `
             mutation{
-                firstUpdate(params: {
-                  dob: "${dob}",
-                  mothers_maiden_name: "${mothers_maiden_name}",
-                  primary_location: "${primary_location}",
-                  secondary_location:"${secondary_location}",
-                  tertiary_location: "${tertiary_location}",
-                  bank_bvn: "${bvn}",
-                  avatar: "${avatarBase64}",
-                  driversLicense: "${driversLisenceBase64}"
-                  driverLicenseNumber: "${driverLisenceNumber}"
-                }, mock: {
-                  id: "${id}",
-                  token:"${token}",
-                  driversExt: "${driversLisenceExt}",
-                  avatarExt: "${avatarExt}"
-                }) {
-                  ok
-                  error{
-                    path
-                    message
-                  }
-                  
+              firstUpdate(params: {   dob: "${dob}"
+                mothers_maiden_name: "${mothers_maiden_name}"
+                primary_location: "${primary_location}"
+                secondary_location:"${secondary_location}"
+                tertiary_location: "${tertiary_location}"
+                bank_bvn: "${bvn}"
+                avatar: ${avatarBase64}
+                driversLicense: ${driversLisenceBase64}
+                driverLicenseNumber: "${driverLisenceNumber}"
+              } mock: {
+                id: "${id}"
+                token:"${token}"
+                driversExt: "${driversLisenceExt}"
+                avatarExt: "${avatarExt}"
+                andriod: "false"
+              }) {
+                ok
+                error{
+                  path
+                  message
+                }
+                
                   success {
                     active
                     confirmed

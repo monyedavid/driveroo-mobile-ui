@@ -22,6 +22,8 @@ import { utilis } from "../../styles/core/utilis";
 import { autoMatic } from "../../utils/google/auto.complete.places";
 import * as ImagePicker from "expo-image-picker";
 import DateTimePicker from "react-native-modal-datetime-picker";
+// FOR ANDRIOD
+import DuTb from "data-uri-to-buffer";
 
 import Constants from "expo-constants";
 import * as Permissions from "expo-permissions";
@@ -39,6 +41,7 @@ class Profile extends Component {
         //
         driverLisenceNumber: "",
         avatar: null,
+        mocksessionAndriod: false,
         avatarBase64: null,
         avatarExt: null,
         driversLisenceExt: null,
@@ -57,6 +60,10 @@ class Profile extends Component {
     };
 
     componentDidMount() {
+        if (Constants.platform.android) {
+            this.setState({ mocksessionAndriod: true });
+        }
+
         this.getPermissionAsync();
     }
 
@@ -109,8 +116,14 @@ class Profile extends Component {
             const to = str.length - 3;
             const ext = str.substring(to, str.length);
 
+            const bufferData = DuTb(
+                `data:image/${ext};base64,${result.base64}`
+            );
+
             this.setState({
-                [`${name}Base64`]: result.base64,
+                [`${name}Base64`]: JSON.stringify(
+                    bufferData.toString("base64")
+                ),
                 [`${name}Ext`]: ext,
                 [name]: result.uri
             });
