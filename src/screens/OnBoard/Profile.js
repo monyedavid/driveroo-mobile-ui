@@ -10,7 +10,7 @@ import {
     FlatList,
     ActivityIndicator
 } from "react-native";
-import { SearchBar, ListItem } from "react-native-elements";
+import { ListItem } from "react-native-elements";
 import InputField, { DateInput } from "../../components/InputField";
 import Button from "../../components/Button";
 import { profileUpdatde } from "../../resources/redux-actions/auth";
@@ -21,6 +21,7 @@ import { clearErrors } from "../../resources/redux-actions/shared";
 import { utilis } from "../../styles/core/utilis";
 import { autoMatic } from "../../utils/google/auto.complete.places";
 import * as ImagePicker from "expo-image-picker";
+
 import DateTimePicker from "react-native-modal-datetime-picker";
 // FOR ANDRIOD
 import DuTb from "data-uri-to-buffer";
@@ -121,9 +122,10 @@ class Profile extends Component {
             );
 
             this.setState({
-                [`${name}Base64`]: JSON.stringify(
-                    bufferData.toString("base64")
-                ),
+                [`${name}Base64`]: {
+                    stream: JSON.stringify(bufferData.toString("base64")),
+                    filename: "somoneimage"
+                },
                 [`${name}Ext`]: ext,
                 [name]: result.uri
             });

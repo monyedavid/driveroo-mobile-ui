@@ -140,8 +140,8 @@ export class g_Auth {
                 secondary_location:"${secondary_location}"
                 tertiary_location: "${tertiary_location}"
                 bank_bvn: "${bvn}"
-                avatar: ${avatarBase64}
-                driversLicense: ${driversLisenceBase64}
+                avatar: ""
+                driversLicense: ""
                 driverLicenseNumber: "${driverLisenceNumber}"
               } mock: {
                 id: "${id}"
